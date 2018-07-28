@@ -13,10 +13,10 @@ interface PhxScraperContract
 	/**
 	 * @return void
 	 */
-	public function run();
+	public function run(): void;
 
 	/**
 	 * @return array
 	 */
-	public function getData();
+	public function getData(): array;
 }

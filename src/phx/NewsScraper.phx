@@ -45,40 +45,42 @@ abstract class NewsScraper implements PHXScraperContract
 	 * @param string $url
 	 * @return bool
 	 */
-	public function hashCheck($url)
+	public function hashCheck(string $url): bool
 	{
-		return file_exists(HASH_CHECK_DIR."/".sha1($url));
+		return file_exists(HASH_CHECK_DIR."/".sha1($url)."_".md5($url));
 	}
 
 	/**
 	 * @param string $url
 	 * @return bool
 	 */
-	public function saveHash($url)
+	public function saveHash(string $url): bool
 	{
-		file_put_contents(HASH_CHECK_DIR."/".sha1($url), time());
+		return file_put_contents(HASH_CHECK_DIR."/".sha1($url)."_".md5($url), time());
 	}
 
 	/**
 	 * @return void
 	 */
-	abstract public function run();
+	abstract public function run(): void;
 
 	/**
 	 * @return array
 	 */
-	abstract public function getData();
+	abstract public function getData(): array;
 
 	/**
 	 * @param string
 	 * @return array
 	 */
-	abstract protected function parseThreadUrlList($string);
+	abstract protected function parseThreadUrlList(string $string): array;
 
 	/**
-	 * 
+	 * @param string $url
+	 * @param array  $opt
+	 * @return array
 	 */
-	protected function exec($url, $opt = [])
+	public function exec(string $url, $opt = []): array
 	{
 		$ch = curl_init($url);
 		$optf = [
@@ -93,11 +95,12 @@ abstract class NewsScraper implements PHXScraperContract
 		foreach ($opt as $key => $value) {
 			$optf[$key] = $value;
 		}
+		curl_setopt_array($ch, $optf);
 		$out = curl_exec($ch);
 		$err = curl_error($ch);
 		$ern = curl_errno($ch);
 		$info = curl_getinfo($ch);
-
+		curl_close($ch);
 		return [
 			"out" => $out,
 			"error" => $err,

@@ -13,6 +13,16 @@ if (! isset($argv[1])) {
 	exit(1);
 }
 
+$noend = false;
+if (isset($argv[2])) {
+	if ($argv[2] === "--while-true") {
+		$noend = true;
+	} else {
+		print "Invalid parameter {$argv[2]}\n";
+		exit(1);
+	}
+}
+
 switch ($argv[1]) {
 	case 'liputan6':
 		$st = new Liputan6;
@@ -30,5 +40,11 @@ if (!($st instanceof NewsScraper)) {
 	exit(1);
 }
 
-$st->run();
-$st->getData();
+do {
+	$st->run();
+	$st->getData();
+	if ($noend) {
+		icelog("Sleeping 10 seconds...");
+		sleep(10);
+	}
+} while ($noend);

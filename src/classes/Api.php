@@ -67,19 +67,19 @@ final class Api
 			$st = $this->pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id`=:news_id;");
 			$st->execute([":news_id" => $r["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
-				$result["authors"][] = $r[0]
+				$result["authors"][] = $r[0];
 			}
 
 			$st = $this->pdo->prepare("SELECT `category_name` FROM `categories` WHERE `news_id`=:news_id;");
 			$st->execute([":news_id" => $r["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
-				$result["categories"][] = $r[0]
+				$result["categories"][] = $r[0];
 			}
 
 			$st = $this->pdo->prepare("SELECT `tag_name` FROM `tags` WHERE `news_id`=:news_id;");
 			$st->execute([":news_id" => $r["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
-				$result["tags"][] = $r[0]
+				$result["tags"][] = $r[0];
 			}
 
 			$st = $this->pdo->prepare("SELECT `image_url`,`description` FROM `images` WHERE `news_id`=:news_id;");

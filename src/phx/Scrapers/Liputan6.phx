@@ -27,7 +27,7 @@ final class Liputan6 extends NewsScraper
 	/**
 	 * @var array
 	 */
-	private $data = [];
+	protected $data = [];
 
 	/**
 	 * Constructor.
@@ -43,8 +43,13 @@ final class Liputan6 extends NewsScraper
 	 */
 	public function run()
 	{
-		foreach (targetList as $key => $url) {
-			
+		foreach (self::targetList as $key => $url) {
+			icelog("Scraping {$url}...");
+			$l = $this->exec($url);
+			if (isset($l["error"]) && $l["error"]) {
+				icelog("An error occured when scraping {$url}: {$l['errno']} {$l['error']}");
+			}
+			$this->parseThreadUrlList($out);
 		}
 	}
 
@@ -53,7 +58,7 @@ final class Liputan6 extends NewsScraper
 	 */
 	protected function parseThreadUrlList($string)
 	{
-		
+
 	}
 
 	/**

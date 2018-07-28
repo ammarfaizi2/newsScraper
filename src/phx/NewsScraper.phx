@@ -28,6 +28,11 @@ abstract class NewsScraper implements PHXScraperContract
 	protected $cookieFile;
 
 	/**
+	 * @var string
+	 */
+	protected $userAgent;
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct()
@@ -68,13 +73,36 @@ abstract class NewsScraper implements PHXScraperContract
 	 * @param string
 	 * @return array
 	 */
-	protected function parseThreadUrlList($string);
+	abstract protected function parseThreadUrlList($string);
 
 	/**
 	 * 
 	 */
-	protected function exec()
+	protected function exec($url, $opt = [])
 	{
+		$ch = curl_init($url);
+		$optf = [
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_COOKIEFILE => $this->cookieFile,
+			CURLOPT_COOKIEJAR => $this->cookieFile,
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+			CURLOPT_USERAGENT => $this->userAgent
+		];
+		foreach ($opt as $key => $value) {
+			$optf[$key] = $value;
+		}
+		$out = curl_exec($ch);
+		$err = curl_error($ch);
+		$ern = curl_errno($ch);
+		$info = curl_getinfo($ch);
 
+		return [
+			"out" => $out,
+			"error" => $err,
+			"errno" => $ern,
+			"info" => $info
+		];
 	}
 }

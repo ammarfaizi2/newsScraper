@@ -1,6 +1,6 @@
 <?php
 
-if (PHP_SAPI !== "cli") {
+if (defined("MUST_CLI") && PHP_SAPI !== "cli") {
 	print "You must run this scripts on cli environment!\nCurrent environment: ".PHP_SAPI;
 	exit(1);
 }

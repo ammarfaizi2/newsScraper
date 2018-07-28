@@ -23,9 +23,20 @@ abstract class NewsScraper implements PHXScraperContract
 
 	/**
 	 * @param string $url
+	 * @return bool
 	 */
 	public function hashCheck($url)
 	{
 		return file_exists(HASH_CHECK_DIR."/".sha1($url));
 	}
+
+	/**
+	 * @return void
+	 */
+	abstract public function run();
+
+	/**
+	 * @return array
+	 */
+	abstract public function getData();
 }

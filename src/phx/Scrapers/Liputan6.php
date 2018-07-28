@@ -24,6 +24,6 @@ final class Liputan6 extends NewsScraper
 	 */
 	public function __construct()
 	{
-
+		
 	}
 }

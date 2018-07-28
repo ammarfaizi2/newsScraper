@@ -88,7 +88,7 @@ final class Api
 			while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 				$result[$i]["categories"][] = $r;
 			}
-
+			$i++;
 		}
 
 		print json_encode(

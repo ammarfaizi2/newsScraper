@@ -55,39 +55,43 @@ final class Api
 
 		$this->pdo = DB::pdo();
 		$query = "SELECT `id`,`title`,`url`,`datetime`,`content`,`regional`,`scraped_at` FROM `news` ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};";
-		$st = $this->pdo->prepare($query);
-		$st->execute();
+		$stq = $this->pdo->prepare($query);
+		$stq->execute();
 		$i = 0;
-		while($r = $st->fetch(PDO::FETCH_ASSOC)) {
-			$result[$i] = $r;
+		while($rr = $stq->fetch(PDO::FETCH_ASSOC)) {			
+			$result[$i] = $rr;
 			$result[$i]["authors"] = [];
 			$result[$i]["categories"] = [];
 			$result[$i]["tags"] = [];
 			$result[$i]["images"] = [];
 
 			$st = $this->pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id`=:news_id;");
-			$st->execute([":news_id" => $r["id"]]);
+			$st->execute([":news_id" => $rr["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$result[$i]["authors"][] = $r[0];
 			}
 
 			$st = $this->pdo->prepare("SELECT `category_name` FROM `categories` WHERE `news_id`=:news_id;");
-			$st->execute([":news_id" => $r["id"]]);
+			$st->execute([":news_id" => $rr["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$result[$i]["categories"][] = $r[0];
 			}
 
 			$st = $this->pdo->prepare("SELECT `tag_name` FROM `tags` WHERE `news_id`=:news_id;");
-			$st->execute([":news_id" => $r["id"]]);
+			$st->execute([":news_id" => $rr["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$result[$i]["tags"][] = $r[0];
 			}
 
 			$st = $this->pdo->prepare("SELECT `image_url`,`description` FROM `images` WHERE `news_id`=:news_id;");
-			$st->execute([":news_id" => $r["id"]]);
+			$st->execute([":news_id" => $rr["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
-				$result[$i]["categories"][] = $r;
+				$result[$i]["images"][] = $r;
 			}
+
+			$result[$i]["hash_file"] = "http://".$_SERVER["HTTP_HOST"]."/storage/scraper/hash/".($hash = sha1($rr["url"])."_".md5($rr["url"]));
+			$result[$i]["scraped_html_file"] = "http://".$_SERVER["HTTP_HOST"]."/storage/scraper/html/".$hash.".html";
+			
 			$i++;
 		}
 

@@ -26,6 +26,41 @@ final class DB
 	 */
 	public function __construct()
 	{
-		// $this->pdo = new PDO("mysql");
+		$this->pdo = new PDO(
+			"mysql:host=".DB_HOST.";port=".DB_PORT.";dbname=".DB_NAME,
+			DB_USER,
+			DB_PASS,
+			[
+				PDO::ATTR_CASE => PDO::CASE_NATURAL,
+				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+				PDO::ATTR_PERSISTENT => true
+			]
+		);
+	}
+
+	/**
+	 * @return \PDO
+	 */
+	public static function pdo(): PDO
+	{
+		return self::getInstance()->pdo;
+	}
+
+	public static function getInstance()
+	{
+		if (!(self::$self instanceof DB)) {
+			self::$self = new self;
+		}
+		return self::$self;
+	}
+
+	/**
+	 * @return void
+	 *
+	 * Destructor.
+	 */
+	public function __destruct()
+	{
+		unset($this->pdo);
 	}
 }

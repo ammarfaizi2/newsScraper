@@ -49,7 +49,7 @@ interface PhxScraperProcessor
 	/**
 	 * @return array
 	 */
-	public function images(): array;
+	public function getImages(): array;
 
 	/**
 	 * @return string

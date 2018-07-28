@@ -59,6 +59,16 @@ abstract class NewsScraper implements PHXScraperContract
 	}
 
 	/**
+	 * @param string $url
+	 * @param string $html
+	 * @return void
+	 */
+	public function saveHtml(string $url, string $html): bool
+	{
+		return file_put_contents(HTML_DIR."/".sha1($url)."_".md5($url).".html", $html);
+	}
+
+	/**
 	 * @return void
 	 */
 	abstract public function run(): void;

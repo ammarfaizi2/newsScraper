@@ -85,6 +85,10 @@ final class Liputan6 extends NewsScraper
 	 */
 	public function insert(): void
 	{
+		$this->saveHtml(
+			$this->processor->getUrl(),
+			$this->processor->getHtml()
+		);
 		$st = $this->pdo->prepare(
 			"INSERT INTO `news` (`title`, `url`, `datetime`, `content`, `regional`, `scraped_at`) VALUES (:title, :url, :datetime, :content, :regional, :scraped_at);"
 		);

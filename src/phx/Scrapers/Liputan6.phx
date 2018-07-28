@@ -103,7 +103,7 @@ final class Liputan6 extends NewsScraper
 		$data = [
 			":news_id" => $id
 		];
-		foreach ($this->processor->getAuthors() as $key => $value) {
+		foreach ($this->processor->getAuthor() as $key => $value) {
 			$query .= "(:news_id, :author_name_{$key}),";
 			$data[":author_name_{$key}"] = $value;
 			$insert = true;

@@ -72,8 +72,112 @@ final class Liputan6 extends NewsScraper
 					$this->processor = new Liputan6Processor($url, $this);
 					$this->processor->run();
 					icelog("Writing data...");
+					$this->insert();
 				}
 			}
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function insert(): void
+	{
+		$st = $this->pdo->prepare(
+			"INSERT INTO `news` (`title`, `url`, `datetime`, `content`, `regional`, `scraped_at`) VALUES (:title, :url, :datetime, :content, :regional, :scraped_at);"
+		);
+		$st->execute(
+			[
+				":title" => $this->processor->getTitle(),
+				":url" => $this->processor->getUrl(),
+				":datetime" => $this->processor->getDateAndTime(),
+				":regional" => $this->processor->getRegional(),
+				":scraped_at" => date("Y-m-d H:i:s")
+			]
+		);
+		$id = $this->pdo->lastInsertId();
+
+		$insert = false;
+		$query = "INSERT INTO `authors` (`news_id`, `author_name`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getAuthors() as $key => $value) {
+			$query .= "(:news_id, :author_name_{$key}),";
+			$data[":author_name_{$key}"] = $value;
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `categories` (`news_id`, `category_name`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getCategory() as $key => $value) {
+			$query .= "(:news_id, :category_name_{$key}),";
+			$data[":category_name_{$key}"] = $value;
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `comments` (`news_id`, `author`, `content`, `datetime`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getComments() as $key => $value) {
+			$query .= "(:news_id, :author_{$key}, :content_{$key}, :datetime_{$key}),";
+			$data[":author_{$key}"] = $value["author"];
+			$data[":content_{$key}"] = $value["content"];
+			$data[":datetime_{$key}"] = $value["datetime"];
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `images` (`news_id`, `image_url`, `description`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getImages() as $key => $value) {
+			$query .= "(:news_id, :image_url_{$key}, :description_{$key}),";
+			$data[":image_url_{$key}"] = $value["url"];
+			$data[":description_{$key}"] = $value["description"];
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `tags` (`news_id`, `tag_name`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getTags() as $key => $value) {
+			$query .= "(:news_id, :tag_name_{$key}),";
+			$data[":tag_name_{$key}"] = $value;
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
 		}
 	}
 

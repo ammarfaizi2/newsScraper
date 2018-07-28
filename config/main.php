@@ -9,3 +9,4 @@ define("DB_NAME", "news_scraper");
 define("DB_USER", "a1");
 define("DB_PASS", "a1");
 
+define("LOG_DIR", BASEPATH."/logs");

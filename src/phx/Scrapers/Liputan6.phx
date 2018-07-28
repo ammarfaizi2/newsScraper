@@ -73,6 +73,7 @@ final class Liputan6 extends NewsScraper
 					$this->processor->run();
 					icelog("Writing data...");
 					$this->insert();
+					icelog("Write OK");
 				}
 			}
 		}

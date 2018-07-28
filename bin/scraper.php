@@ -16,6 +16,7 @@ if (! isset($argv[1])) {
 switch ($argv[1]) {
 	case 'liputan6':
 		$st = new Liputan6;
+		define("LOG_FILE", "liputan6.log");
 		break;
 	
 	default:

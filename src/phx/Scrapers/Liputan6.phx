@@ -91,6 +91,7 @@ final class Liputan6 extends NewsScraper
 				":title" => $this->processor->getTitle(),
 				":url" => $this->processor->getUrl(),
 				":datetime" => $this->processor->getDateAndTime(),
+				":content" => $this->processor->getContent(),
 				":regional" => $this->processor->getRegional(),
 				":scraped_at" => date("Y-m-d H:i:s")
 			]

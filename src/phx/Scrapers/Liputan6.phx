@@ -70,10 +70,11 @@ final class Liputan6 extends NewsScraper
 				icelog("Scraping ".count($urls)." threads...");
 				foreach($urls as $url) {
 					$this->processor = new Liputan6Processor($url, $this);
-					$this->processor->run();
-					icelog("Writing data...");
-					$this->insert();
-					icelog("Write OK");
+					if ($this->processor->run()) {
+						icelog("Writing data...");
+						$this->insert();
+						icelog("Write OK");
+					}
 				}
 			}
 		}

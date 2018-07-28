@@ -16,6 +16,6 @@ function iceteaInternalAutoloader($class)
 	}
 }
 
-spl_autoload_register("iceteaInternalAutolossader");
+spl_autoload_register("iceteaInternalAutoloader");
 
 require __DIR__."/../src/helpers.php";

@@ -7,12 +7,19 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 use Phx\NewsScraper;
 use Phx\Scrapers\Liputan6;
 
-switch ($argv) {
+if (! isset($argv[1])) {
+	print "\$argv[1] is not defined!\n";
+	exit(1);
+}
+
+switch ($argv[1]) {
 	case 'liputan6':
 		$st = new Liputan6;
 		break;
 	
 	default:
+		print "Invalid argument \"{$argv[1]}\"";
+		exit(1);
 		break;
 }
 

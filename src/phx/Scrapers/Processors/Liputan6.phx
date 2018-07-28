@@ -1,0 +1,15 @@
+<?php
+
+namespace Phx\Scrapers\Processors;
+
+use Contracts\PhxScraperProcessor;
+
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @package Phx\Scrapers\Processors
+ * @license MIT
+ * @version 0.0.1
+ */
+final class Liputan6
+{
+}

@@ -1,4 +1,6 @@
 *
-!.gitignore
 !data
 !html
+!hash
+!cookies
+!.gitignore

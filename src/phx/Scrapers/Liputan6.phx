@@ -1,0 +1,66 @@
+<?php
+
+namespace Phx\Scrapers;
+
+use Phx\NewsScraper;
+use Phx\Scrapers\Processors\Liputan6 as Liputan6Processor;
+
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @package Phx\Scrapers
+ * @license MIT
+ * @version 0.0.1
+ */
+final class Liputan6 extends NewsScraper
+{
+	const targetList = [
+		"https://www.liputan6.com/regional/surabaya",
+		"https://www.liputan6.com/regional/palembang",
+		"https://www.liputan6.com/regional/denpasar",
+		"https://www.liputan6.com/regional/makassar",
+		"https://www.liputan6.com/regional/semarang",
+		"https://www.liputan6.com/regional/bandung",
+		"https://www.liputan6.com/regional/kalimantan",
+		"https://www.liputan6.com/regional/maluku-papua"
+	];
+
+	/**
+	 * @var array
+	 */
+	private $data = [];
+
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+	}
+
+	/**
+	 * @return void
+	 */
+	public function run()
+	{
+		foreach (targetList as $key => $url) {
+			
+		}
+	}
+
+	/**
+	 * @param string
+	 */
+	protected function parseThreadUrlList($string)
+	{
+		
+	}
+
+	/**
+	 * @return void
+	 */
+	public function getData()
+	{
+
+	}
+}

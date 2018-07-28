@@ -4,9 +4,10 @@ namespace Phx;
 
 defined("DATA_DIR") or die("Error: DATA_DIR is not defined yet!\n");
 defined("HTML_DIR") or die("Error: HTML_DIR is not defined yet!\n");
+defined("COOKIE_DIR") or die("Error: COOKIE_DIR is not defined yet!\n");
 defined("HASH_CHECK_DIR") or die("Error: HASH_CHECK_DIR is not defined yet!\n");
 
-use Contract\PhxScraperContract;
+use Contracts\PhxScraperContract;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -19,7 +20,21 @@ abstract class NewsScraper implements PHXScraperContract
 	/**
 	 * @var array
 	 */
-	private $data = [];
+	protected $data = [];
+
+	/**
+	 * @var string
+	 */
+	protected $cookieFile;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct()
+	{
+		$this->userAgent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0";
+		$this->cookieFile = COOKIE_DIR."/".str_replace("\\", "_", static::class).".cookie";
+	}
 
 	/**
 	 * @param string $url
@@ -31,6 +46,15 @@ abstract class NewsScraper implements PHXScraperContract
 	}
 
 	/**
+	 * @param string $url
+	 * @return bool
+	 */
+	public function saveHash($url)
+	{
+		file_put_contents(HASH_CHECK_DIR."/".sha1($url), time());
+	}
+
+	/**
 	 * @return void
 	 */
 	abstract public function run();
@@ -39,4 +63,18 @@ abstract class NewsScraper implements PHXScraperContract
 	 * @return array
 	 */
 	abstract public function getData();
+
+	/**
+	 * @param string
+	 * @return array
+	 */
+	protected function parseThreadUrlList($string);
+
+	/**
+	 * 
+	 */
+	protected function exec()
+	{
+
+	}
 }

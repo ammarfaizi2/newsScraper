@@ -12,7 +12,7 @@ use Phx\Scrapers\Processors\Tribunnews as TribunnewsPrrocessor;
  * @license MIT
  * @version 0.0.1
  */
-final class Liputan6 extends NewsScraper
+final class Tribunnews extends NewsScraper
 {
 	const targetList = [
 		"http://bali.tribunnews.com/",
@@ -46,6 +46,11 @@ final class Liputan6 extends NewsScraper
 	private $pdo;
 
 	/**
+	 * @var string
+	 */
+	private $currentUrl = ""; 
+
+	/**
 	 * Constructor.
 	 *
 	 * @return void
@@ -63,7 +68,9 @@ final class Liputan6 extends NewsScraper
 	{
 		foreach (self::targetList as $key => $url) {
 			icelog("Scraping {$url}...");
-			$l = $this->exec($url);
+			$l = $this->exec(
+				$this->currentUrl =	trim($url, "/")
+			);
 			if (isset($l["error"]) && $l["error"]) {
 				icelog("An error occured when scraping {$url}: {$l['errno']} {$l['error']}");
 			} else {
@@ -196,7 +203,12 @@ final class Liputan6 extends NewsScraper
 	protected function parseThreadUrlList(string $string): array
 	{
 		$urls = [];
-		if (preg_match_all("/href=\"(https\:\/\/www\.liputan6\.com\/regional\/read\/.+)\"/Usi", $string, $m)) {
+		$this->currentUrl = str_replace(
+			["/", "."],
+			["\/", "\\."],
+			$this->currentUrl
+		);
+		if (preg_match_all("/href=\"({$this->currentUrl}\/20\d{2}\/\d{2}\/\d{2}.+)\"/Usi", $string, $m)) {
 			foreach ($m[1] as $key => $url) {
 				$urls[] = html_entity_decode($url, ENT_QUOTES, "UTF-8");
 			}

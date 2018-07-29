@@ -3,7 +3,8 @@
 
 $whileTrue = true;
 $param = [
-	"liputan6"
+	"liputan6",
+	"tribunnews"
 ];
 
 

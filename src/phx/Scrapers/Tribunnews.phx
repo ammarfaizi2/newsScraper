@@ -1,0 +1,230 @@
+<?php
+
+namespace Phx\Scrapers;
+
+use DB;
+use Phx\NewsScraper;
+use Phx\Scrapers\Processors\Tribunnews as TribunnewsPrrocessor;
+
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @package Phx\Scrapers
+ * @license MIT
+ * @version 0.0.1
+ */
+final class Liputan6 extends NewsScraper
+{
+	const targetList = [
+		"http://bali.tribunnews.com/",
+		"http://kupang.tribunnews.com/tag/nusa-tenggara-timur",
+		"http://www.tribunnews.com/tag/kalimantan-barat",
+		"http://pontianak.tribunnews.com/",
+		"http://kalteng.tribunnews.com/",
+		"http://banjarmasin.tribunnews.com/",
+		"http://kaltim.tribunnews.com/",
+		"http://www.tribunnews.com/tag/kalimantan-utara",
+		"http://manado.tribunnews.com/",
+		"http://www.tribunnews.com/tag/sulawesi-barat",
+		"http://www.tribunnews.com/tag/sulawesi-tengah",
+		"http://www.tribunnews.com/tag/sulawesi-tenggara",
+		"http://makassar.tribunnews.com/",
+		"http://www.tribunnews.com/tag/gorontalo",
+		"http://www.tribunnews.com/tag/maluku",
+		"http://www.tribunnews.com/tag/maluku-utara",
+		"http://www.tribunnews.com/tag/papua-barat",
+		"http://www.tribunnews.com/tag/papua",
+	];
+
+	/**
+	 * @var array
+	 */
+	protected $data = [];
+
+	/**
+	 * @var \PDO
+	 */
+	private $pdo;
+
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->pdo = DB::pdo();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function run(): void
+	{
+		foreach (self::targetList as $key => $url) {
+			icelog("Scraping {$url}...");
+			$l = $this->exec($url);
+			if (isset($l["error"]) && $l["error"]) {
+				icelog("An error occured when scraping {$url}: {$l['errno']} {$l['error']}");
+			} else {
+				$urls = $this->parseThreadUrlList($l["out"]);
+				icelog("Scraping ".count($urls)." threads...");
+				foreach($urls as $url) {
+					$this->processor = new Prrocessor($url, $this);
+					if ($this->processor->run()) {
+						icelog("Writing data...");
+						$this->insert();
+						icelog("Write OK");
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function insert(): void
+	{
+		$this->saveHtml(
+			$this->processor->getUrl(),
+			$this->processor->getHtml()
+		);
+		$st = $this->pdo->prepare(
+			"INSERT INTO `news` (`title`, `url`, `datetime`, `content`, `regional`, `scraped_at`) VALUES (:title, :url, :datetime, :content, :regional, :scraped_at);"
+		);
+		$st->execute(
+			[
+				":title" => $this->processor->getTitle(),
+				":url" => $this->processor->getUrl(),
+				":datetime" => $this->processor->getDateAndTime(),
+				":content" => $this->processor->getContent(),
+				":regional" => $this->processor->getRegional(),
+				":scraped_at" => date("Y-m-d H:i:s")
+			]
+		);
+		$id = $this->pdo->lastInsertId();
+
+		$insert = false;
+		$query = "INSERT INTO `authors` (`news_id`, `author_name`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getAuthor() as $key => $value) {
+			$query .= "(:news_id, :author_name_{$key}),";
+			$data[":author_name_{$key}"] = $value;
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `categories` (`news_id`, `category_name`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getCategory() as $key => $value) {
+			$query .= "(:news_id, :category_name_{$key}),";
+			$data[":category_name_{$key}"] = $value;
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `comments` (`news_id`, `author`, `content`, `datetime`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getComments() as $key => $value) {
+			$query .= "(:news_id, :author_{$key}, :content_{$key}, :datetime_{$key}),";
+			$data[":author_{$key}"] = $value["author"];
+			$data[":content_{$key}"] = $value["content"];
+			$data[":datetime_{$key}"] = $value["datetime"];
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `images` (`news_id`, `image_url`, `description`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getImages() as $key => $value) {
+			$query .= "(:news_id, :image_url_{$key}, :description_{$key}),";
+			$data[":image_url_{$key}"] = $value["url"];
+			$data[":description_{$key}"] = $value["description"];
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+
+		$insert = false;
+		$query = "INSERT INTO `tags` (`news_id`, `tag_name`) VALUES ";
+		$data = [
+			":news_id" => $id
+		];
+		foreach ($this->processor->getTags() as $key => $value) {
+			$query .= "(:news_id, :tag_name_{$key}),";
+			$data[":tag_name_{$key}"] = $value;
+			$insert = true;
+		}
+		if ($insert) {
+			$this->pdo->prepare(
+				(trim($query, ",").";")
+			)->execute($data);
+		}
+	}
+
+	/**
+	 * @param string
+	 * @return array
+	 */
+	protected function parseThreadUrlList(string $string): array
+	{
+		$urls = [];
+		if (preg_match_all("/href=\"(https\:\/\/www\.liputan6\.com\/regional\/read\/.+)\"/Usi", $string, $m)) {
+			foreach ($m[1] as $key => $url) {
+				$urls[] = html_entity_decode($url, ENT_QUOTES, "UTF-8");
+			}
+		}
+		$urls = array_unique($urls);
+		icelog("Got ".count($urls)." threads...");
+		icelog("Filtering scraped threads...");
+		$i = 0;
+		foreach ($urls as $key => $url) {
+			if ($this->hashCheck($url)) {
+				$i++;
+				unset($urls[$key]);
+			}
+		}
+		if ($i > 0) {
+			icelog("{$i} thread(s) ".($i > 1 ? "are" : "is")." skipped because ".($i > 1 ? "they have" : "it has")." already been scraped");
+			icelog(count($urls)." thread(s) remaining...");
+		}
+		return array_values($urls);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function getData(): array
+	{
+		$data = [];
+
+		return $data;
+	}
+}

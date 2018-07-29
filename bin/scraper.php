@@ -7,6 +7,7 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\NewsScraper;
 use Phx\Scrapers\Liputan6;
+use Phx\Scrapers\Tribunnews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -18,7 +19,7 @@ if (isset($argv[2])) {
 	if ($argv[2] === "--while-true") {
 		$noend = true;
 	} else {
-		print "Invalid parameter {$argv[2]}\n";
+		print "Invalid parameter: \"{$argv[2]}\"\n";
 		exit(1);
 	}
 }
@@ -29,6 +30,11 @@ switch ($argv[1]) {
 		define("LOG_FILE", "liputan6.log");
 		break;
 	
+	case 'tribunnews':
+		$st = new Tribunnews;
+		define("LOG_FILE", "tribunnews.log");
+		break;
+
 	default:
 		print "Invalid argument \"{$argv[1]}\"";
 		exit(1);

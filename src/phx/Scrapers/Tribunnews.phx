@@ -80,6 +80,7 @@ final class Tribunnews extends NewsScraper
 					$this->processor = new Prrocessor($url, $this);
 					if ($this->processor->run()) {
 						icelog("Writing data...");
+						die;
 						$this->insert();
 						icelog("Write OK");
 					}

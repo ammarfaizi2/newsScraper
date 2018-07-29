@@ -134,6 +134,114 @@ abstract class NewsScraper implements PHXScraperContract
 		];
 	}
 
+      /**
+       * @return void
+       */
+      protected function insert(): void
+      {
+            $this->saveHtml(
+                  $this->processor->getUrl(),
+                  $this->processor->getHtml()
+            );
+            $st = $this->pdo->prepare(
+                  "INSERT INTO `news` (`title`, `url`, `datetime`, `content`, `regional`, `scraped_at`) VALUES (:title, :url, :datetime, :content, :regional, :scraped_at);"
+            );
+            $st->execute(
+                  [
+                        ":title" => $this->processor->getTitle(),
+                        ":url" => $this->processor->getUrl(),
+                        ":datetime" => $this->processor->getDateAndTime(),
+                        ":content" => $this->processor->getContent(),
+                        ":regional" => $this->processor->getRegional(),
+                        ":scraped_at" => date("Y-m-d H:i:s")
+                  ]
+            );
+            $id = $this->pdo->lastInsertId();
+
+            $insert = false;
+            $query = "INSERT INTO `authors` (`news_id`, `author_name`) VALUES ";
+            $data = [
+                  ":news_id" => $id
+            ];
+            foreach ($this->processor->getAuthor() as $key => $value) {
+                  $query .= "(:news_id, :author_name_{$key}),";
+                  $data[":author_name_{$key}"] = $value;
+                  $insert = true;
+            }
+            if ($insert) {
+                  $this->pdo->prepare(
+                        (trim($query, ",").";")
+                  )->execute($data);
+            }
+
+            $insert = false;
+            $query = "INSERT INTO `categories` (`news_id`, `category_name`) VALUES ";
+            $data = [
+                  ":news_id" => $id
+            ];
+            foreach ($this->processor->getCategory() as $key => $value) {
+                  $query .= "(:news_id, :category_name_{$key}),";
+                  $data[":category_name_{$key}"] = $value;
+                  $insert = true;
+            }
+            if ($insert) {
+                  $this->pdo->prepare(
+                        (trim($query, ",").";")
+                  )->execute($data);
+            }
+
+            $insert = false;
+            $query = "INSERT INTO `comments` (`news_id`, `author`, `content`, `datetime`) VALUES ";
+            $data = [
+                  ":news_id" => $id
+            ];
+            foreach ($this->processor->getComments() as $key => $value) {
+                  $query .= "(:news_id, :author_{$key}, :content_{$key}, :datetime_{$key}),";
+                  $data[":author_{$key}"] = $value["author"];
+                  $data[":content_{$key}"] = $value["content"];
+                  $data[":datetime_{$key}"] = $value["datetime"];
+                  $insert = true;
+            }
+            if ($insert) {
+                  $this->pdo->prepare(
+                        (trim($query, ",").";")
+                  )->execute($data);
+            }
+
+            $insert = false;
+            $query = "INSERT INTO `images` (`news_id`, `image_url`, `description`) VALUES ";
+            $data = [
+                  ":news_id" => $id
+            ];
+            foreach ($this->processor->getImages() as $key => $value) {
+                  $query .= "(:news_id, :image_url_{$key}, :description_{$key}),";
+                  $data[":image_url_{$key}"] = $value["url"];
+                  $data[":description_{$key}"] = $value["description"];
+                  $insert = true;
+            }
+            if ($insert) {
+                  $this->pdo->prepare(
+                        (trim($query, ",").";")
+                  )->execute($data);
+            }
+
+            $insert = false;
+            $query = "INSERT INTO `tags` (`news_id`, `tag_name`) VALUES ";
+            $data = [
+                  ":news_id" => $id
+            ];
+            foreach ($this->processor->getTags() as $key => $value) {
+                  $query .= "(:news_id, :tag_name_{$key}),";
+                  $data[":tag_name_{$key}"] = $value;
+                  $insert = true;
+            }
+            if ($insert) {
+                  $this->pdo->prepare(
+                        (trim($query, ",").";")
+                  )->execute($data);
+            }
+      }
+
 	const USERAGENT_COLLECTION = [
 			"Mozilla/5.0 (X11; Linux x86_64; rv:2.2a1pre) Gecko/20110324 Firefox/4.2a1pre",
             "Mozilla/5.0 (X11; Linux x86_64; rv:2.2a1pre) Gecko/20100101 Firefox/4.2a1pre",

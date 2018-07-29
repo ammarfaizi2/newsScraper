@@ -64,15 +64,17 @@ CREATE TABLE `news` (
   `title` varchar(512) DEFAULT NULL,
   `url` varchar(3072) DEFAULT NULL,
   `datetime` varchar(255) DEFAULT NULL,
-  `content` varchar(255) DEFAULT NULL,
+  `content_type` varchar(255) DEFAULT NULL,
   `regional` varchar(255) DEFAULT NULL,
+  `text` text,
   `scraped_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `title` (`title`),
   KEY `datetime` (`datetime`),
   KEY `regional` (`regional`),
-  KEY `content` (`content`),
-  KEY `url` (`url`)
+  KEY `content` (`content_type`),
+  KEY `url` (`url`),
+  FULLTEXT KEY `text` (`text`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -88,4 +90,4 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2018-07-28 15:48:35
+-- 2018-07-29 15:42:29

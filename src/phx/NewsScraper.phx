@@ -7,6 +7,7 @@ defined("HTML_DIR") or die("Error: HTML_DIR is not defined yet!\n");
 defined("COOKIE_DIR") or die("Error: COOKIE_DIR is not defined yet!\n");
 defined("HASH_CHECK_DIR") or die("Error: HASH_CHECK_DIR is not defined yet!\n");
 
+use DB;
 use Contracts\PhxScraperContract;
 
 /**
@@ -32,6 +33,11 @@ abstract class NewsScraper implements PHXScraperContract
 	 */
 	protected $userAgent = "";
 
+      /**
+       * @var \PDO
+       */
+      protected $pdo;
+
 	/**
 	 * Constructor.
 	 */
@@ -39,6 +45,7 @@ abstract class NewsScraper implements PHXScraperContract
 	{
 		$this->generateUserAgent();
 		$this->cookieFile = COOKIE_DIR."/".str_replace("\\", "_", static::class).".cookie";
+            $this->pdo = DB::pdo();
 	}
 
 	/**
@@ -84,11 +91,6 @@ abstract class NewsScraper implements PHXScraperContract
 	 * @return array
 	 */
 	abstract protected function parseThreadUrlList(string $string): array;
-
-	/**
-	 * @return void
-	 */
-	abstract protected function insert(): void;
 
 	/**
 	 * @param string $url

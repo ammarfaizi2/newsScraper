@@ -2,7 +2,6 @@
 
 namespace Phx\Scrapers;
 
-use DB;
 use Phx\NewsScraper;
 use Phx\Scrapers\Processors\Liputan6 as Liputan6Processor;
 
@@ -43,7 +42,7 @@ final class Liputan6 extends NewsScraper
 	/**
 	 * @var \PDO
 	 */
-	private $pdo;
+	protected $pdo;
 
 	/**
 	 * Constructor.
@@ -53,7 +52,6 @@ final class Liputan6 extends NewsScraper
 	public function __construct()
 	{
 		parent::__construct();
-		$this->pdo = DB::pdo();
 	}
 
 	/**

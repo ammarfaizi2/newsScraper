@@ -56,6 +56,11 @@ interface PhxScraperProcessor
 	 */
 	public function getContent(): string;
 
+		/**
+	 * @return string
+	 */
+	public function getContentType(): string;
+
 	/**
 	 * @return array
 	 */

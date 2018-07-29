@@ -74,6 +74,11 @@ final class Liputan6 implements PhxScraperProcessor
 	private $content = "";
 
 	/**
+	 * @var string
+	 */
+	private $contentType = "";
+
+	/**
 	 * @var array
 	 */
 	private $comments = [];
@@ -257,7 +262,7 @@ final class Liputan6 implements PhxScraperProcessor
 						icelog("Could not find the comment");
 					}
 
-					$this->content = "images only";
+					$this->contentType = "images only";
 				} else {
 					icelog("Could not find any image");
 					return false;
@@ -266,6 +271,30 @@ final class Liputan6 implements PhxScraperProcessor
 				icelog("Skipping video content...");
 				return false;
 			} else {
+
+				/**
+				 * Get content
+				 */
+				if (preg_match_all(
+					"/(?:data-component-name=\"desktop:read-page:article-content-body:section:text\">)(.*)(?:<\/div><div)/Usi",
+					$l["out"],
+					$m
+				)) {
+					unset($m[0]);
+					foreach ($m[1] as &$v) {
+						$v = strip_tags(preg_replace("/<div class=\"baca-juga\">.*<\/div>/Usi", "", $v));
+						do {
+							$v = str_replace("\n\n", "\n", $v, $n);
+						} while ($n);
+						$v = trim(html_entity_decode($v, ENT_QUOTES, "UTF-8"));
+					}
+					unset($v);
+					$m = implode($m[1], "\n\n");
+					$this->content = $m;
+					icelog("Got content with ".strlen($this->content)." characters");
+				} else {
+					icelog("Could not find the content");
+				}
 
 				/**
 				 * Get author
@@ -406,7 +435,7 @@ final class Liputan6 implements PhxScraperProcessor
 					icelog("Could not find the comment");
 				}
 
-				$this->content = "news";
+				$this->contentType = "news";
 			}
 		} else {
 			icelog("Could not find the title tag on ".$this->url);
@@ -477,6 +506,14 @@ final class Liputan6 implements PhxScraperProcessor
 	public function getContent(): string
 	{
 		return $this->content;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getContentType(): string
+	{
+		return $this->contentType;
 	}
 
 	/**

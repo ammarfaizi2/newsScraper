@@ -155,7 +155,7 @@ abstract class NewsScraper implements PHXScraperContract
                         ":datetime" => $this->processor->getDateAndTime(),
                         ":content_type" => $this->processor->getContentType(),
                         ":regional" => $this->processor->getRegional(),
-                        ":text" => $this->processor->getContent,
+                        ":text" => $this->processor->getContent(),
                         ":scraped_at" => date("Y-m-d H:i:s")
                   ]
             );

@@ -11,3 +11,4 @@ git merge master
 git checkout dev_tribunnews
 git merge master
 
+git checkout master

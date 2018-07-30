@@ -50,7 +50,7 @@ do {
 	$st->run();
 	$st->getData();
 	if ($noend) {
-		icelog("Sleeping 10 seconds...");
+		icelog("Sleeping 500 seconds...");
 		sleep(500);
 	}
 } while ($noend);

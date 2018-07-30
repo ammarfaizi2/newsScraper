@@ -243,7 +243,7 @@ final class Tribunnews implements PhxScraperProcessor
 			} else {
 				if (preg_match(
 					"/<div class=\"side-article txt-article\">(.*)<div class=\"side-article mb5\">/Usi",
-					$out,
+					$l["out"],
 					$m
 				)) {
 					icelog("Got page {$i}");

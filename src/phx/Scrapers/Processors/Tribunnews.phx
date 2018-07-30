@@ -247,7 +247,7 @@ final class Tribunnews implements PhxScraperProcessor
 					$l["out"],
 					$m
 				)) {
-					icelog("Got page {$i}");
+					icelog("Got page 1");
 					$m[1] = trim(html_entity_decode(strip_tags(preg_replace(
 						[
 							"/<script.+<\/script>/Usi",

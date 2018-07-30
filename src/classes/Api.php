@@ -53,15 +53,17 @@ final class Api
 		}
 
 		$this->pdo = DB::pdo();
-		$query = "SELECT `id`,`title`,`url`,`datetime`,`content`,`regional`,`scraped_at` FROM `news` ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};";
+		$query = "SELECT `id`,`title`,`url`,`datetime`,`content_type`,`text` AS `content`,`regional`,`scraped_at` FROM `news` ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};";
 		$stq = $this->pdo->prepare($query);
 		$stq->execute();
 		$i = 0;
-		while($rr = $stq->fetch(PDO::FETCH_ASSOC)) {			
+		while($rr = $stq->fetch(PDO::FETCH_ASSOC)) {		
 			$result[$i] = $rr;
+			$result[$i]["content"] = str_replace("\r\n", "\n", $result[$i]["content"]);
 			$result[$i]["authors"] = [];
 			$result[$i]["categories"] = [];
 			$result[$i]["tags"] = [];
+			$result[$i]["comments"] = [];
 			$result[$i]["images"] = [];
 
 			$st = $this->pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id`=:news_id;");
@@ -80,6 +82,12 @@ final class Api
 			$st->execute([":news_id" => $rr["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$result[$i]["tags"][] = $r[0];
+			}
+
+			$st = $this->pdo->prepare("SELECT `author`,`content`,`datetime` FROM `comments` WHERE `news_id`=:news_id;");
+			$st->execute([":news_id" => $rr["id"]]);
+			while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
+				$result[$i]["comments"][] = $r;
 			}
 
 			$st = $this->pdo->prepare("SELECT `image_url`,`description` FROM `images` WHERE `news_id`=:news_id;");

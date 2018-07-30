@@ -51,6 +51,6 @@ do {
 	$st->getData();
 	if ($noend) {
 		icelog("Sleeping 10 seconds...");
-		sleep(10);
+		sleep(500);
 	}
 } while ($noend);

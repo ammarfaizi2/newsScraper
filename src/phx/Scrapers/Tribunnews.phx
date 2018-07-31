@@ -14,15 +14,15 @@ use Phx\Scrapers\Processors\Tribunnews as TribunnewsPrrocessor;
 final class Tribunnews extends NewsScraper
 {
 	const targetList = [
-		"http://bali.tribunnews.com/",
-		"http://kupang.tribunnews.com/tag/nusa-tenggara-timur",
-		"http://www.tribunnews.com/tag/kalimantan-barat",
-		"http://pontianak.tribunnews.com/",
-		"http://kalteng.tribunnews.com/",
-		"http://banjarmasin.tribunnews.com/",
-		"http://kaltim.tribunnews.com/",
-		"http://www.tribunnews.com/tag/kalimantan-utara",
-		"http://manado.tribunnews.com/",
+		// "http://bali.tribunnews.com/",
+		// "http://kupang.tribunnews.com/tag/nusa-tenggara-timur",
+		// "http://www.tribunnews.com/tag/kalimantan-barat",
+		// "http://pontianak.tribunnews.com/",
+		// "http://kalteng.tribunnews.com/",
+		// "http://banjarmasin.tribunnews.com/",
+		// "http://kaltim.tribunnews.com/",
+		// "http://www.tribunnews.com/tag/kalimantan-utara",
+		// "http://manado.tribunnews.com/",
 		"http://www.tribunnews.com/tag/sulawesi-barat",
 		"http://www.tribunnews.com/tag/sulawesi-tengah",
 		"http://www.tribunnews.com/tag/sulawesi-tenggara",
@@ -93,16 +93,62 @@ final class Tribunnews extends NewsScraper
 	protected function parseThreadUrlList(string $string): array
 	{
 		$urls = [];
-		$this->currentUrl = str_replace(
-			["/", "."],
-			["\/", "\\."],
-			$this->currentUrl
-		);
-		if (preg_match_all("/href=\"({$this->currentUrl}(\/[a-z]{3,32})?\/20\d{2}\/\d{2}\/\d{2}.+)\"/Usi", $string, $m)) {
-			foreach ($m[1] as $key => $url) {
-				$urls[] = html_entity_decode($url, ENT_QUOTES, "UTF-8");
+		if (preg_match("/tag/", $this->currentUrl)) {
+
+				if (preg_match(
+					"/(?:<a href=\".+\?page=)(\d+)(?:\">Last \&rsaquo\;)/Usi",
+					$string,
+					$m
+				)) {
+					$max = (int) $m[1];
+				}
+
+				if (preg_match_all(
+					"/(?:<div class=\"fr mt3 pos_rel\">.+<a href=\")(.*)(?:\")/Usi",
+					$string,
+					$m
+				)) {
+					array_walk($m[1], function (&$a) {
+						$a = html_entity_decode($a, ENT_QUOTES, "UTF-8");
+					});
+					$urls = $m[1];
+				}
+
+				if (isset($max)) {
+					for ($i=2; $i <= $max; $i++) { 
+						icelog("Scraping {$this->currentUrl}?page={$i}...");
+						$q = $this->exec($this->currentUrl."?page={$i}");
+						if (isset($q["error"]) && $q["error"]) {
+							icelog("An error occured when scraping {$this->currentUrl}?page={$i}: {$q['errno']} {$q['error']}");
+							continue;
+						}
+						$c = 0;
+						if (preg_match_all(
+							"/(?:<div class=\"fr mt3 pos_rel\">.+<a href=\")(.*)(?:\")/Usi",
+							$q["out"],
+							$m
+						)) {
+							$c = count($m[1]);
+							array_walk($m[1], function (&$a) use (&$urls) {
+								$urls[] = html_entity_decode($a, ENT_QUOTES, "UTF-8");
+							});
+						}
+						icelog("Got ".$c." thread(s)");
+					}
+				}
+		} else {
+			$this->currentUrl = str_replace(
+				["/", "."],
+				["\/", "\\."],
+				$this->currentUrl
+			);
+			if (preg_match_all("/href=\"({$this->currentUrl}(\/[a-z]{3,32})?\/20\d{2}\/\d{2}\/\d{2}.+)\"/Usi", $string, $m)) {
+				foreach ($m[1] as $key => $url) {
+					$urls[] = html_entity_decode($url, ENT_QUOTES, "UTF-8");
+				}
 			}
 		}
+
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." threads...");
 		icelog("Filtering scraped threads...");

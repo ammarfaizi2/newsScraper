@@ -23,15 +23,15 @@ final class Tribunnews extends NewsScraper
 		// "http://kaltim.tribunnews.com/",
 		// "http://www.tribunnews.com/tag/kalimantan-utara",
 		// "http://manado.tribunnews.com/",
-		"http://www.tribunnews.com/tag/sulawesi-barat",
-		"http://www.tribunnews.com/tag/sulawesi-tengah",
-		"http://www.tribunnews.com/tag/sulawesi-tenggara",
-		"http://makassar.tribunnews.com/",
-		"http://www.tribunnews.com/tag/gorontalo",
-		"http://www.tribunnews.com/tag/maluku",
-		"http://www.tribunnews.com/tag/maluku-utara",
-		"http://www.tribunnews.com/tag/papua-barat",
-		"http://www.tribunnews.com/tag/papua",
+		"Sulawesi Barat" => "http://www.tribunnews.com/tag/sulawesi-barat",
+		"Sulawesi Tengah" => "http://www.tribunnews.com/tag/sulawesi-tengah",
+		"Sulawesi Tenggara" => "http://www.tribunnews.com/tag/sulawesi-tenggara",
+		// "http://makassar.tribunnews.com/",
+		"Gorontalo" => "http://www.tribunnews.com/tag/gorontalo",
+		"Maluku" => "http://www.tribunnews.com/tag/maluku",
+		"Maluku Utara" => "http://www.tribunnews.com/tag/maluku-utara",
+		"Papua Barat" => "http://www.tribunnews.com/tag/papua-barat",
+		"Papua" => "http://www.tribunnews.com/tag/papua",
 	];
 
 	/**
@@ -76,7 +76,9 @@ final class Tribunnews extends NewsScraper
 				icelog("Scraping ".count($urls)." threads...");
 				foreach($urls as $url) {
 					$this->processor = new TribunnewsPrrocessor($url, $this);
+					$this->processor->useSecondHandler = preg_match("/tag/", $this->currentUrl);
 					if ($this->processor->run()) {
+						$this->processor->setRegional($key);
 						icelog("Writing data...");
 						$this->insert();
 						icelog("Write OK");

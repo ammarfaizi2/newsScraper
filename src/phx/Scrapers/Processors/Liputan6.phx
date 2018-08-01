@@ -445,6 +445,15 @@ final class Liputan6 implements PhxScraperProcessor
 	}
 
 	/**
+	 * @param string $regional
+	 * @return void
+	 */
+	public function setRegional(string $regional)
+	{
+		$this->regional = $regional;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getUrl(): string

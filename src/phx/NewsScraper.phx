@@ -46,6 +46,9 @@ abstract class NewsScraper implements PHXScraperContract
 		$this->generateUserAgent();
 		$this->cookieFile = COOKIE_DIR."/".str_replace("\\", "_", static::class).".cookie";
             $this->pdo = DB::pdo();
+
+            is_dir(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class)) or mkdir(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class));
+            is_dir(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class)) or mkdir(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class));
 	}
 
 	/**
@@ -54,7 +57,7 @@ abstract class NewsScraper implements PHXScraperContract
 	 */
 	public function hashCheck(string $url): bool
 	{
-		return file_exists(HASH_CHECK_DIR."/".sha1($url)."_".md5($url));
+		return file_exists(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class)."/".sha1($url)."_".md5($url));
 	}
 
 	/**
@@ -63,7 +66,7 @@ abstract class NewsScraper implements PHXScraperContract
 	 */
 	public function saveHash(string $url): bool
 	{
-		return file_put_contents(HASH_CHECK_DIR."/".sha1($url)."_".md5($url), time());
+		return file_put_contents(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class)."/".sha1($url)."_".md5($url), time());
 	}
 
 	/**

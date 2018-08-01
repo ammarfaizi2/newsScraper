@@ -157,7 +157,7 @@ final class Tribunnews extends NewsScraper
 		}
 
 		$urls = array_unique($urls);
-		icelog("Got ".count($urls)." threads...");
+		icelog("Got ".count($urls)." unique threads...");
 		icelog("Filtering scraped threads...");
 		$i = 0;
 		foreach ($urls as $key => $url) {

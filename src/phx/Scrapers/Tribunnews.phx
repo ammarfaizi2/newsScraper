@@ -14,19 +14,19 @@ use Phx\Scrapers\Processors\Tribunnews as TribunnewsPrrocessor;
 final class Tribunnews extends NewsScraper
 {
 	const targetList = [
-		// "http://bali.tribunnews.com/",
-		// "http://kupang.tribunnews.com/tag/nusa-tenggara-timur",
-		// "http://www.tribunnews.com/tag/kalimantan-barat",
-		// "http://pontianak.tribunnews.com/",
-		// "http://kalteng.tribunnews.com/",
-		// "http://banjarmasin.tribunnews.com/",
-		// "http://kaltim.tribunnews.com/",
-		// "http://www.tribunnews.com/tag/kalimantan-utara",
-		// "http://manado.tribunnews.com/",
+		"Bali" => "http://bali.tribunnews.com/",
+		"Nusa Tenggara Timur" => "http://kupang.tribunnews.com/tag/nusa-tenggara-timur",
+		"Kalimantan Barat" => "http://www.tribunnews.com/tag/kalimantan-barat",
+		"Kalimantan Barat_" => "http://pontianak.tribunnews.com/",
+		"Kalimantan Tengah" => "http://kalteng.tribunnews.com/",
+		"Kalimantan Selatan" => "http://banjarmasin.tribunnews.com/",
+		"Kalimantan Timur" => "http://kaltim.tribunnews.com/",
+		"Kalimantan Utara" => "http://www.tribunnews.com/tag/kalimantan-utara",
+		"Sulawesi Utara" => "http://manado.tribunnews.com/",
 		"Sulawesi Barat" => "http://www.tribunnews.com/tag/sulawesi-barat",
 		"Sulawesi Tengah" => "http://www.tribunnews.com/tag/sulawesi-tengah",
 		"Sulawesi Tenggara" => "http://www.tribunnews.com/tag/sulawesi-tenggara",
-		// "http://makassar.tribunnews.com/",
+		"Sulawesi Selatan" => "http://makassar.tribunnews.com/",
 		"Gorontalo" => "http://www.tribunnews.com/tag/gorontalo",
 		"Maluku" => "http://www.tribunnews.com/tag/maluku",
 		"Maluku Utara" => "http://www.tribunnews.com/tag/maluku-utara",
@@ -78,7 +78,7 @@ final class Tribunnews extends NewsScraper
 					$this->processor = new TribunnewsPrrocessor($url, $this);
 					$this->processor->useSecondHandler = preg_match("/tag/", $this->currentUrl);
 					if ($this->processor->run()) {
-						$this->processor->setRegional($key);
+						$this->processor->setRegional(trim($key, "_"));
 						icelog("Writing data...");
 						$this->insert();
 						icelog("Write OK");

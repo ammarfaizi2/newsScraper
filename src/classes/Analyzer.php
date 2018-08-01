@@ -6,6 +6,6 @@
  * @license MIT
  * @version 0.0.1
  */
-final class Api
+final class Analyzer
 {
 }

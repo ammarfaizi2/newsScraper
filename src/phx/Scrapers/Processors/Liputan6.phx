@@ -225,8 +225,8 @@ final class Liputan6 implements PhxScraperProcessor
 					 */
 					$id = explode(
 							"/",
-							preg_split(
-								"/https:\/\/www.liputan6.com\/[a-z]+\/read\//", 
+							explode(
+								"/read/", 
 								$this->url,
 								2
 							)[1],
@@ -398,8 +398,8 @@ final class Liputan6 implements PhxScraperProcessor
 				 */
 				$id = explode(
 						"/",
-						preg_split(
-							"/https:\/\/www.liputan6.com\/[a-z]+\/read\//", 
+						explode(
+							"/read/", 
 							$this->url,
 							2
 						)[1],

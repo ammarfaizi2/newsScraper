@@ -17,4 +17,43 @@ use DB;
  */
 abstract class DataFixer
 {
+		/**
+	 * @var array
+	 */
+	protected $data = [];
+
+	/**
+	 * @var string
+	 */
+	protected $cookieFile = "";
+
+	/**
+	 * @var string
+	 */
+	protected $userAgent = "";
+
+      /**
+       * @var \PDO
+       */
+      protected $pdo;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct()
+	{
+		$this->generateUserAgent();
+		$this->cookieFile = COOKIE_DIR."/".str_replace("\\", "_", static::class).".cookie";
+		$this->pdo = DB::pdo();
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function generateUserAgent(): void
+	{
+		$this->userAgent = NewsScraper::USERAGENT_COLLECTION[
+			rand(0, count(NewsScraper::USERAGENT_COLLECTION) - 1)
+		];
+	}
 }

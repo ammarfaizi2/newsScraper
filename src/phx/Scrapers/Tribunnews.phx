@@ -59,6 +59,11 @@ final class Tribunnews extends NewsScraper
 		parent::__construct();
 	}
 
+	public function repair(Closure $repair)
+	{
+		$repair();
+	}
+
 	/**
 	 * @return void
 	 */

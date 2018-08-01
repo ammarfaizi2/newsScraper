@@ -48,7 +48,7 @@ abstract class NewsScraper implements PHXScraperContract
             $this->pdo = DB::pdo();
 
             is_dir(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class)) or mkdir(HASH_CHECK_DIR."/".str_replace("\\", "_", static::class));
-            is_dir(HTML_DIR."/".str_replace("\\", "_", static::class)) or mkdir(HHTML_DIR."/".str_replace("\\", "_", static::class));
+            is_dir(HTML_DIR."/".str_replace("\\", "_", static::class)) or mkdir(HTML_DIR."/".str_replace("\\", "_", static::class));
 	}
 
 	/**

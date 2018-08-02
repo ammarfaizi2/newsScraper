@@ -50,7 +50,7 @@ $st = $st->fetch(PDO::FETCH_NUM)[0];
 		<h1>News Scraper Data Statistics</h1>
 		<div style="margin-bottom: 15px;">
 			<a href="statistics.php"><button>Advanced Statistics</button></a>
-			<a href="check.php"><button>Check Scraper Procceses</button></a>
+			<a href="check.php"><button>Check Scraper Processes</button></a>
 			<h3>This page was loaded at: <?php print date("Y-m-d H:i:s") ?> GMT+7</h3>
 			<h3>Latest Update from Scraper: <?php print $st; ?> GMT+7</h3>
 		</div>

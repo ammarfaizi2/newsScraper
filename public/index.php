@@ -38,7 +38,7 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 <body>
 	<center>
 		<div style="margin-top: 10px; margin-bottom: 30px;">
-			<a href="data.php" target="_blank"><button>Data</button></a>
+			<a href="data.php?page=1" target="_blank"><button>Data</button></a>
 			<a href="api.php?limit=25&amp;offset=0" target="_blank"><button>API</button></a>
 		</div>
 		<h1>News Scraper Data Statistics</h1>

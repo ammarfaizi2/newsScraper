@@ -15,6 +15,8 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 			display: inline-block;
 			border: 1px solid #000;
 			padding: 10px;
+			height: 600px;
+			margin-bottom: 40px;
 		}
 		th {
 			padding: 5px;
@@ -26,12 +28,23 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 			border-collapse:collapse;
 			width: 400px;
 		}
+		button {
+			cursor: pointer;
+			padding: 4px 10px 4px 10px;
+		}
 	</style>
 	<title>News Scraper</title>
 </head>
 <body>
 	<center>
+		<div style="margin-top: 10px; margin-bottom: 30px;">
+			<a href="data.php" target="_blank"><button>Data</button></a>
+			<a href="api.php?limit=25&amp;offset=0" target="_blank"><button>API</button></a>
+		</div>
 		<h1>News Scraper Data Statistics</h1>
+		<div style="margin-bottom: 15px;">
+			<a href="statistics.php" target="_blank"><button>Advanced Statistics</button></a>
+		</div>
 		<div class="dd">
 			<h2>Regional Statistic</h2>
 			<table border="1">
@@ -102,4 +115,4 @@ foreach ($sites as $key => $site) {
 		</div>
 	</center>
 </body>
-</html>
+</html><?php unset($pdo); ?>

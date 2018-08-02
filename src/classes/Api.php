@@ -33,6 +33,78 @@ final class Api
 
 	private function showData(): void
 	{
+		$bind = [];
+		$where = "";
+		if (isset($_GET["regional"]) && $_GET["regional"] !== "" && is_string($_GET["regional"]) && strtolower($_GET["regional"]) !== "all") {
+			$where .= "`regional` = :regional AND";
+			$bind[":regional"] = trim($_GET["regional"]);
+		}
+
+		if (isset($_GET["title"]) && $_GET["title"] !== "" && is_string($_GET["url"])) {
+			if (isset($_GET["title_op"])) {
+				$oz = trim($_GET["title_op"]);
+				switch ($oz) {
+					case 8:
+						$_GET["title"] = "%".$_GET["title"];
+					case 9:
+						$_GET["title"] = $_GET["title"]."%";
+						break;
+					case 10:
+						$_GET["title"] = "%".$_GET["title"]."%";
+						break;
+					default:
+						break;
+				}
+			}
+			$where .= "`title` ".gptz($oz)." :title AND";
+			$bind[":title"] = $_GET["title"];
+		}
+
+		if (isset($_GET["url"]) && $_GET["url"] !== "" && is_string($_GET["url"])) {
+			if (isset($_GET["url_op"])) {
+				$oz = trim($_GET["url_op"]);
+				switch ($oz) {
+					case 8:
+						$_GET["url"] = "%".$_GET["url"];
+					case 9:
+						$_GET["url"] = $_GET["url"]."%";
+						break;
+					case 10:
+						$_GET["url"] = "%".$_GET["url"]."%";
+						break;
+					default:
+						break;
+				}
+			}
+			$where .= "`url` ".gptz($oz)." :url AND";
+			$bind[":url"] = $_GET["url"];
+		}
+
+		if (isset($_GET["datetime"]) && $_GET["datetime"] !== "" && is_string($_GET["datetime"])) {
+			if (isset($_GET["datetime_op"])) {
+				$oz = trim($_GET["datetime_op"]);
+				switch ($oz) {
+					case 8:
+						$_GET["datetime"] = "%".$_GET["datetime"];
+					case 9:
+						$_GET["datetime"] = $_GET["datetime"]."%";
+						break;
+					case 10:
+						$_GET["datetime"] = "%".$_GET["datetime"]."%";
+						break;
+					default:
+						break;
+				}
+			}
+			$where .= "`datetime` ".gptz($oz)." :datetime";
+			$bind[":datetime"] = $_GET["datetime"];
+		}
+
+		if (! empty($where)) {
+			$where = "WHERE ".trim(trim($where, "AND"));
+		}
+
+
 		header("Content-Type: application/json");
 		$result = [];
 		$offset = 0;
@@ -53,9 +125,9 @@ final class Api
 		}
 
 		$this->pdo = DB::pdo();
-		$query = "SELECT `id`,`title`,`url`,`datetime`,`content_type`,`text` AS `content`,`regional`,`scraped_at` FROM `news` ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};";
+		$query = "SELECT `id`,`title`,`url`,`datetime`,`content_type`,`text` AS `content`,`regional`,`scraped_at` FROM `news` {$where} ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};";
 		$stq = $this->pdo->prepare($query);
-		$stq->execute();
+		$stq->execute($bind);
 		$i = 0;
 		while($rr = $stq->fetch(PDO::FETCH_ASSOC)) {		
 			$result[$i] = $rr;

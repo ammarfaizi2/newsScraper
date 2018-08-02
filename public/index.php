@@ -4,6 +4,12 @@ require __DIR__."/../config/main.php";
 require __DIR__."/../config/scraper.php";
 require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
+$pdo = DB::pdo();
+
+$st = $pdo->prepare("SELECT `scraped_at` FROM `news` ORDER BY `scraped_at` DESC LIMIT 1;");
+$st->execute();
+$st = $st->fetch(PDO::FETCH_NUM)[0];
+
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +50,8 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 		<h1>News Scraper Data Statistics</h1>
 		<div style="margin-bottom: 15px;">
 			<a href="statistics.php"><button>Advanced Statistics</button></a>
+			<h3>This page was loaded at: <?php print date("Y-m-d H:i:s") ?> GMT+7</h3>
+			<h3>Last Updated: <?php print $st; ?></h3>
 		</div>
 		<div class="dd">
 			<h2>Regional Statistic</h2>
@@ -56,7 +64,7 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 				<tbody>
 <?php 
 
-$pdo = DB::pdo();
+
 $st = $pdo->prepare(
 	"SELECT `regional`,COUNT(`regional`) AS `total` FROM `news` GROUP BY `regional` ORDER BY `total` DESC;"
 );

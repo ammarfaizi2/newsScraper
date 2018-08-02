@@ -51,7 +51,7 @@ $st = $st->fetch(PDO::FETCH_NUM)[0];
 		<div style="margin-bottom: 15px;">
 			<a href="statistics.php"><button>Advanced Statistics</button></a>
 			<h3>This page was loaded at: <?php print date("Y-m-d H:i:s") ?> GMT+7</h3>
-			<h3>Latest Update: <?php print $st; ?></h3>
+			<h3>Latest Update from Scraper: <?php print $st; ?></h3>
 		</div>
 		<div class="dd">
 			<h2>Regional Statistic</h2>

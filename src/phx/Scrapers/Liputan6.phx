@@ -126,6 +126,8 @@ final class Liputan6 extends NewsScraper
 				}
 			}
 		}
+
+		
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");
 		icelog("Filtering scraped threads...");

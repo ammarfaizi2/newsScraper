@@ -21,7 +21,7 @@ $st = $st->fetch(PDO::FETCH_NUM)[0];
 			display: inline-block;
 			border: 1px solid #000;
 			padding: 10px;
-			height: 800px;
+			height: 1000px;
 			margin-bottom: 40px;
 		}
 		th {

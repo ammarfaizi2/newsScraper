@@ -193,6 +193,7 @@ if ($qqqq) {
 		}
 		.qq {
 			width: 1230px;
+			margin-bottom: 30px;
 		}
 		table {
 			border-collapse:collapse;
@@ -248,6 +249,9 @@ if ($qqqq) {
 </head>
 <body>
 	<center>
+		<div>
+			<a href="index.php"><button>Back to Home</button></a>
+		</div>
 		<h1 style="font-size: 32px;">Scraped Data</h1>
 		<div class="sc">
 			<div class="fqq">
@@ -358,7 +362,7 @@ while ($rr = $stq->fetch(PDO::FETCH_ASSOC)) {
 					<td align="center"><?php print es(tq($rr["content"], 200)); ?></td>
 					<td align="center"><?php print es($rr["regional"]); ?></td>
 					<td align="center"><?php print es($rr["scraped_at"]); ?></td>
-					<td align="center"><a href="details.php?id=<?php print $rr["id"]; ?>" target="_blank"><button>Show Details</button></a></td>
+					<td align="center"><a href="details.php?id=<?php print $rr["id"]; ?>"><button>Show Details</button></a></td>
 	<?php
 
 	// $st = $pdo->prepare("SELECT `category_name` FROM `categories` WHERE `news_id`=:news_id;");

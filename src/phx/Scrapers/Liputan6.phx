@@ -15,11 +15,29 @@ final class Liputan6 extends NewsScraper
 {
 	const targetList = [
 		"Bali" => "https://www.liputan6.com/tag/bali",
+		"Sumatera Selatan" => "https://www.liputan6.com/tag/sumsel",
+		"Sumatera Utara" => "https://www.liputan6.com/tag/sumatera-utara",
+		"Sumatera Barat" => "https://www.liputan6.com/tag/sumatera-barat",
+		"Banten" => "https://www.liputan6.com/tag/banten",
+		"Bangka Belitung" => "https://www.liputan6.com/tag/bangka-belitung",
+		"Bengkulu" => "https://www.liputan6.com/tag/bengkulu",
+		"Lampung" => "https://www.liputan6.com/tag/lampung",
+		"Riau" => "https://www.liputan6.com/tag/riau",
+		"Nanggroe Aceh Darussalam" => "https://www.liputan6.com/tag/banda-aceh",
+		"Nanggroe Aceh Darussalam_" => "https://www.liputan6.com/tag/aceh",
+		"Kepulauan Riau" => "https://www.liputan6.com/tag/batam",
+		"Kepulauan Riau_" => "https://www.liputan6.com/tag/kepulauan-riau",
+		"Jambi" => "https://www.liputan6.com/tag/jambi",
+		"Jakarta" => "https://www.liputan6.com/tag/jakarta",
+		"Jawa Barat" => "https://www.liputan6.com/tag/jawa-barat",
+		"Jawa Timur" => "https://www.liputan6.com/tag/jawa-timur",
+		"Jawa Tengah" => "https://www.liputan6.com/tag/jawa-tengah",
+		"Daerah Istimewa Yogyakarta" => "https://www.liputan6.com/tag/yogyakarta",
 		"Nusa Tenggara Barat" => "https://www.liputan6.com/tag/ntb",
 		"Nusa Tenggara Timur" => "https://www.liputan6.com/tag/ntt",
 		"Kalimantan Barat" => "https://www.liputan6.com/tag/kalimantan-barat",
 		"Kalimantan Tengah" => "https://www.liputan6.com/tag/kalimantan-tengah",
-		"Kalimantan Tengah" => "https://www.liputan6.com/tag/kalteng",
+		"Kalimantan Tengah_" => "https://www.liputan6.com/tag/kalteng",
 		"Kalimantan Selatan" => "https://www.liputan6.com/tag/kalimantan-selatan",
 		"Kalimantan Timur" => "https://www.liputan6.com/tag/kalimantan-timur",
 		"Kalimantan Utara" => "https://www.liputan6.com/tag/kalimantan-utara",
@@ -77,7 +95,7 @@ final class Liputan6 extends NewsScraper
 					$this->processor = new Liputan6Processor($url, $this);
 					if ($this->processor->run()) {
 						icelog("Writing data...");
-						$this->processor->setRegional($key);
+						$this->processor->setRegional(trim($key, "_"));
 						$this->insert();
 						icelog("Write OK");
 					}

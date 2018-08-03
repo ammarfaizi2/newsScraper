@@ -90,8 +90,12 @@ trait Detik
 	{
 		$this->newsScraper->saveHash($this->url);
 		$this->metaHandler();
+		if (substr($this->title, 0, 5) === "Foto:") {
+			icelog("Images only, skipping...");
+			return false;
+		}
 		if (preg_match(
-			"/(?:<div class=\"detail_text\" id=\"detikdetailtext\">)(.*)(?:<div class=\"detail_tag\">)/Usi",
+			"/(?:<div class=\".+\" id=\"detikdetailtext\">)(.*)(?:<div class=\"detail_tag\">)/Usi",
 			$this->html,
 			$m
 		)) {
@@ -124,6 +128,16 @@ trait Detik
 	 * @return bool
 	 */
 	public function healthSubdomain(): bool
+	{
+		$this->newsScraper->saveHash($this->url);
+		$this->metaHandler();
+		return $this->newsSubdomain();
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function travelSubdomain(): bool
 	{
 		$this->newsScraper->saveHash($this->url);
 		$this->metaHandler();

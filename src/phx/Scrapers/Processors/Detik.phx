@@ -12,7 +12,7 @@ use Phx\Scrapers\Processors\Traits\Detik as DetikTrait;
  * @license MIT
  * @version 0.0.1
  */
-final class Tribunnews implements PhxScraperProcessor
+final class Detik implements PhxScraperProcessor
 {
 	use DetikTrait;
 
@@ -109,6 +109,19 @@ final class Tribunnews implements PhxScraperProcessor
 	 */
 	public function run(): bool
 	{
+		icelog("Scraping {$this->url}...");
+
+		if (preg_match("/^https\:\/\/news\./Usi", $this->url)) {
+			$this->mget();
+			return $this->newsSubdomain();
+		}
+
+		icelog("URL does not match!");
+		return false;
+	}
+
+	private function mget()
+	{
 		$l = $this->newsScraper->exec($this->url);
 
 		if (isset($l["error"]) && $l["error"]) {
@@ -117,10 +130,6 @@ final class Tribunnews implements PhxScraperProcessor
 		}
 
 		$this->html = $l["out"];
-
-		if (preg_match("/^https\:\/\/news\./Usi", $this->url)) {
-			return $this->newsSubdomain();
-		}
 	}
 
 	/**

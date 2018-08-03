@@ -134,7 +134,7 @@ final class Detik extends NewsScraper
 			}
 
 			$i++;
-		} while (!isset($e["redirect_url"]) || !empty($e["redirect_url"]));
+		} while (!empty($e["info"]["redirect_url"]));
 		
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");

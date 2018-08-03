@@ -23,7 +23,6 @@ trait Detik
 			icelog("Could not get title");
 		}
 
-
 		if (preg_match(
 			"/(?:<meta name=\"publishdate\" content=\")(.*)(?:\")/Usi",
 			$this->html,

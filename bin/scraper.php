@@ -6,6 +6,7 @@ require __DIR__."/../config/scraper.php";
 require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\NewsScraper;
+use Phx\Scrapers\Detik;
 use Phx\Scrapers\Liputan6;
 use Phx\Scrapers\Tribunnews;
 
@@ -25,6 +26,11 @@ if (isset($argv[2])) {
 }
 
 switch ($argv[1]) {
+	case 'detik':
+		$st = new Detik;
+		define("LOG_FILE", "detik.log");
+		break;
+
 	case 'liputan6':
 		$st = new Liputan6;
 		define("LOG_FILE", "liputan6.log");

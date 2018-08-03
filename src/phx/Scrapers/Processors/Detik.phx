@@ -4,6 +4,7 @@ namespace Phx\Scrapers\Processors;
 
 use Phx\NewsScraper;
 use Contracts\PhxScraperProcessor;
+use Phx\Scrapers\Processors\Traits\Detik as DetikTrait;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -13,6 +14,8 @@ use Contracts\PhxScraperProcessor;
  */
 final class Tribunnews implements PhxScraperProcessor
 {
+	use DetikTrait;
+
 	/**
 	 * @var string
 	 */
@@ -106,7 +109,18 @@ final class Tribunnews implements PhxScraperProcessor
 	 */
 	public function run(): bool
 	{
-		
+		$l = $this->newsScraper->exec($this->url);
+
+		if (isset($l["error"]) && $l["error"]) {
+			icelog("An error occured when scraping {$url}: {$l['errno']} {$l['error']}");
+			return false;
+		}
+
+		$this->html = $l["out"];
+
+		if (preg_match("/^https\:\/\/news\./Usi", $this->url)) {
+			return $this->newsSubdomain();
+		}
 	}
 
 	/**

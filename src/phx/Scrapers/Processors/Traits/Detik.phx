@@ -85,6 +85,7 @@ trait Detik
 	 */
 	private function newsSubdomain(): bool
 	{
+		$this->newsScraper->saveHash($this->url);
 		$this->metaHandler();
 		if (preg_match(
 			"/(?:<div class=\"detail_text\" id=\"detikdetailtext\">)(.*)(?:<div class=\"detail_tag\">)/Usi",

@@ -106,8 +106,13 @@ final class Detik extends NewsScraper
 			icelog("Got ".count($urls)." thread(s)");
 		}
 
-		$i = 2;
+		$i = 2; $fails = 0;
 		do {
+			if ($fails > 4) {
+				icelog("Skipping paginator because it was reached the maximum number of fails...");
+				break;
+			}
+
 			icelog("Scraping ".$this->currentUrl."?page={$i}");
 			$e = $this->exec($this->currentUrl."?page={$i}",[
 				CURLOPT_FOLLOWLOCATION => false
@@ -129,8 +134,8 @@ final class Detik extends NewsScraper
 				});
 				icelog("Got ".count($m[1])." thread(s), Total thread(s): ".count($urls));
 			} else {
+				$fails++;
 				icelog("Could not get thread");
-				file_put_contents("aaa.q", $e["out"]);
 			}
 
 			$i++;

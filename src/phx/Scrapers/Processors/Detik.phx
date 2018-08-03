@@ -111,7 +111,7 @@ final class Detik implements PhxScraperProcessor
 	{
 		icelog("Scraping {$this->url}...");
 
-		if (preg_match("/^https\:\/\/news\./Usi", $this->url)) {
+		if (preg_match("/^https\:\/\/(news|health)\./Usi", $this->url)) {
 			$this->mget();
 			return $this->newsSubdomain();
 		}

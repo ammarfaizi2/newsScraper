@@ -10,7 +10,10 @@ namespace Phx\Scrapers\Processors\Traits;
  */
 trait Detik
 {
-	private function metaHandler()
+	/**
+	 * @return void
+	 */
+	private function metaHandler(): void
 	{
 		if (preg_match(
 			"/(?:<meta property=\"og:title\" content=\")(.*)(?:\")/Usi",
@@ -115,5 +118,15 @@ trait Detik
 		icelog("Could not get the content");
 		icelog("Skipping...");
 		return false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function healthSubdomain(): bool
+	{
+		$this->newsScraper->saveHash($this->url);
+		$this->metaHandler();
+		return $this->newsSubdomain();
 	}
 }

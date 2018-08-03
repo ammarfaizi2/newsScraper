@@ -97,8 +97,9 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 <?php
 
 $sites = [
-	"Tribunnews" => "tribunnews",
-	"Liputan6" => "liputan6"
+	"Tribunnews" => "tribunnews.com",
+	"Liputan6" => "liputan6.com",
+	"Detik" => "detik.com"
 ];
 $i = 1;
 $total = 0;

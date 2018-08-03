@@ -109,7 +109,10 @@ trait Detik
 			$m = implode("\n", $n);
 			$this->content = $m;
 			$this->contentType = "news";
+			return true;
 		}
+		icelog("Could not get the content");
+		icelog("Skipping...");
 		return false;
 	}
 }

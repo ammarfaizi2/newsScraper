@@ -7,6 +7,7 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\NewsScraper;
 use Phx\Scrapers\Detik;
+use Phx\Scrapers\Kompas;
 use Phx\Scrapers\Liputan6;
 use Phx\Scrapers\Tribunnews;
 
@@ -39,6 +40,11 @@ switch ($argv[1]) {
 	case 'tribunnews':
 		$st = new Tribunnews;
 		define("LOG_FILE", "tribunnews.log");
+		break;
+
+	case 'kompas':
+		$st = new Kompas;
+		define("LOG_FILE", "kompas.log");
 		break;
 
 	default:

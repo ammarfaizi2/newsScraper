@@ -32,7 +32,7 @@ final class Kompas extends NewsScraper
 		"Kalimantan Tengah" => "https://indeks.kompas.com/tag/KALIMANTAN.TENGAH",
 		"Kalimantan Timur" => "https://indeks.kompas.com/tag/kalimantan-timur",
 		"Kalimantan Utara" => "https://indeks.kompas.com/tag/kalimantan-utara",
-		"Sulawesi Utara" => "https://kilasdaerah.kompas.com/sulawesi-utara",
+		// "Sulawesi Utara" => "https://kilasdaerah.kompas.com/sulawesi-utara",
 		"Sulawesi Barat" => "https://indeks.kompas.com/tag/sulawesi-barat",
 		"Sulawesi Tengah" => "https://indeks.kompas.com/tag/sulawesi-tengah",
 		"Sulawesi Tenggara" => "https://indeks.kompas.com/tag/sulawesi-tenggara",
@@ -105,51 +105,58 @@ final class Kompas extends NewsScraper
 		$urls = [];
 
 		if (preg_match_all(
-			"/(?:<article>.+<a.+href=\")(.*)(?:\")/Usi",
+			"/(?:<a class=\"article__link\" href=\")(.*)(?:\")/Usi",
 			$string,
 			$m
 		)) {
-			array_walk($m[1], function($url) use (&$urls) {
+			$i = 0;
+			foreach ($m[1] as $url) {
+				$i++;
 				$urls[] = trim(html_entity_decode($url, ENT_QUOTES, "UTF-8"));
-			});
-			icelog("Got ".count($urls)." thread(s)");
+			}
+			icelog("Got {$i} thread(s) from page 1");
 		}
 
-		$i = 2; $fails = 0;
-		do {
-			if ($fails > 4) {
-				icelog("Skipping paginator because it was reached the maximum number of fails...");
-				break;
+		/**
+		 * Get max page.
+		 */
+		icelog("Getting max page");
+		if (preg_match(
+			"/(?:data-ci-pagination-page=\")(\d.+)(?:\">Last)/Usi",
+			$string,
+			$m
+		)) {
+			$max = (int) $m[1];
+			icelog("Got max page: {$max}");
+			for ($i=2; $i <= $max; $i++) {
+				icelog("Scraping ".$this->currentUrl."/desc/{$i}...");
+
+				$e = $this->exec($this->currentUrl."/desc/{$i}");
+
+				if (isset($e["error"]) && $e["error"]) {
+					icelog(
+						"An error occured when scraping {$this->currentUrl}/desc/{$i}: {$e['errno']} {$e['error']}"
+					);
+					continue;
+				}
+
+				if (preg_match_all(
+					"/(?:<a class=\"article__link\" href=\")(.*)(?:\")/Usi",
+					$string,
+					$m
+				)) {
+					$qq = 0;
+					foreach ($m[1] as $url) {
+						$qq++;
+						$urls[] = trim(html_entity_decode($url, ENT_QUOTES, "UTF-8"));
+					}
+					icelog("Got {$qq} thread(s) from page {$i}");
+				}
 			}
+		} else {
+			icelog("Could not get max page!");
+		}
 
-			icelog("Scraping ".$this->currentUrl."?page={$i}");
-			$e = $this->exec($this->currentUrl."?page={$i}",[
-				CURLOPT_FOLLOWLOCATION => false
-			]);
-
-			if (isset($e["error"]) && $e["error"]) {
-				icelog("An error occured when scraping {$this->currentUrl}?page={$i}: {$e['errno']} {$e['error']}");
-				continue;
-			}
-
-			if (preg_match_all(
-				"/(?:<article>.+<a.+href=\")(.*)(?:\")/Usi",
-				$e["out"],
-				$m
-			)) {
-
-				array_walk($m[1], function($url) use (&$urls) {
-					$urls[] = trim(html_entity_decode($url, ENT_QUOTES, "UTF-8"));
-				});
-				icelog("Got ".count($m[1])." thread(s), Total thread(s): ".count($urls));
-			} else {
-				$fails++;
-				icelog("Could not get thread");
-			}
-
-			$i++;
-		} while (empty($e["info"]["redirect_url"]));
-		
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");
 		icelog("Filtering scraped threads...");

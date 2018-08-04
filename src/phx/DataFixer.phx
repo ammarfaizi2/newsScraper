@@ -56,4 +56,38 @@ abstract class DataFixer
 			rand(0, count(NewsScraper::USERAGENT_COLLECTION) - 1)
 		];
 	}
+
+	/**
+	 * @param string $url
+	 * @param array  $opt
+	 * @return array
+	 */
+	public function exec(string $url, $opt = []): array
+	{
+		$ch = curl_init($url);
+		$optf = [
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_COOKIEFILE => $this->cookieFile,
+			CURLOPT_COOKIEJAR => $this->cookieFile,
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+			CURLOPT_USERAGENT => $this->userAgent
+		];
+		foreach ($opt as $key => $value) {
+			$optf[$key] = $value;
+		}
+		curl_setopt_array($ch, $optf);
+		$out = curl_exec($ch);
+		$err = curl_error($ch);
+		$ern = curl_errno($ch);
+		$info = curl_getinfo($ch);
+		curl_close($ch);
+		return [
+			"out" => $out,
+			"error" => $err,
+			"errno" => $ern,
+			"info" => $info
+		];
+	}
 }

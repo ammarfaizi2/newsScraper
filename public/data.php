@@ -20,6 +20,19 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 $page = (int) $page;
 
+$queryString = ""; $qqqq=false;
+foreach ($_GET as $key => $value) {
+	if ($value !== "" && $key !== "page") {
+		$qqqq = true;
+		$queryString .= "&".urlencode($key)."=".urlencode($value);
+	}
+}
+$queryString = trim($queryString, "&");
+if ($qqqq) {
+	$queryString = "&".$queryString;
+}
+
+
 function tq($str, $max = 32)
 {
 	if (strlen($str) > $max) {
@@ -156,18 +169,6 @@ if ($st !== false) {
 $stq = $pdo->prepare(
 	$myquery = "SELECT `id`,`title`,`url`,`datetime`,`content_type`,`text` AS `content`,`regional`,`scraped_at` FROM `news` {$where} ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};"
 );
-$queryString = ""; $qqqq=false;
-foreach ($_GET as $key => $value) {
-	if ($value !== "" && $key !== "page") {
-		$qqqq = true;
-		$queryString .= "&".urlencode($key)."=".urlencode($value);
-	}
-}
-$queryString = trim($queryString, "&");
-if ($qqqq) {
-	$queryString = "&".$queryString;
-}
-
 
 ?><!DOCTYPE html>
 <html>

@@ -105,7 +105,7 @@ trait Kompas
 			$m = trim(html_entity_decode(strip_tags(preg_replace(
 				[
 					"/<div.+class=\"video\">.+<\/div>/Usi",
-					"/<script>.+<\/script>/Usi",
+					"/<script.+>.+<\/script>/Usi",
 					"/<strong>Baca juga:.+<\/a>/Usi"
 				],
 				"",

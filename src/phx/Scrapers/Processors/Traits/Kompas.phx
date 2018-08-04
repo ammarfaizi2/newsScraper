@@ -119,6 +119,7 @@ trait Kompas
 				$tmp = trim($tmp);
 			}			
 			$m = implode("\n", $n);
+			var_dump($m);die;
 			$this->content = $m;
 			$this->contentType = "news";
 			return true;

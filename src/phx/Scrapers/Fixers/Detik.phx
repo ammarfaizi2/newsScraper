@@ -41,7 +41,7 @@ final class Detik extends DataFixer
 	{
 		icelog("Running get all query...");
 		$st = $this->pdo->prepare(
-			"SELECT `id` FROM `news` WHERE `url` LIKE '%detik.com%' AND `id` = 12925;"
+			"SELECT `id` FROM `news` WHERE `url` LIKE '%detik.com%';"
 		);
 		$st->execute();
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
@@ -78,18 +78,22 @@ final class Detik extends DataFixer
 				$authors[$rr["author_name"]] = 1;
 			}
 		}
-		icelog("Got ".count($delete)." duplicate data");
-		icelog("Deleting...");
-		foreach ($delete as $key => $value) {
-			$q = "DELETE FROM `authors` WHERE `author_name` = :author_name AND `news_id` = :news_id LIMIT {$value};";
-			$bind = [
-					":author_name" => $key,
-					":news_id" => $r["id"]
-				];
-			icelog("Executing {$q} with bind param ".json_encode($bind)."...");
+		$c = count($delete);
+		if ($c > 0) {
+			icelog("Got {$c} duplicate data");
+			icelog("Deleting...");
+			foreach ($delete as $key => $value) {
+				$q = "DELETE FROM `authors` WHERE `author_name` = :author_name AND `news_id` = :news_id LIMIT {$value};";
+				$bind = [
+						":author_name" => $key,
+						":news_id" => $r["id"]
+					];
+				icelog("Executing {$q} with bind param ".json_encode($bind)."...");
 
-			$this->pdo->prepare($q)->execute($bind);
+				$this->pdo->prepare($q)->execute($bind);
+			}
 		}
+		icelog("Data has been fixed");
 	}
 
 	/**
@@ -120,17 +124,21 @@ final class Detik extends DataFixer
 				$images[$rr["image_url"]] = 1;
 			}
 		}
-		icelog("Got ".count($delete)." duplicate data");
-		icelog("Deleting...");
-		foreach ($delete as $key => $value) {
-			$q = "DELETE FROM `images` WHERE `image_url` = :image_url AND `news_id` = :news_id LIMIT {$value};";
-			$bind = [
-					":image_url" => $key,
-					":news_id" => $r["id"]
-				];
-			icelog("Executing {$q} with bind param ".json_encode($bind)."...");
+		$c = count($delete);
+		if ($c > 0) {
+			icelog("Got ".count($delete)." duplicate data");
+			icelog("Deleting...");
+			foreach ($delete as $key => $value) {
+				$q = "DELETE FROM `images` WHERE `image_url` = :image_url AND `news_id` = :news_id LIMIT {$value};";
+				$bind = [
+						":image_url" => $key,
+						":news_id" => $r["id"]
+					];
+				icelog("Executing {$q} with bind param ".json_encode($bind)."...");
 
-			$this->pdo->prepare($q)->execute($bind);
+				$this->pdo->prepare($q)->execute($bind);
+			}
 		}
+		icelog("Data has been fixed");
 	}
 }

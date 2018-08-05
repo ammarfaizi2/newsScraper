@@ -6,6 +6,7 @@ require __DIR__."/../config/scraper.php";
 require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\DataFixer;
+use Phx\Scrapers\Fixers\Detik;
 use Phx\Scrapers\Fixers\Tribunnews;
 
 if (! isset($argv[1])) {
@@ -16,12 +17,17 @@ if (! isset($argv[1])) {
 switch ($argv[1]) {
 	case 'liputan6':
 		$st = new Liputan6;
-		define("LOG_FILE", "liputan6_fixer.log");
+		#define("LOG_FILE", "liputan6_fixer.log");
 		break;
 	
 	case 'tribunnews':
 		$st = new Tribunnews;
-		define("LOG_FILE", "tribunnews_fixer.log");
+		#define("LOG_FILE", "tribunnews_fixer.log");
+		break;
+
+	case 'detik':
+		$st = new Detik;
+		#define("LOG_FILE", "tribunnews_fixer.log");
 		break;
 
 	default:

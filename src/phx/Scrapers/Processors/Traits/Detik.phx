@@ -139,4 +139,12 @@ trait Detik
 	{
 		return $this->newsSubdomain();
 	}
+
+	/**
+	 * @return bool
+	 */
+	public function financeSubdomain(): bool
+	{
+		return $this->newsSubdomain();
+	}
 }

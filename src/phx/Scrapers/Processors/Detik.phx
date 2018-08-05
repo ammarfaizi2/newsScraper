@@ -113,13 +113,15 @@ final class Detik implements PhxScraperProcessor
 
 		if (preg_match("/^https\:\/\/news\./Usi", $this->url)) {
 			$this->mget();
-			return $this->newsSubdomain();
+			return $this->mget() ? $this->newsSubdomain() : false;
 		} elseif (preg_match("/^https\:\/\/travel\./Usi", $this->url)) {
 			$this->mget();
-			return $this->travelSubdomain();
+			return $this->mget() ? $this->travelSubdomain() : false;
 		} elseif (preg_match("/^https\:\/\/health\./Usi", $this->url)) {
+			return $this->mget() ? $this->healthSubdomain() : false;
+		} elseif (preg_match("/^https\:\/\/finance\./Usi", $this->url)) {
 			$this->mget();
-			return $this->healthSubdomain();
+			return $this->mget() ? $this->financeSubdomain() : false;
 		}
 
 		icelog("URL does not match!");
@@ -136,6 +138,7 @@ final class Detik implements PhxScraperProcessor
 		}
 
 		$this->html = $l["out"];
+		return true;
 	}
 
 	/**

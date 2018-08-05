@@ -144,4 +144,12 @@ trait Kompas
 	{
 		return $this->nasionalSubdomain();
 	}
+
+	/**
+	 * @return bool
+	 */
+	public function internasionalSubdomain(): bool
+	{
+		return $this->nasionalSubdomain();
+	}
 }

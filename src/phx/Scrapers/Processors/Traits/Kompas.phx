@@ -91,7 +91,7 @@ trait Kompas
 	 */
 	private function nasionalSubdomain(): bool
 	{
-		// $this->newsScraper->saveHash($this->url);
+		$this->newsScraper->saveHash($this->url);
 		$this->metaHandler();
 		if (substr($this->title, 0, 5) === "Foto:") {
 			icelog("Images only, skipping...");
@@ -119,7 +119,6 @@ trait Kompas
 				$tmp = trim($tmp);
 			}			
 			$m = implode("\n", $n);
-			var_dump($m);die;
 			$this->content = $m;
 			$this->contentType = "news";
 			return true;
@@ -129,14 +128,13 @@ trait Kompas
 		return false;
 	}
 
+
 	/**
 	 * @return bool
 	 */
-	public function healthSubdomain(): bool
+	public function regionalSubdomain(): bool
 	{
-		$this->newsScraper->saveHash($this->url);
-		$this->metaHandler();
-		return $this->newsSubdomain();
+		return $this->nasionalSubdomain();
 	}
 
 	/**
@@ -144,8 +142,7 @@ trait Kompas
 	 */
 	public function travelSubdomain(): bool
 	{
-		$this->newsScraper->saveHash($this->url);
-		$this->metaHandler();
-		return $this->newsSubdomain();
+		return $this->nasionalSubdomain();
 	}
+
 }

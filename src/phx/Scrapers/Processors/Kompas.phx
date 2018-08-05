@@ -113,6 +113,10 @@ final class Kompas implements PhxScraperProcessor
 
 		if (preg_match("/^https?\:\/\/nasional\./Usi", $this->url)) {
 			return $this->mget() ? $this->nasionalSubdomain() : false;
+		} elseif (preg_match("/^https?\:\/\/regional\./Usi", $this->url)) {
+			return $this->mget() ? $this->regionalSubdomain() : false;
+		} elseif (preg_match("/^https?\:\/\/travel\./Usi", $this->url)) {
+			return $this->mget() ? $this->travelSubdomain() : false;
 		}
 
 		icelog("URL does not match!");

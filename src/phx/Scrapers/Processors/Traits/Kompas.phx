@@ -144,5 +144,4 @@ trait Kompas
 	{
 		return $this->nasionalSubdomain();
 	}
-
 }

@@ -99,7 +99,8 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 $sites = [
 	"Tribunnews" => "tribunnews.com",
 	"Liputan6" => "liputan6.com",
-	"Detik" => "detik.com"
+	"Detik" => "detik.com",
+	"Kompas" => "kompas.com"
 ];
 $i = 1;
 $total = 0;

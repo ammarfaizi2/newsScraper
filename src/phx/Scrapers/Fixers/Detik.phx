@@ -83,7 +83,7 @@ final class Detik extends DataFixer
 			$q = "DELETE FROM `authors` WHERE `author_name` = :author_name AND `news_id` = :news_id LIMIT {$value};";
 			$bind = [
 					":author_name" => $key,
-					":news_id" => r["id"]
+					":news_id" => $r["id"]
 				];
 			icelog("Executing {$q} with bind param ".json_encode($bind)."...");
 

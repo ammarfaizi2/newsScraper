@@ -1,10 +1,14 @@
 #!/usr/bin/env php
 <?php
 
+require __DIR__."/../config/main.php";
+
 $whileTrue = true;
 $param = [
 	"liputan6",
-	"tribunnews"
+	"tribunnews",
+	"detik",
+	"kompas"
 ];
 
 
@@ -14,6 +18,6 @@ if ($whileTrue) {
 }
 foreach ($param as $key => $value) {
 	shell_exec(
-		"nohup sh -c \"nohup ".PHP_BINARY." ".__DIR__."/scraper.php {$value} {$noend} >> /dev/null 2>&1 &\" >> /dev/null 2>&1 &"
+		"nohup sh -c \"nohup ".PHP_BINARY." ".__DIR__."/scraper.php {$value} {$noend} >> ".LOG_DIR."/{$value}.log 2>&1 &\" >> /dev/null 2>&1 &"
 	);
 }

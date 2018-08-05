@@ -29,22 +29,22 @@ if (isset($argv[2])) {
 switch ($argv[1]) {
 	case 'detik':
 		$st = new Detik;
-		define("LOG_FILE", "detik.log");
+		#define("LOG_FILE", "detik.log");
 		break;
 
 	case 'liputan6':
 		$st = new Liputan6;
-		define("LOG_FILE", "liputan6.log");
+		#define("LOG_FILE", "liputan6.log");
 		break;
 	
 	case 'tribunnews':
 		$st = new Tribunnews;
-		define("LOG_FILE", "tribunnews.log");
+		#define("LOG_FILE", "tribunnews.log");
 		break;
 
 	case 'kompas':
 		$st = new Kompas;
-		define("LOG_FILE", "kompas.log");
+		#define("LOG_FILE", "kompas.log");
 		break;
 
 	default:

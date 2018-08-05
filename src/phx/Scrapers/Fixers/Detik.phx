@@ -47,6 +47,7 @@ final class Detik extends DataFixer
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 			icelog("Fixing ".$r["id"]."...");
 			$this->authorFixer($r);
+			$this->imagesFixer($r);
 		}
 	}
 
@@ -83,6 +84,48 @@ final class Detik extends DataFixer
 			$q = "DELETE FROM `authors` WHERE `author_name` = :author_name AND `news_id` = :news_id LIMIT {$value};";
 			$bind = [
 					":author_name" => $key,
+					":news_id" => $r["id"]
+				];
+			icelog("Executing {$q} with bind param ".json_encode($bind)."...");
+
+			$this->pdo->prepare($q)->execute($bind);
+		}
+	}
+
+	/**
+	 * @param array $r
+	 * @return void
+	 */
+	private function imagesFixer(array $r): void
+	{
+		
+		$st = $this->pdo->prepare(
+			"SELECT `images`.`id`,`images`.`image_url` FROM `news` INNER JOIN `images` ON `images`.`news_id` = `news`.`id` WHERE `news`.`id` = :id;"
+		);
+		$st->execute(
+			[
+				":id" => $r["id"]
+			]
+		);
+		$images = [];
+		$delete = [];
+		while($rr = $st->fetch(PDO::FETCH_ASSOC)) {
+			if (isset($images[$rr["image_url"]])) {
+				if (isset($delete[$rr["image_url"]])) {
+					$delete[$rr["image_url"]]++;
+				} else {
+					$delete[$rr["image_url"]] = 1;
+				}
+			} else {
+				$images[$rr["image_url"]] = 1;
+			}
+		}
+		icelog("Got ".count($delete)." duplicate data");
+		icelog("Deleting...");
+		foreach ($delete as $key => $value) {
+			$q = "DELETE FROM `images` WHERE `image_url` = :image_url AND `news_id` = :news_id LIMIT {$value};";
+			$bind = [
+					":image_url" => $key,
 					":news_id" => $r["id"]
 				];
 			icelog("Executing {$q} with bind param ".json_encode($bind)."...");

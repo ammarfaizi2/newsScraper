@@ -95,7 +95,7 @@ trait Detik
 			return false;
 		}
 		if (preg_match(
-			"/(?:<div class=\".+\" id=\"detikdetailtext\">)(.*)(?:<div class=\"detail_tag\">)/Usi",
+			"/(?:<div class=\".+\" id=\"detikdetailtext\"\s?>)(.*)(?:<div class=\"detail_tag\">)/Usi",
 			$this->html,
 			$m
 		)) {
@@ -129,8 +129,6 @@ trait Detik
 	 */
 	public function healthSubdomain(): bool
 	{
-		$this->newsScraper->saveHash($this->url);
-		$this->metaHandler();
 		return $this->newsSubdomain();
 	}
 
@@ -139,8 +137,6 @@ trait Detik
 	 */
 	public function travelSubdomain(): bool
 	{
-		$this->newsScraper->saveHash($this->url);
-		$this->metaHandler();
 		return $this->newsSubdomain();
 	}
 }

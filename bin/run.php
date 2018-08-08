@@ -8,7 +8,8 @@ $param = [
 	"liputan6",
 	"tribunnews",
 	"detik",
-	"kompas"
+	"kompas",
+	"antaranews"
 ];
 
 

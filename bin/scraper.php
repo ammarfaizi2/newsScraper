@@ -48,6 +48,11 @@ switch ($argv[1]) {
 		#define("LOG_FILE", "kompas.log");
 		break;
 
+	case 'antaranews':
+		$st = new Antaranews;
+		#define("LOG_FILE", "kompas.log");
+		break;
+
 	default:
 		print "Invalid argument \"{$argv[1]}\"";
 		exit(1);

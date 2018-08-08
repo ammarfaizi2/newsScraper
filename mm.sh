@@ -1,25 +1,19 @@
-#!/bin/sh
-
-git checkout master
+#!/bin/bash
 
 merge='git merge master'
+checkout='git checkout'
+branches=dev_{api,antaranews,detik,kompas,liputan6,tribunnews}
 
-git checkout dev_antaranews
-$merge
 
-git checkout api
-$merge
+# Merge master branch to other branches.
 
-git checkout dev_detik
-$merge
+$checkout master
 
-git checkout dev_kompas
-$merge
+bash -c "
+for branch in $branches; do
+	$checkout \$branch;
+	$merge;
+done;
+"
 
-git checkout dev_liputan6
-$merge
-
-git checkout dev_tribunnews
-$merge
-
-git checkout master
+$checkout master

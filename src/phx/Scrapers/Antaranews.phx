@@ -110,7 +110,6 @@ final class Antaranews extends NewsScraper
 	
 
 
-
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");
 		icelog("Filtering scraped threads...");

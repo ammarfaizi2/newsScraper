@@ -2,19 +2,21 @@
 
 git checkout master
 
+merge='git merge master'
+
 git checkout api
-git merge master
-
-git checkout dev_liputan6
-git merge master
-
-git checkout dev_tribunnews
-git merge master
+$merge
 
 git checkout dev_detik
-git merge master
+$merge
 
 git checkout dev_kompas
-git merge master
+$merge
+
+git checkout dev_liputan6
+$merge
+
+git checkout dev_tribunnews
+$merge
 
 git checkout master

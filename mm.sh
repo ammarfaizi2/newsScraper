@@ -4,6 +4,9 @@ git checkout master
 
 merge='git merge master'
 
+git checkout dev_antaranews
+$merge
+
 git checkout api
 $merge
 

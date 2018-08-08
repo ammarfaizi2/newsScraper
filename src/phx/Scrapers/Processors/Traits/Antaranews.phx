@@ -61,7 +61,7 @@ trait Antaranews
 		 * Get tags
 		 */
 		if (preg_match_all(
-			"/(?:<meta name=\"keywords\" content=\")(.*)(?:\">)/Usi",
+			"/(?:<meta name=\"keywords\" content=\")(.*)(?:\")/Usi",
 			$this->html,
 			$m
 		)) {

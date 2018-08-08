@@ -10,6 +10,7 @@ use Phx\Scrapers\Detik;
 use Phx\Scrapers\Kompas;
 use Phx\Scrapers\Liputan6;
 use Phx\Scrapers\Tribunnews;
+use Phx\Scrapers\Antaranews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";

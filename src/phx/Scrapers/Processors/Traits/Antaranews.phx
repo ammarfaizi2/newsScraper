@@ -213,7 +213,7 @@ trait Antaranews
 		 * Get content.
 		 */
 		if (preg_match(
-			"/(?:<div class=\"post-content.+>(.*)(?:<\/div>)/Usi",
+			"/(?:<div class=\"post-content.+>)(.*)(?:<\/div>)/Usi",
 			$this->html,
 			$m
 		)) {

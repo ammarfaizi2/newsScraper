@@ -3,9 +3,9 @@
 namespace test\Fixers\ExtendedFixers;
 
 use PHPUnit\Framework\TestCase;
-use Phx\Scrapers\Fixers\ExtendedFixers\DatetimeConverter;
+use Phx\Scrapers\Fixers\ExtendedFixers\Datetime\DatetimeConverter;
 
-class DatetimeTest extends TestCase
+class DatetimeConverterTest extends TestCase
 {
 
 	public function testFixer1()

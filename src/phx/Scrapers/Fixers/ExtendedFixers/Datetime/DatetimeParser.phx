@@ -1,0 +1,9 @@
+<?php
+
+namespace Phx\Scrapers\Fixers\ExtendedFixers\Datetime;
+
+use Phx\DataFixer;
+
+final class DatetimeParser
+{
+}

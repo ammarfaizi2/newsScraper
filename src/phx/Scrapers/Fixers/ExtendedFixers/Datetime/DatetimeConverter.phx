@@ -1,6 +1,6 @@
 <?php
 
-namespace Phx\Scrapers\Fixers\ExtendedFixers;
+namespace Phx\Scrapers\Fixers\ExtendedFixers\Datetime;
 
 use Phx\DataFixer;
 

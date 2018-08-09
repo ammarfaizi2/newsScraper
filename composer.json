@@ -8,6 +8,18 @@
             "email": "ammarfaizi2@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
+    },
+    "autoload": {
+        "files": [
+            "config/main.php",
+            "config/scraper.php",
+            "bootstrap/icetea_bootstrap.php"
+        ],
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    }
 }

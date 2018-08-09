@@ -2,6 +2,6 @@
 *.swo
 *.swp
 *.tmp
+*.lock
 /.phpintel/
-
 /vendor/

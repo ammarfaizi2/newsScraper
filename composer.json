@@ -1,0 +1,25 @@
+{
+    "name": "ammarfaizi2/news-scraper",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ammar Faizi",
+            "email": "ammarfaizi2@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
+    },
+    "autoload": {
+        "files": [
+            "config/main.php",
+            "config/scraper.php",
+            "bootstrap/icetea_bootstrap.php"
+        ],
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    }
+}

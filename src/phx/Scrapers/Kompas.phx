@@ -14,7 +14,7 @@ use Phx\Scrapers\Processors\Kompas as KompasProcessor;
 final class Kompas extends NewsScraper
 {
 	const targetList = [
-		"Nanggroe Aceh Darusalam" => "http://indeks.kompas.com/tag/aceh",
+		"Nanggroe Aceh Darussalam" => "http://indeks.kompas.com/tag/aceh",
 		"Sumatera Utara" => "http://indeks.kompas.com/tag/sumatera-utara",
 		"Sumatera Utara_" => "http://indeks.kompas.com/tag/sumut",
 		"Sumatera Barat" => "http://indeks.kompas.com/tag/sumatera-barat",

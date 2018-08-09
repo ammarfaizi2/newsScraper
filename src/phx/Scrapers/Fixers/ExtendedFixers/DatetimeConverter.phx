@@ -1,0 +1,19 @@
+<?php
+
+namespace Phx\Scrapers\Fixers\ExtendedFixers;
+
+use Phx\DataFixer;
+
+class DatetimeConverter extends DataFixer
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+	public function toUnix($epoch)
+	{
+		return $epoch;
+	}
+}

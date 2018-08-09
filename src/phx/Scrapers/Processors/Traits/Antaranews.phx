@@ -61,7 +61,7 @@ trait Antaranews
 		 * Get tags
 		 */
 		if (preg_match_all(
-			"/(?:<meta name=\"keywords\" content=\")(.*)(?:\">)/Usi",
+			"/(?:<meta name=\"keywords\" content=\")(.*)(?:\")/Usi",
 			$this->html,
 			$m
 		)) {
@@ -166,16 +166,14 @@ trait Antaranews
 			$this->authors[] = $m[1];
 		}
 
-		$c = count($this->authors);
-
-		if ($c > 1) {
+		if ($c = count($this->authors)) {
 			icelog("Got {$c} author(s): ".json_encode($this->authors));	
 		} else {
 			/**
 			 * Get author 3
 			 */
 			if (preg_match(
-				"/(?:<meta property=\"article:author\" content=\")(.*)(?:\")/Usi",
+				"/(?:<span itemprop=\"author\"><b>)(.*)(?:<\/b>)/Usi",
 				$this->html,
 				$m
 			)) {
@@ -183,7 +181,31 @@ trait Antaranews
 				$this->authors[] = $m[1];
 				icelog("Got ".count($this->authors)." author(s): ".json_encode($this->authors));	
 			} else {
-				icelog("Could not get the authors");
+
+				/**
+			 	 * Get author 4
+			 	 */
+				if (preg_match(
+					"/(?:<span itemprop=\"author\">)(.*)(?:<\/span>)/Usi",
+					$this->html,
+					$m
+				)) {
+					$m[1] = trim(html_entity_decode($m[1], ENT_QUOTES, "UTF-8"));
+					$this->authors[] = $m[1];
+					icelog("Got ".count($this->authors)." author(s): ".json_encode($this->authors));
+				} else {
+					if (preg_match(
+						"/(?:<meta property=\"article:author\" content=\")(.*)(?:\")/Usi",
+						$this->html,
+						$m
+					)) {
+						$m[1] = trim(html_entity_decode($m[1], ENT_QUOTES, "UTF-8"));
+						$this->authors[] = $m[1];
+						icelog("Got ".count($this->authors)." author(s): ".json_encode($this->authors));	
+					} else {
+						icelog("Could not get the authors");
+					}
+				}
 			}
 		}
 
@@ -191,7 +213,7 @@ trait Antaranews
 		 * Get content.
 		 */
 		if (preg_match(
-			"/(?:<div class=\"post-content clearfix\")(?: style=\".+\")?(?:>)(.*)(?:<\/div>)/Usi",
+			"/(?:<div class=\"post-content.+>)(.*)(?:<\/div>)/Usi",
 			$this->html,
 			$m
 		)) {

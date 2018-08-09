@@ -1,0 +1,13 @@
+{
+    "name": "ammarfaizi2/news-scraper",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ammar Faizi",
+            "email": "ammarfaizi2@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

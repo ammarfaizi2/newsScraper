@@ -195,7 +195,6 @@ final class DatetimeParser
 					return $this->alphaMonthConverter($input, $to, $from);
 			case self::ALPHA_MONTH_3:
 					return $this->alphaMonthConverter($input, $to, $from);
-				break;
 		}
 	}
 
@@ -226,94 +225,95 @@ final class DatetimeParser
 		$input = strtolower($input);
 		switch ($type) {
 			case self::ALPHA_MONTH:
-				switch ($input) {
-					case "januari":
-						return "01";
-					case "februari":
-						return "02";
-					case "maret":
-						return "03";
-					case "april":
-						return "04";
-					case "mei":
-						return "05";
-					case "juni":
-						return "06";
-					case "juli":
-						return "07";
-					case "agustus":
-						return "08";
-					case "september":
-						return "09";
-					case "oktober":
-						return "10";
-					case "november":
-						return "11";
-					case "desember":
-						return "12";
-					default:
-						return "01";
-				}
-			break;
+					switch ($input) {
+						case "januari":
+							return "01";
+						case "februari":
+							return "02";
+						case "maret":
+							return "03";
+						case "april":
+							return "04";
+						case "mei":
+							return "05";
+						case "juni":
+							return "06";
+						case "juli":
+							return "07";
+						case "agustus":
+							return "08";
+						case "september":
+							return "09";
+						case "oktober":
+							return "10";
+						case "november":
+							return "11";
+						case "desember":
+							return "12";
+						default:
+							return "01";
+					}
+				break;
 			case self::ALPHA_MONTH_2:
-				switch ($input) {
-					case "jan":
-						return "01";
-					case "feb":
-						return "02";
-					case "mar":
-						return "03";
-					case "apr":
-						return "04";
-					case "mei":
-						return "05";
-					case "jun":
-						return "06";
-					case "jul":
-						return "07";
-					case "agu":
-						return "08";
-					case "sep":
-						return "09";
-					case "okt":
-						return "10";
-					case "nov":
-						return "11";
-					case "des":
-						return "12";
-					default:
-						return "01";
-				}
-			break;
+					switch ($input) {
+						case "jan":
+							return "01";
+						case "feb":
+							return "02";
+						case "mar":
+							return "03";
+						case "apr":
+							return "04";
+						case "mei":
+							return "05";
+						case "jun":
+							return "06";
+						case "jul":
+							return "07";
+						case "agu":
+							return "08";
+						case "sep":
+							return "09";
+						case "okt":
+							return "10";
+						case "nov":
+							return "11";
+						case "des":
+							return "12";
+						default:
+							return "01";
+					}
+				break;
 			case self::ALPHA_MONTH_3:
-				switch ($input) {
-					case "jan":
-						return "01";
-					case "feb":
-						return "02";
-					case "mar":
-						return "03";
-					case "apr":
-						return "04";
-					case "may":
-						return "05";
-					case "jun":
-						return "06";
-					case "jul":
-						return "07";
-					case "aug":
-						return "08";
-					case "sep":
-						return "9";
-					case "oct":
-						return "10";
-					case "nov":
-						return "11";
-					case "dec":
-						return "12";
-					default:
-						return "01";
-				}
+					switch ($input) {
+						case "jan":
+							return "01";
+						case "feb":
+							return "02";
+						case "mar":
+							return "03";
+						case "apr":
+							return "04";
+						case "may":
+							return "05";
+						case "jun":
+							return "06";
+						case "jul":
+							return "07";
+						case "aug":
+							return "08";
+						case "sep":
+							return "9";
+						case "oct":
+							return "10";
+						case "nov":
+							return "11";
+						case "dec":
+							return "12";
+						default:
+							return "01";
+					}
+				break;
 		}
 	}
 }

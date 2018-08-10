@@ -40,6 +40,11 @@ final class DatetimeParser
 	const DF3 = 13;
 
 	/**
+	 * "2018-08-04T22:49:21+07:00"
+	 */
+	const DF4 = 14;
+
+	/**
 	 * "01", "10"
 	 */
 	const ZEROFILL_NUMBER = 20;
@@ -157,6 +162,13 @@ final class DatetimeParser
 			$this->formatType = self::DF3;
 			$this->matches = $m;
 			return true;
+		} elseif (preg_match(
+			"/^\d{4}-\d{2}-\d{2}T(\d{2}:){2}(\d{2})\+(\d{2}:\d{2})?$/",
+			$this->input,
+			$m
+		)) {
+			$this->formatType = self::DF4;
+			return true;
 		}
 
 		return false;
@@ -183,6 +195,9 @@ final class DatetimeParser
 			case self::DF3:
 					$this->vv =
 						$m[3]."-".$this->convert($m[2], self::ALPHA_MONTH_3, self::ZEROFILL_NUMBER)."-".$m[1]." ".$m[4].":".$m[5].":".$m[6];
+				break;
+			case self::DF4:
+					$this->vv = date("Y-m-d H:i:s", strtotime($this->input));
 				break;
 			default:
 				break;

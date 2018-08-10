@@ -5,3 +5,4 @@
 *.lock
 /.phpintel/
 /vendor/
+/public/google_search_data/

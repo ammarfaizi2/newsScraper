@@ -21,5 +21,9 @@
         "psr-4": {
             "tests\\": "tests/"
         }
+    },
+    "require": {
+        "ammarfaizi2/googletranslate": "dev-master",
+        "ammarfaizi2/googlesearch": "dev-master"
     }
 }

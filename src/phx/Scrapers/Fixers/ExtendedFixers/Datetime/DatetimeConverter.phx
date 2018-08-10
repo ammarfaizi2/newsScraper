@@ -2,18 +2,43 @@
 
 namespace Phx\Scrapers\Fixers\ExtendedFixers\Datetime;
 
-use Phx\DataFixer;
-
-class DatetimeConverter extends DataFixer
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @package Phx\Scrapers\Fixers\ExtendedFixers\Datetime
+ * @license MIT
+ * @version 0.0.1
+ */
+class DatetimeConverter
 {
+	/**
+	 * @var string
+	 */
+	private $input = "";
 
-	public function __construct()
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct(string $input)
 	{
-		parent::__construct();
+		$this->input = $input;
+		$this->parser = new DatetimeParser($this);
 	}
 
-	public function toUnix($epoch)
+	/**
+	 * @return string
+	 */
+	public function getInput(): string
 	{
-		return $epoch;
+		return $this->input;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function toUnix(): int
+	{
+		return $this->parser->getUnix();
 	}
 }

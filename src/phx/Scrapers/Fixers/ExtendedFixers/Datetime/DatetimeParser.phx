@@ -127,7 +127,8 @@ final class DatetimeParser
 			$this->input,
 			$m
 		)) {
-
+			var_dump($m);
+			die;
 		}
 
 		return false;

@@ -57,7 +57,7 @@ final class DatetimeParser
 	/**
 	 * "Jan", "Feb", ..., "Dec"
 	 */
-	const ALPHA_MONTH_3 = 31;
+	const ALPHA_MONTH_3 = 32;
 
 	/**
 	 * @var \Phx\Scrapers\Fixers\ExtendedFixers\Datetime\DatetimeConverter

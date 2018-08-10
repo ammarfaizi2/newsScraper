@@ -33,6 +33,7 @@ class DatetimeConverterTest extends TestCase
 				1533523380 => "Senin, 6 Agustus 2018 09:43",
 				1517181900 => "2018-01-29 06:25:00",
 				1518015600 => "07 Feb 2018, 22:00 WIB",
+				1514309425 => "Wed, 27 Dec 2017 00:30:25 +0700"
 			] as $epoch => $date
 		) {
 			$fixer = new DatetimeConverter($date);

@@ -122,6 +122,12 @@ final class DatetimeParser
 		)) {
 			$this->formatType = self::DF1;
 			return true;
+		} elseif (preg_match(
+			"/\d{2}(?:\s)(Jan|Feb|Mar|Apr|Mei|Jun|Jul|Agu|Sep|Okt|Nov|Des)(?:\s)\d{4}(?:,\s)(\d{2})(?::)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi"
+			$this->input,
+			$m
+		)) {
+
 		}
 
 		return false;

@@ -20,8 +20,8 @@ class DatetimeConverterTest extends TestCase
 				1533209940 => "Kamis, 2 Agustus 2018 18:39",
 				1393918714 => "2014-03-04 14:38:34",
 				1533102300 => "01 Agu 2018, 12:45 WIB",
-				//1518448500 => "2018-02-12 22:15:00",
-				//1481971320 => "Sabtu, 17 Desember 2016 17:42 WIB",
+				1518448500 => "2018-02-12 22:15:00",
+				1481971320 => "Sabtu, 17 Desember 2016 17:42 WIB",
 			] as $epoch => $date
 		) {
 			$fixer = new DatetimeConverter($date);

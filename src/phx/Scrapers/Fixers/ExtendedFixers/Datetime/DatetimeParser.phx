@@ -50,6 +50,11 @@ final class DatetimeParser
 	const ALPHA_MONTH = 30;
 
 	/**
+	 * "Jan", "Feb", ...
+	 */
+	const ALPHA_MONTH_2 = 31;
+
+	/**
 	 * @var \Phx\Scrapers\Fixers\ExtendedFixers\Datetime\DatetimeConverter
 	 */
 	private $datetimeConv;
@@ -123,12 +128,13 @@ final class DatetimeParser
 			$this->formatType = self::DF1;
 			return true;
 		} elseif (preg_match(
-			"/\d{2}(?:\s)(Jan|Feb|Mar|Apr|Mei|Jun|Jul|Agu|Sep|Okt|Nov|Des)(?:\s)\d{4}(?:,\s)(\d{2})(?::)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi"
+			"/(\d{2})(?:\s)(Jan|Feb|Mar|Apr|Mei|Jun|Jul|Agu|Sep|Okt|Nov|Des)(?:\s)(\d{4})(?:,?\s)(\d{2})(?::)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi",
 			$this->input,
 			$m
 		)) {
-			var_dump($m);
-			die;
+			$this->formatType = self::DF2;
+			$this->matches = $m;
+			return true;
 		}
 
 		return false;
@@ -147,7 +153,11 @@ final class DatetimeParser
 				break;
 			case self::DF1:
 					$this->vv = $this->input;
-				break;			
+				break;
+			case self::DF2:
+					$this->vv =
+						$m[3]."-".$this->convert($m[2], self::ALPHA_MONTH_2, self::ZEROFILL_NUMBER)."-".$m[1]." ".$m[4].":".$m[5].":00";
+				break;
 			default:
 				break;
 		}
@@ -163,53 +173,99 @@ final class DatetimeParser
 	{
 		switch ($from) {
 			case self::ALPHA_MONTH:
-					return $this->alphaMonthConverter($input, $to);
-				break;
+					return $this->alphaMonthConverter($input, $to, $from);
+			case self::ALPHA_MONTH_2:
+					return $this->alphaMonthConverter($input, $to, $from);
 				break;
 		}
 	}
 
 	/**
 	 * @param string $input
-	 * @param string $from
+	 * @param int 	 $to
+	 * @param int    
 	 * @return mixed
 	 */
-	private function alphaMonthConverter(string $input, int $to)
+	private function alphaMonthConverter(string $input, int $to, int $type = 1)
 	{
 		switch ($to) {
 			case self::ZEROFILL_NUMBER:
-					$input = strtolower($input);
-					switch ($input) {
-						case "januari":
-							return "01";
-						case "februari":
-							return "02";
-						case "maret":
-							return "03";
-						case "april":
-							return "04";
-						case "mei":
-							return "05";
-						case "juni":
-							return "06";
-						case "juli":
-							return "07";
-						case "agustus":
-							return "08";
-						case "september":
-							return "09";
-						case "oktober":
-							return "10";
-						case "november":
-							return "11";
-						case "desember":
-							return "12";
-						default:
-							return "01";
-					}
+				return $this->monthZerofillNumberFromAlpha($input, $type);
 				break;
 			default:
 				break;
+		}
+	}
+
+	/**
+	 * @param string $input
+	 * @param int 	 $type
+	 * @return int
+	 */
+	private function monthZerofillNumberFromAlpha(string $input, int $type): string
+	{		
+		$input = strtolower($input);
+		switch ($type) {
+			case self::ALPHA_MONTH:
+				switch ($input) {
+					case "januari":
+						return "01";
+					case "februari":
+						return "02";
+					case "maret":
+						return "03";
+					case "april":
+						return "04";
+					case "mei":
+						return "05";
+					case "juni":
+						return "06";
+					case "juli":
+						return "07";
+					case "agustus":
+						return "08";
+					case "september":
+						return "09";
+					case "oktober":
+						return "10";
+					case "november":
+						return "11";
+					case "desember":
+						return "12";
+					default:
+						return "01";
+				}
+			break;
+			case self::ALPHA_MONTH_2:
+				switch ($input) {
+					case "jan":
+						return "01";
+					case "feb":
+						return "02";
+					case "mar":
+						return "03";
+					case "apr":
+						return "04";
+					case "mei":
+						return "05";
+					case "jun":
+						return "06";
+					case "jul":
+						return "07";
+					case "agu":
+						return "08";
+					case "sep":
+						return "09";
+					case "okt":
+						return "10";
+					case "nov":
+						return "11";
+					case "des":
+						return "12";
+					default:
+						return "01";
+				}
+			break;
 		}
 	}
 }

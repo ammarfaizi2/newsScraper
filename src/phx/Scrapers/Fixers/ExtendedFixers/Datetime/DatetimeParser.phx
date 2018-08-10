@@ -97,11 +97,20 @@ final class DatetimeParser
 	 */
 	public function __construct(DatetimeConverter $datetimeConv)
 	{
+		$this->formatType = self::DF_UNKNOWN;
 		$this->datetimeConv = $datetimeConv;
 		$this->input = $this->datetimeConv->getInput();
 		if ($this->parse()) {
 			$this->next();
 		}
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getType(): int
+	{
+		return $this->formatType;
 	}
 
 	/**

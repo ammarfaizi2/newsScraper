@@ -8,6 +8,7 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 use Phx\DataFixer;
 use Phx\Scrapers\Fixers\Detik;
 use Phx\Scrapers\Fixers\Tribunnews;
+use Phx\Scrapers\Fixers\GlobalFixer;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -15,6 +16,10 @@ if (! isset($argv[1])) {
 }
 
 switch ($argv[1]) {
+	case '--all':
+		$st = new GlobalFixer;
+		break;
+
 	case 'liputan6':
 		$st = new Liputan6;
 		#define("LOG_FILE", "liputan6_fixer.log");

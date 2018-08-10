@@ -25,10 +25,7 @@ class DatetimeConverterTest extends TestCase
 			] as $epoch => $date
 		) {
 			$fixer = new DatetimeConverter($date);
-			// var_dump($epoch, $fixer->toUnix());die;
-			$this->assertEquals(
-				$fixer->toUnix(), $epoch
-			);
+			$this->assertEquals($fixer->toUnix(), $epoch);
 		}
 	}
 }

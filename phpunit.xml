@@ -1,8 +1,8 @@
 <phpunit bootstrap="./vendor/autoload.php"
 		colors="true">
 	<testsuites>
-		<testsuite name="fixers">
-		  <directory>tests/Fixers</directory>
+		<testsuite name="tests">
+		  <directory>tests</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>

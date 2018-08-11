@@ -9,6 +9,8 @@ defined("HASH_CHECK_DIR") or die("Error: HASH_CHECK_DIR is not defined yet!\n");
 
 use DB;
 use Contracts\PhxScraperContract;
+use Phx\Scrapers\Fixers\ExtendedFixers\Datetime\DatetimeParser;
+use Phx\Scrapers\Fixers\ExtendedFixers\Datetime\DatetimeConverter;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -151,11 +153,25 @@ abstract class NewsScraper implements PHXScraperContract
             $st = $this->pdo->prepare(
                   "INSERT INTO `news` (`title`, `url`, `datetime`, `content_type`, `regional`,`text`, `scraped_at`) VALUES (:title, :url, :datetime, :content_type, :regional, :text, :scraped_at);"
             );
+
+            icelog("Converting datetime to unix time...");
+
+            $datetime = $this->processor->getDateAndTime();
+
+            $fixer = new DatetimeConverter($datetime);
+
+            if ($fixer->getType() === DatetimeParser::DF_UNKNOWN) {
+                  icelog("Unknown datetime type, skipping...");
+            } else {
+                  $datetime = $fixer->toUnix();
+                  icelog("Datetime has been converted to {$datetime}");
+            }
+
             $st->execute(
                   [
                         ":title" => $this->processor->getTitle(),
                         ":url" => $this->processor->getUrl(),
-                        ":datetime" => $this->processor->getDateAndTime(),
+                        ":datetime" => $datetime,
                         ":content_type" => $this->processor->getContentType(),
                         ":regional" => $this->processor->getRegional(),
                         ":text" => $this->processor->getContent(),

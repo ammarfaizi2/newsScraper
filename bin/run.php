@@ -3,6 +3,10 @@
 
 require __DIR__."/../config/main.php";
 
+function reg(&$a, Closure $c) {
+	$a[] = $c;
+}
+
 $whileTrue = true;
 $param = [
 	"liputan6",
@@ -17,8 +21,27 @@ $noend = "";
 if ($whileTrue) {
 	$noend = "--while-true";
 }
+
+$a = [];
+
 foreach ($param as $key => $value) {
-	shell_exec(
-		"nohup sh -c \"nohup ".PHP_BINARY." ".__DIR__."/scraper.php {$value} {$noend} >> ".LOG_DIR."/{$value}.log 2>&1 &\" >> /dev/null 2>&1 &"
-	);
+	reg($a, function() use ($value, $noend) {
+		cli_set_process_title("icetea_worker --module=icetea_scraper.so --target=$value");
+		shell_exec(
+			"nohup ".PHP_BINARY." ".__DIR__."/scraper.php {$value} {$noend} >> ".LOG_DIR."/{$value}.log 2>&1"
+		);
+	});
+}
+
+foreach ($a as $v) {
+	if (!isset($pid) || $pid !== 0) {
+		$pid = pcntl_fork();
+	}
+	if (!$pid) {
+		exit($v());
+	}
+}
+
+while (true) {
+	sleep(1000);
 }

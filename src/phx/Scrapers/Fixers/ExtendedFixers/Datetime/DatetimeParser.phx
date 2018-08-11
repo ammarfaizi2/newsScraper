@@ -2,8 +2,6 @@
 
 namespace Phx\Scrapers\Fixers\ExtendedFixers\Datetime;
 
-use Phx\Scrapers\Fixers\ExtendedFixers\Datetime\Traits\Type;
-
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
  * @package hx\Scrapers\Fixers\ExtendedFixers\Datetime
@@ -12,8 +10,6 @@ use Phx\Scrapers\Fixers\ExtendedFixers\Datetime\Traits\Type;
  */
 final class DatetimeParser
 {
-	use Type;
-
 	/**
 	 * Unknown format
 	 */

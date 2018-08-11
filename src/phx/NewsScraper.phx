@@ -158,7 +158,7 @@ abstract class NewsScraper implements PHXScraperContract
 
             $datetime = $this->processor->getDateAndTime();
 
-            $fixer = new DatetimeConverter($date);
+            $fixer = new DatetimeConverter($datetime);
 
             if ($fixer->getType() === DatetimeParser::DF_UNKNOWN) {
                   icelog("Unknown datetime type, skipping...");

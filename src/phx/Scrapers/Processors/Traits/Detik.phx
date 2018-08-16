@@ -88,7 +88,6 @@ trait Detik
 	 */
 	private function newsSubdomain(): bool
 	{
-		$this->newsScraper->saveHash($this->url);
 		$this->metaHandler();
 		if (substr($this->title, 0, 5) === "Foto:") {
 			icelog("Images only, skipping...");

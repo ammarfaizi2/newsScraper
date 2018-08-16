@@ -146,10 +146,6 @@ abstract class NewsScraper implements PHXScraperContract
        */
       protected function insert(): void
       {
-            $this->saveHtml(
-                  $this->processor->getUrl(),
-                  $this->processor->getHtml()
-            );
             $st = $this->pdo->prepare(
                   "INSERT INTO `news` (`title`, `url`, `datetime`, `content_type`, `regional`,`text`, `scraped_at`) VALUES (:title, :url, :datetime, :content_type, :regional, :text, :scraped_at);"
             );
@@ -170,7 +166,7 @@ abstract class NewsScraper implements PHXScraperContract
             $st->execute(
                   [
                         ":title" => $this->processor->getTitle(),
-                        ":url" => $this->processor->getUrl(),
+                        ":url" => ($url = $this->processor->getUrl()),
                         ":datetime" => $datetime,
                         ":content_type" => $this->processor->getContentType(),
                         ":regional" => $this->processor->getRegional(),
@@ -262,6 +258,12 @@ abstract class NewsScraper implements PHXScraperContract
                         (trim($query, ",").";")
                   )->execute($data);
             }
+
+            $this->saveHash($url);
+            $this->saveHtml(
+                  $url,
+                  $this->processor->getHtml()
+            );
       }
 
 	const USERAGENT_COLLECTION = [

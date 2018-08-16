@@ -16,7 +16,6 @@ trait Antaranews
 	public function scrape(): bool
 	{
 		if ($this->metaHandler()) {
-			$this->newsScraper->saveHash($this->url);
 			return true;
 		} else {
 			return false;

@@ -110,7 +110,6 @@ final class Liputan6 implements PhxScraperProcessor
 		}
 
 		$this->html = $l["out"];
-		$this->newsScraper->saveHash($this->url);
 		icelog("Identifying page...");
 		if (preg_match("/<title>(.*)<\/title>/Usi", $l["out"], $m)) {
 			$this->title = trim(str_replace("- Regional Liputan6.com", "", html_entity_decode($m[1], ENT_QUOTES, "UTF-8")));

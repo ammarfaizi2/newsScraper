@@ -101,7 +101,8 @@ $sites = [
 	"Liputan6" => "liputan6.com",
 	"Detik" => "detik.com",
 	"Kompas" => "kompas.com",
-	"Antaranews" => "antaranews.com"
+	"Antaranews" => "antaranews.com",
+	"Suara" => "suara.com"
 ];
 $i = 1;
 $total = 0;

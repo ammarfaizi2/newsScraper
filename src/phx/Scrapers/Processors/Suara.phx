@@ -14,6 +14,8 @@ use Phx\Scrapers\Processors\Traits\Suara as SuaraTrait;
  */
 final class Suara implements PhxScraperProcessor
 {		
+	use SuaraTrait;
+
 	/**
 	 * @var string
 	 */

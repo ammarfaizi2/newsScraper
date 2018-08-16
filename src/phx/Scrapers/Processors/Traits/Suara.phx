@@ -172,6 +172,10 @@ trait Suara
 						"UTF-8"
 				));
 
+				do {
+					$this->content = str_replace("\n\n", "\n", $this->content, $n);
+				} while ($n);
+
 			}
 
 			var_dump($this->content);die;

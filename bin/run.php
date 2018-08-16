@@ -39,7 +39,9 @@ foreach ($a as $v) {
 		$pid = pcntl_fork();
 	}
 	if (!$pid) {
-		exit($v());
+		while(true) {
+			$v();
+		}
 	}
 }
 

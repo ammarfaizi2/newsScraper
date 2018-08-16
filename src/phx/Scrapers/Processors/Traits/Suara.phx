@@ -153,6 +153,7 @@ trait Suara
 	public function newsPath(): bool
 	{
 		if ($this->metaHandler()) {
+			$this->newsScraper->saveHash($this->url);
 			if (preg_match(
 				"/(?:<div class=\"content-article\">)(.*)(?:<\/article>)/Usi",
 				$this->html,

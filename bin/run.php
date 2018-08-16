@@ -9,6 +9,7 @@ function reg(&$a, Closure $c) {
 
 $whileTrue = true;
 $param = [
+	"suara",
 	"liputan6",
 	"tribunnews",
 	"detik",

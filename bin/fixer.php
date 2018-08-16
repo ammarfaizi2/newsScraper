@@ -20,19 +20,34 @@ switch ($argv[1]) {
 		$st = new GlobalFixer;
 		break;
 
+	case 'suara':
+		$st = new Suara;
+		#define("LOG_FILE", "suara.log");
+		break;
+		
+	case 'detik':
+		$st = new Detik;
+		#define("LOG_FILE", "detik.log");
+		break;
+
 	case 'liputan6':
 		$st = new Liputan6;
-		#define("LOG_FILE", "liputan6_fixer.log");
+		#define("LOG_FILE", "liputan6.log");
 		break;
 	
 	case 'tribunnews':
 		$st = new Tribunnews;
-		#define("LOG_FILE", "tribunnews_fixer.log");
+		#define("LOG_FILE", "tribunnews.log");
 		break;
 
-	case 'detik':
-		$st = new Detik;
-		#define("LOG_FILE", "tribunnews_fixer.log");
+	case 'kompas':
+		$st = new Kompas;
+		#define("LOG_FILE", "kompas.log");
+		break;
+
+	case 'antaranews':
+		$st = new Antaranews;
+		#define("LOG_FILE", "kompas.log");
 		break;
 
 	default:

@@ -17,9 +17,59 @@ $pdo = DB::pdo();
 $st = $pdo->prepare("SELECT `id`,`title`,`url`,`datetime`,`content_type`,`regional`,`text`,`scraped_at` FROM `news` WHERE `id` = :id LIMIT 1;");
 $st->execute([":id" => $_GET["id"]]);
 if ($rr = $st->fetch(PDO::FETCH_ASSOC)) {
-	$st2 = $pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id` = :news_id;");
-	$st2->execute([":news_id" => $_GET["id"]]);
-	var_dump($st2->fetch());
+	$rr["authors"] = [];
+	$rr["tags"] = [];
+	$rr["categories"] = [];
+	$rr["images"] = [];
+	$rr["comments"] = [];
+
+	$st = $pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id` = :news_id;");
+	$st->execute([":news_id" => $_GET["id"]]);
+	while ($r = $st->fetch(PDO::FETCH_NUM)) {
+		$rr["authors"][] = $r[0];
+	}
+
+	$st = $pdo->prepare("SELECT `tag_name` FROM `tags` WHERE `news_id` = :news_id;");
+	$st->execute([":news_id" => $_GET["id"]]);
+	while ($r = $st->fetch(PDO::FETCH_NUM)) {
+		$rr["tags"][] = $r[0];
+	}
+
+	$st = $pdo->prepare("SELECT `category_name` FROM `categories` WHERE `news_id` = :news_id;");
+	$st->execute([":news_id" => $_GET["id"]]);
+	while ($r = $st->fetch(PDO::FETCH_NUM)) {
+		$rr["tags"][] = $r[0];
+	}
+
+	$st = $pdo->prepare("SELECT `image_url`,`description` FROM `images` WHERE `news_id` = :news_id;");
+	$st->execute([":news_id" => $_GET["id"]]);
+	while ($r = $st->fetch(PDO::FETCH_NUM)) {
+		$rr["images"][] = [
+			"url" => $r[0],
+			"description" => $r[1]
+		];
+	}
+
+	$st = $pdo->prepare("SELECT `author`,`content` FROM `comments` WHERE `news_id` = :news_id;");
+	$st->execute([":news_id" => $_GET["id"]]);
+	while ($r = $st->fetch(PDO::FETCH_NUM)) {
+		$rr["comments"][] = [
+			"author" => $r[0],
+			"content" => $r[1]
+		];
+	}
+
+	if (isset($_GET["json"])) {
+		header("Content-Type: application/json");
+		exit(json_encode($rr, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+	}
+
+	unset($st, $r);
+	$rr = str_replace(
+		["\n", "  "],
+		["<br/>", "&nbsp;"],
+		htmlspecialchars(print_r($rr, true), ENT_QUOTES, "UTF-8")
+	);
 } else {
 	?><!DOCTYPE html>
 	<html>
@@ -44,7 +94,12 @@ if ($rr = $st->fetch(PDO::FETCH_ASSOC)) {
 <body>
 	<center>
 		<a href="index.php"><button style="cursor: pointer;">Back to Home</button></a>
-		
+		<a target="_blank" href="?id=<?php print $_GET["id"] ?>&amp;json=1"><button style="cursor: pointer;">Show as JSON</button></a>
 	</center>
+	<div>
+<pre>
+<?php print $rr; ?>
+</pre>
+	</div>
 </body>
 </html>

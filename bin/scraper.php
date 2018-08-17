@@ -6,6 +6,7 @@ require __DIR__."/../config/scraper.php";
 require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\NewsScraper;
+use Phx\Scrapers\Viva;
 use Phx\Scrapers\Suara;
 use Phx\Scrapers\Detik;
 use Phx\Scrapers\Kompas;
@@ -57,6 +58,11 @@ switch ($argv[1]) {
 	case 'antaranews':
 		$st = new Antaranews;
 		#define("LOG_FILE", "kompas.log");
+		break;
+
+	case 'viva':
+		$st = new Viva;
+		#define("LOG_FILE", "suara.log");
 		break;
 
 	default:

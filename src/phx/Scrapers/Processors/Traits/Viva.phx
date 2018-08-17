@@ -45,6 +45,56 @@ trait Viva
 		}
 
 		/**
+		 * Get tags.
+		 */
+		if (preg_match(
+			"/(?:<meta name=\"news_keywords\" content=\")(.*)(?:\")/Usi",
+			$this->html,
+			$m
+		)) {
+			$tagsPointer = &$this->tags;
+			$m = explode(",", $m[1]);
+			array_walk($m, function ($tag) use (&$tagsPointer) {
+				$tag = trim($tag);
+				if (!empty($tag)) {
+					$tagsPointer[] = $tag;
+				}
+			});
+			unset($tagsPointer);
+		}
+
+		if (!count($this->tags)) {
+			/**
+			 * Get tags.
+			 */
+			if (preg_match(
+				"/(?:<meta name=\"keywords\" content=\")(.*)(?:\")/Usi",
+				$this->html,
+				$m
+			)) {
+				$tagsPointer = &$this->tags;
+				$m = explode(",", $m[1]);
+				array_walk($m, function ($tag) use (&$tagsPointer) {
+					$tag = trim($tag);
+					if (!empty($tag)) {
+						$tagsPointer[] = $tag;
+					}
+				});
+				unset($tagsPointer);
+
+				if (count($this->tags) > 0) {
+					icelog("Got ".count($this->tags)." tag(s): ".json_encode($this->tags));
+				} else {
+					icelog("Cound not get the tags");
+				}
+			} else {
+				icelog("Cound not get the tags");
+			}
+		} else {
+			icelog("Got ".count($this->tags)." tag(s): ".json_encode($this->tags));
+		}
+
+		/**
 		 * Get date and time.
 		 */
 		if (preg_match(

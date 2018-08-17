@@ -172,9 +172,17 @@ trait Viva
 					}
 				});
 				$contentPointer = implode("\n", $contentPointer);
+				unset($contentPointer);
 			}
 
-			var_dump(json_encode($this->content));
+			if (strlen($this->content) < 10) {
+				icelog("Could not get the content");
+				icelog("Skipping");
+				return false;
+			}
+
+
+			return true;
 		}
 	}
 }

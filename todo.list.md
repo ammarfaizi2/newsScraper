@@ -18,4 +18,4 @@
 - [ ] Looking for content different for each domain.
 
 ## Viva scraper:
-- [ ] Preparing viva scraper.
+- [x] Preparing viva scraper.

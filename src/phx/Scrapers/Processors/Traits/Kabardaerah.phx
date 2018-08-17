@@ -1,0 +1,30 @@
+<?php
+
+namespace Phx\Scrapers\Processors\Traits;
+
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @package Phx\Scrapers\Processors\Traits
+ * @license MIT
+ * @version 0.0.1
+ */
+trait Kabardaerah
+{
+	/**
+	 * @return bool
+	 */
+	private function metaHandler(): bool
+	{
+		
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function runThreadScraper(): bool
+	{
+		if ($this->metaHandler()) {
+			
+		}
+	}
+}

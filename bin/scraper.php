@@ -13,6 +13,7 @@ use Phx\Scrapers\Kompas;
 use Phx\Scrapers\Liputan6;
 use Phx\Scrapers\Tribunnews;
 use Phx\Scrapers\Antaranews;
+use Phx\Scrapers\Kabardaerah;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -63,6 +64,11 @@ switch ($argv[1]) {
 	case 'viva':
 		$st = new Viva;
 		#define("LOG_FILE", "viva.log");
+		break;
+
+	case 'kabardaerah':
+		$st = new Kabardaerah;
+		#define("LOG_FILE", "kabardaerah.log");
 		break;
 
 	default:

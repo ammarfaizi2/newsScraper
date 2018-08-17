@@ -20,11 +20,6 @@ switch ($argv[1]) {
 		$st = new GlobalFixer;
 		break;
 
-	case 'viva':
-		$st = new Viva;
-		#define("LOG_FILE", "viva.log");
-		break;
-
 	case 'suara':
 		$st = new Suara;
 		#define("LOG_FILE", "suara.log");
@@ -53,6 +48,16 @@ switch ($argv[1]) {
 	case 'antaranews':
 		$st = new Antaranews;
 		#define("LOG_FILE", "antaranews.log");
+		break;
+
+	case 'viva':
+		$st = new Viva;
+		#define("LOG_FILE", "viva.log");
+		break;
+
+	case 'kabardaerah':
+		$st = new Kabardaerah;
+		#define("LOG_FILE", "kabardaerah.log");
 		break;
 
 	default:

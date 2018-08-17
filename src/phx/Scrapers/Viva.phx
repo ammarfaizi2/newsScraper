@@ -139,9 +139,8 @@ final class Viva extends NewsScraper
 			} else {
 				icelog("Could not get the CSRF token");
 			}
+		} while ($nn && 0);
 
-		} while ($nn);
-		var_dump($urls);die;
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");
 		icelog("Filtering scraped threads...");

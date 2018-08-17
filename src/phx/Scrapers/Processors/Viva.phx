@@ -87,11 +87,6 @@ final class Viva implements PhxScraperProcessor
 	private $comments = [];
 
 	/**
-	 * @var string
-	 */
-	public $useSecondHandler = false;
-
-	/**
 	 * @param string			$url
 	 * @param \Phx\NewsScraper	$newsScraper
 	 * @return void
@@ -118,7 +113,7 @@ final class Viva implements PhxScraperProcessor
 		}
 
 		icelog("URL does not match!");
-		
+
 		return false;
 	}
 

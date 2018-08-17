@@ -67,6 +67,7 @@ trait Viva
 			$m
 		)) {
 			$this->authors[] = html_entity_decode($m[1], ENT_QUOTES, "UTF-8");
+			icelog("Got author(s): ".json_encode($this->authors));
 		} else {
 			icelog("Could not get the author");
 		}
@@ -181,7 +182,7 @@ trait Viva
 				return false;
 			}
 
-
+			icelog("Got content with ".strlen($this->content)." characters");
 			return true;
 		}
 	}

@@ -106,7 +106,7 @@ final class Viva implements PhxScraperProcessor
 	{
 		icelog("Scraping {$this->url}...");
 		if (preg_match(
-			"/https\:\/\/www\.viva\.co\.id\/berita\/.+/Usi",
+			"/^((https\:\/\/www\.viva\.co\.id\/berita\/.+)|(https\:\/\/www\.viva\.co\.id\/showbiz.+))/Usi",
 			$this->url
 		)) {
 			return $this->mget() ? $this->beritaPath() : false;

@@ -3,7 +3,7 @@
 namespace Phx\Scrapers;
 
 use Phx\NewsScraper;
-use Phx\Scrapers\Processors\Tribunnews as TribunnewsPrrocessor;
+use Phx\Scrapers\Processors\Viva as VivaProcessor;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -66,7 +66,7 @@ final class Viva extends NewsScraper
 				$urls = $this->parseThreadUrlList($l["out"]);
 				icelog("Scraping ".count($urls)." threads...");
 				foreach($urls as $url) {
-					$this->processor = new VivaPrrocessor($url, $this);
+					$this->processor = new VivaProcessor($url, $this);
 					if ($this->processor->run()) {
 						$this->processor->setRegional(trim($key, "_"));
 						icelog("Writing data...");
@@ -134,14 +134,14 @@ final class Viva extends NewsScraper
 					$urls = array_unique($urls);
 					icelog("Got ".count($m[1])." thread(s) on page ".($i).". Total unique thread(s): ".count($urls));
 				} else {
-					icelog('End of threads');
+					icelog('Reached the end of page');
 				}
 			} else {
 				icelog("Could not get the CSRF token");
 			}
 
 		} while ($nn);
-
+		var_dump($urls);die;
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");
 		icelog("Filtering scraped threads...");

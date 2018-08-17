@@ -14,7 +14,8 @@ $param = [
 	"tribunnews",
 	"detik",
 	"kompas",
-	"antaranews"
+	"antaranews",
+	"viva"
 ];
 
 

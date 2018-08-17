@@ -57,12 +57,12 @@ switch ($argv[1]) {
 
 	case 'antaranews':
 		$st = new Antaranews;
-		#define("LOG_FILE", "kompas.log");
+		#define("LOG_FILE", "antaranews.log");
 		break;
 
 	case 'viva':
 		$st = new Viva;
-		#define("LOG_FILE", "suara.log");
+		#define("LOG_FILE", "viva.log");
 		break;
 
 	default:

@@ -102,7 +102,8 @@ $sites = [
 	"Detik" => "detik.com",
 	"Kompas" => "kompas.com",
 	"Antaranews" => "antaranews.com",
-	"Suara" => "suara.com"
+	"Suara" => "suara.com",
+	"Viva" => "viva.co.id"
 ];
 $i = 1;
 $total = 0;

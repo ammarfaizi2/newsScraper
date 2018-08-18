@@ -131,12 +131,18 @@ final class Api
 		$i = 0;
 		while($rr = $stq->fetch(PDO::FETCH_ASSOC)) {		
 			$result[$i] = $rr;
+			$result[$i]["regional_id"] = 0;
 			$result[$i]["content"] = str_replace("\r\n", "\n", $result[$i]["content"]);
 			$result[$i]["authors"] = [];
 			$result[$i]["categories"] = [];
 			$result[$i]["tags"] = [];
 			$result[$i]["comments"] = [];
 			$result[$i]["images"] = [];
+
+			$st = $this->pdo->prepare("SELECT `id` FROM `regional` WHERE `regional`=:regional LIMIT 1;");
+			$st->execute([":regional" => $rr["regional"]]);
+			$st = $st->fetch(PDO::FETCH_NUM)[0];
+			$result[$i]["regional_id"] = $st;
 
 			$st = $this->pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id`=:news_id;");
 			$st->execute([":news_id" => $rr["id"]]);

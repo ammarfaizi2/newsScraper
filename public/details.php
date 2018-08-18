@@ -17,11 +17,18 @@ $pdo = DB::pdo();
 $st = $pdo->prepare("SELECT `id`,`title`,`url`,`datetime`,`content_type`,`regional`,`text`,`scraped_at` FROM `news` WHERE `id` = :id LIMIT 1;");
 $st->execute([":id" => $_GET["id"]]);
 if ($rr = $st->fetch(PDO::FETCH_ASSOC)) {
+	$rr["regional_id"] = 0;
 	$rr["authors"] = [];
 	$rr["tags"] = [];
 	$rr["categories"] = [];
 	$rr["images"] = [];
 	$rr["comments"] = [];
+
+
+	$st = $->pdo->prepare("SELECT `id` FROM `regional` WHERE `regional`=:regional LIMIT 1;");
+	$st->execute([":regional" => $rr["regional"]]);
+	$st = $st->fetch(PDO::FETCH_NUM)[0];
+	$rr["regional_id"] = $st;
 
 	$st = $pdo->prepare("SELECT `author_name` FROM `authors` WHERE `news_id` = :news_id;");
 	$st->execute([":news_id" => $_GET["id"]]);

@@ -25,7 +25,7 @@ if ($rr = $st->fetch(PDO::FETCH_ASSOC)) {
 	$rr["comments"] = [];
 
 
-	$st = $->pdo->prepare("SELECT `id` FROM `regional` WHERE `regional`=:regional LIMIT 1;");
+	$st = $pdo->prepare("SELECT `id` FROM `regional` WHERE `regional`=:regional LIMIT 1;");
 	$st->execute([":regional" => $rr["regional"]]);
 	$st = $st->fetch(PDO::FETCH_NUM)[0];
 	$rr["regional_id"] = $st;

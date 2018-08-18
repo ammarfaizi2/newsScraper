@@ -1,0 +1,88 @@
+<?php
+
+namespace Phx;
+
+defined("DATA_DIR") or die("Error: DATA_DIR is not defined yet!\n");
+defined("HTML_DIR") or die("Error: HTML_DIR is not defined yet!\n");
+defined("COOKIE_DIR") or die("Error: COOKIE_DIR is not defined yet!\n");
+defined("HASH_CHECK_DIR") or die("Error: HASH_CHECK_DIR is not defined yet!\n");
+
+use DB;
+use PDO;
+use WordCloud as BaseWordCloud;
+
+/**
+ * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
+ * @package Phx
+ * @license MIT
+ * @version 0.0.1
+ */
+final class WordCloud
+{
+      /**
+       * @var string
+       */
+      private $regional;
+
+      /**
+       * @var \PDO
+       */
+      private $pdo;
+
+      /**
+       * @param string $regional
+       */
+      public function __construct(string $regional)
+      {
+            $this->pdo = DB::pdo();
+            $this->regional = $regional;
+      }
+
+      public function runTitleWordCloud()
+      {
+            $wc = $this->pdo->prepare("INSERT INTO `title_wordcloud` (`news_id`, `words`, `n`, `created_at`) VALUES (:news_id, :words, :n, :created_at);");
+            $st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` LIMIT 10;");
+            $st->execute();
+            while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
+                  $r["title"] = str_replace([ " - ","- ", " -"], ["-","-","-"], preg_replace("/[^a-z0-9\-\s]/", "", strtolower($r["title"])));
+                  $this->fixer($r["title"]);
+                  for ($i=1; $i <= 4; $i++) {
+                        if ($this->check($r["id"], $i)) {
+                              $wcc = new BaseWordCloud($r["title"], $i);
+                              $wcc->toLower();
+                              foreach($wcc->get() as $wordcloud) {
+                                    $wc->execute(
+                                          [
+                                                ":news_id" => $r["id"],
+                                                ":words" => $wordcloud,
+                                                ":n" => $i,
+                                                ":created_at" => date("Y-m-d H:i:s")
+                                          ]
+                                    );
+                              }
+                        }
+                  }
+            }
+      }
+
+      private function check($id, $i)
+      {
+            
+      }
+
+      private function fixer(&$title)
+      {
+            $title = preg_replace(
+                  [
+                        "/\-antara\s?news.+$/Usi",
+                        "/Liputan6/"
+                  ],
+                  [
+                        ""
+                  ],
+                  $title
+            );
+
+            $title = trim(trim($title), "-");
+      }
+}

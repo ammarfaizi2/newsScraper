@@ -7,7 +7,11 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\WordCloud;
 
-$regional = "Jakarta";
+if (! isset($argv[1])) {
+	print "\$argv[1] is not defined!\n";
+	exit(1);
+}
 
-$st = new WordCloud($regional);
+$st = new WordCloud($argv[1]);
 $st->runTitleWordCloud();
+sleep(1000);

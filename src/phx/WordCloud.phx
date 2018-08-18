@@ -40,7 +40,7 @@ final class WordCloud
 
       public function runTitleWordCloud()
       {
-            $wc = $this->pdo->prepare("INSERT INTO `title_wordcloud` (`news_id`, `words`, `n`, `created_at`) VALUES (:news_id, :words, :n, :created_at);");
+            $wc = $this->pdo->prepare("INSERT INTO `title_wordcloud` (`news_id`, `words`, `n`,`hash`,`created_at`) VALUES (:news_id, :words, :n, :hash, :created_at);");
             $st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` WHERE `regional`=:regional");
             $st->execute([":regional" => $this->regional]);
             while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
@@ -53,13 +53,15 @@ final class WordCloud
                         foreach($wcc->get() as $wordcloud) {
                               icelog("Got \"{$wordcloud}\"");
                               icelog("Checking \"{$wordcloud}\"...");
-                              if ($this->check($r["id"], $wordcloud, $i)) {
+                              $hash = sha1(json_encode([$wordcloud, $i, $r["id"]]))."_".md5(json_encode([$wordcloud, $i, $r["id"]]));
+                              if ($this->check($r["id"], $wordcloud, $i, $hash)) {
                                     icelog("Inserting \"{$wordcloud}\"");
                                     $wc->execute(
                                           [
                                                 ":news_id" => $r["id"],
                                                 ":words" => $wordcloud,
                                                 ":n" => $i,
+                                                ":hash" => $hash,
                                                 ":created_at" => date("Y-m-d H:i:s")
                                           ]
                                     );
@@ -73,14 +75,15 @@ final class WordCloud
             }
       }
 
-      private function check($id, $wordcloud, $n)
+      private function check($id, $wordcloud, $n, $hash)
       {
-            $st = $this->pdo->prepare("SELECT `news_id` FROM `title_wordcloud` WHERE `news_id`=:news_id AND `words`=:wordcloud AND `n`=:n LIMIT 1;");
+            $st = $this->pdo->prepare("SELECT `news_id` FROM `title_wordcloud` WHERE `news_id`=:news_id AND `words`=:wordcloud AND `n`=:n AND `hash`=:hash LIMIT 1;");
             $st->execute(
                   [
                         ":news_id" => $id,
                         ":wordcloud" => $wordcloud,
-                        ":n" => $n
+                        ":n" => $n,
+                        ":hash" => $hash
                   ]
             );
 

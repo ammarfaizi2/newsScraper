@@ -41,16 +41,20 @@ final class WordCloud
       public function runTitleWordCloud()
       {
             $wc = $this->pdo->prepare("INSERT INTO `title_wordcloud` (`news_id`, `words`, `n`, `created_at`) VALUES (:news_id, :words, :n, :created_at);");
-            $st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` LIMIT 10;");
-            $st->execute();
+            $st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` WHERE `regional`=:regional");
+            $st->execute([":regional" => $this->regional]);
             while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
                   $r["title"] = str_replace([ " - ","- ", " -"], ["-","-","-"], preg_replace("/[^a-z0-9\-\s]/", "", strtolower($r["title"])));
                   $this->fixer($r["title"]);
+                  icelog("Processing \"{$r['title']}\"...");
                   for ($i=1; $i <= 4; $i++) {
-                        if ($this->check($r["id"], $i)) {
-                              $wcc = new BaseWordCloud($r["title"], $i);
-                              $wcc->toLower();
-                              foreach($wcc->get() as $wordcloud) {
+                        $wcc = new BaseWordCloud($r["title"], $i);
+                        $wcc->toLower();
+                        foreach($wcc->get() as $wordcloud) {
+                              icelog("Got \"{$wordcloud}\"");
+                              icelog("Checking \"{$wordcloud}\"...");
+                              if ($this->check($r["id"], $wordcloud, $i)) {
+                                    icelog("Inserting \"{$wordcloud}\"");
                                     $wc->execute(
                                           [
                                                 ":news_id" => $r["id"],
@@ -59,15 +63,28 @@ final class WordCloud
                                                 ":created_at" => date("Y-m-d H:i:s")
                                           ]
                                     );
+                                    icelog("OK");
+                              } else {
+                                    icelog("\"{$wordcloud}\" with news_id = {$r['id']} and n = {$i} has already been saved...");
+                                    icelog("Skipping...");
                               }
                         }
                   }
             }
       }
 
-      private function check($id, $i)
+      private function check($id, $wordcloud, $n)
       {
-            
+            $st = $this->pdo->prepare("SELECT `news_id` FROM `title_wordcloud` WHERE `news_id`=:news_id AND `words`=:wordcloud AND `n`=:n LIMIT 1;");
+            $st->execute(
+                  [
+                        ":news_id" => $id,
+                        ":wordcloud" => $wordcloud,
+                        ":n" => $n
+                  ]
+            );
+
+            return !$st->fetch(PDO::FETCH_NUM);
       }
 
       private function fixer(&$title)
@@ -75,9 +92,10 @@ final class WordCloud
             $title = preg_replace(
                   [
                         "/\-antara\s?news.+$/Usi",
-                        "/Liputan6/"
+                        "/liputan6com/"
                   ],
                   [
+                        "",
                         ""
                   ],
                   $title

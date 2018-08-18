@@ -9,8 +9,5 @@ use Phx\WordCloud;
 
 $regional = "Jakarta";
 
-while (true) {
-	$st = new WordCloud($regional);
-	$st->runTitleWordCloud();	
-	sleep(1000);
-}
+$st = new WordCloud($regional);
+$st->runTitleWordCloud();

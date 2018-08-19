@@ -20,12 +20,19 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 	ON `news`.`id` = `title_wordcloud`.`news_id`
 	WHERE `title_wordcloud`.`n` = :n AND `news`.`regional` = :regional
 	GROUP BY `words`
-	ORDER BY `count`;
+	ORDER BY `count` DESC;
 ");
 $st = $pdo->prepare(
 	"INSERT INTO `title_wordcloud_regional_caching` (`regional`, `words`, `n`, `hash`, `created_at`)
 VALUES (:regional, :words, :n, :hash, :created_at);"
 );
+
+$stu = $pdo->prepare(
+	"UPDATE `title_wordcloud_regional_caching` SET `updated_at` = :updated_at,
+	`count`=:count WHERE `hash` = :hash LIMIT 1;
+	;"
+);
+
 for ($i=1; $i <= 4; $i++) { 
 	$wc->execute(
 		[
@@ -34,13 +41,29 @@ for ($i=1; $i <= 4; $i++) {
 		]
 	);
 	while ($r = $wc->fetch(PDO::FETCH_ASSOC)) {
-		icelog("%s", json_encode($r));
-		// icelog("Inserting %s...", $r["words"]);
-		// $st->execute(
-		// 	[
-		// 		":"
-		// 	]
-		// );
+		icelog("Inserting %s", json_encode($r));
+		$hash = sha1($argv[1].$argv[2].$r["words"].$i)."_".md5($argv[1].$argv[2].$r["words"].$i);
+		try {
+			$st->execute(
+				[
+					":regional" => $argv[2],
+					":words" => $r["words"],
+					":n" => $i,
+					":hash" => $hash,
+					":created_at" => date("Y-m-d H:i:s")
+				]
+			);	
+		} catch (PDOException $e) {
+			icelog("Duplicate");
+			icelog("Updating data where hash = :%s", $hash."...");
+			$stu->execute(
+				[
+					":updated_at" => date("Y-m-d H:i:s"),
+					":hash" => $hash,
+					":count" => $r["count"]
+				]
+			);
+		}
 	}
 }
 unset($pdo, $st);

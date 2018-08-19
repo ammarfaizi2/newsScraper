@@ -117,4 +117,4 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 	<?php endwhile; ?>
 	</center>
 </body>
-</html><?php unset($pdo); ?>
+</html><?php unset($pdo, $st, $wc); ?>

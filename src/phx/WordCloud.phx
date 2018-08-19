@@ -51,6 +51,10 @@ final class WordCloud
                         $wcc = new BaseWordCloud($r["title"], $i);
                         $wcc->toLower();
                         foreach($wcc->get() as $wordcloud) {
+                              $wordcloud = trim($wordcloud);
+                              if (empty($wordcloud)) {
+                                    continue;
+                              }
                               icelog("Got \"{$wordcloud}\"");
                               icelog("Checking \"{$wordcloud}\"...");
                               $hash = sha1(json_encode([$wordcloud, $i, $r["id"]]))."_".md5(json_encode([$wordcloud, $i, $r["id"]]));
@@ -95,11 +99,14 @@ final class WordCloud
             $title = preg_replace(
                   [
                         "/\-antara\s?news.+$/Usi",
-                        "/liputan6com/"
+                        "/liputan6com/Usi",
+                        "/bali\-kompascom/Usi",
+                        "/\-\s?Kompas\.com/Usi"
                   ],
                   [
                         "",
-                        ""
+                        "",
+                        "",
                   ],
                   $title
             );

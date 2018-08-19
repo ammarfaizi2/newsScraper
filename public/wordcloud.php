@@ -71,8 +71,8 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$wc->execute([":n" => $n,":regional" => $r[0]]);
 ?><div>
-	<h3><?php print $r[0]; ?> (<?php print $r[1]; ?>)</h3>
-	<table>
+	<h3><?php print $r[0]; ?> (regional code: <?php print $r[1]; ?>)</h3>
+	<table border="1" style="border-collapse: collapse;">
 		<tr><td>No.</td><td>Words</td><td>Amount</td></tr>
 <?php $i = 1;
 				while ($rr = $wc->fetch(PDO::FETCH_ASSOC)) {

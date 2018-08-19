@@ -55,6 +55,7 @@ if (isset($_GET["n"])) {
 }
 
 $pdo = DB::pdo();
+$pdo->exec("set sql_mode=''");
 $st = $pdo->prepare("SELECT `regional`,`id` FROM `regional`;");
 $st->execute();
 $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_regional_caching` AS `a`

@@ -37,11 +37,6 @@ if (isset($_GET["n"])) {
 		alert("n parameter must in range 1 - 4");
 		window.location = "?";
 	</script>
-	<style type="text/css">
-		.x {
-			display: inline-block;
-		}
-	</style>
 </head>
 <body>
 
@@ -70,6 +65,11 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		.x {
+			display: inline-block;
+		}
+	</style>
 </head>
 <body>
 	<center>

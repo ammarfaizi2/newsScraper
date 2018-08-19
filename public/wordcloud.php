@@ -109,7 +109,7 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 				</thead>
 				<tbody>
 					<?php $i = 1; while ($rr = $wc->fetch(PDO::FETCH_ASSOC)): ?>
-						<tr><td align="center"><?php print $i++; ?></td><td><?php print htmlspecialchars($rr["words"], ENT_QUOTES, "UTF-8"); ?></td><td><?php print $rr["count"]; ?></td></tr>
+						<tr><td align="center"><?php print $i++; ?></td><td align="center"><?php print htmlspecialchars($rr["words"], ENT_QUOTES, "UTF-8"); ?></td><td align="center"><?php print $rr["count"]; ?></td></tr>
 					<?php endwhile; ?>
 				</tbody>
 			</table>

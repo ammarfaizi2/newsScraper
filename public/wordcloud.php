@@ -58,8 +58,8 @@ $pdo = DB::pdo();
 $st = $pdo->prepare("SELECT `regional`,`id` FROM `regional`;");
 $st->execute();
 $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_regional_caching` AS `a`
-	INNER JOIN `news`
-	ON `news`.`id` = `a`.`news_id`
+	INNER JOIN `regional`
+	ON `regional`.`id` = `a`.`regional`
 	WHERE `a`.`n` = :n AND `regional`.`regional` = :regional
 	GROUP BY `words`
 	ORDER BY `count`

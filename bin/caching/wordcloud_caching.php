@@ -55,6 +55,7 @@ for ($i=1; $i <= 4; $i++) {
 				]
 			);	
 		} catch (PDOException $e) {
+			var_dump($e->getMessage())
 			icelog("Duplicate");
 			icelog("Updating data where hash = :%s", $hash."...");
 			$stu->execute(

@@ -37,6 +37,11 @@ if (isset($_GET["n"])) {
 		alert("n parameter must in range 1 - 4");
 		window.location = "?";
 	</script>
+	<style type="text/css">
+		.x {
+			display: inline-block;
+		}
+	</style>
 </head>
 <body>
 
@@ -52,10 +57,10 @@ if (isset($_GET["n"])) {
 $pdo = DB::pdo();
 $st = $pdo->prepare("SELECT `regional`,`id` FROM `regional`;");
 $st->execute();
-$wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcloud`
+$wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_regional_caching` AS `a`
 	INNER JOIN `news`
-	ON `news`.`id` = `title_wordcloud`.`news_id`
-	WHERE `title_wordcloud`.`n` = :n AND `news`.`regional` = :regional
+	ON `news`.`id` = `a`.`news_id`
+	WHERE `a`.`n` = :n AND `regional`.`regional` = :regional
 	GROUP BY `words`
 	ORDER BY `count`
 	DESC LIMIT {$limit};
@@ -70,7 +75,7 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 		<?php
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$wc->execute([":n" => $n,":regional" => $r[0]]);
-?><div>
+?><div class="x">
 	<h3><?php print $r[0]; ?> (regional code: <?php print $r[1]; ?>)</h3>
 	<table border="1" style="border-collapse: collapse;">
 		<tr><td align="center">No.</td><td align="center">Words</td><td align="center">Amount</td></tr>
@@ -83,6 +88,6 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 </div><?php
 			}
 		?>
-	</center>sssssss
+	</center>
 </body>
 </html><?php unset($pdo); ?>

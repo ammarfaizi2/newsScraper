@@ -68,6 +68,8 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 	<style type="text/css">
 		.x {
 			display: inline-block;
+			margin-left: 3px;
+			margin-right: 3px;
 		}
 	</style>
 </head>

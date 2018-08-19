@@ -96,7 +96,7 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 	<h4 class="pgg">Change n value: &nbsp;<?php for ($i=1; $i <= 4; $i++) { 
 		?><a class="rqq" href="?n=<?php print $i; ?>"><button class="rqq" <?php print $i === $n ? "disabled":"";?>><span class="pgg"><?php print $i ?></span></button></a>&nbsp;&nbsp;&nbsp;<?php
 	} ?></h4>
-	<?php $jj = 0; while ($r = $st->fetch(PDO::FETCH_NUM)): $wc->execute([":n" => $n, ":regional" => $r[1]]); ?>
+	<?php $jj = 0; while ($r = $st->fetch(PDO::FETCH_NUM)): $wc->execute([":n" => $n, ":regional" => $r[0]]); ?>
 		<div class="cage">
 			<p><?php print $ii++; ?></p>
 			<div>

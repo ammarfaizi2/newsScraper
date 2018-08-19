@@ -101,7 +101,9 @@ final class WordCloud
                         "/\-antara\s?news.+$/Usi",
                         "/liputan6com/Usi",
                         "/bali\-kompascom/Usi",
-                        "/\-\s?Kompas\.com/Usi"
+                        "/\-\s?Kompas\.com/Usi",
+                        "/halaman \d{1,3}-kompascom/",
+                        "/[a-z]{3,10}\s?[a-z]{3,10}-kompascom/"
                   ],
                   [
                         "",

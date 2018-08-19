@@ -16,7 +16,7 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 	reg($a, function() use ($r) {
 		cli_set_process_title("icetea_worker --module=wordcloud.so --target=\"{$r['regional']}\"");
 		shell_exec(
-			"nohup ".PHP_BINARY." ".__DIR__."/wordcloud.php {$r['regional']} >> ".LOG_DIR."/wordcloud/".str_replace(" ", "_", $r['regional']).".log 2>&1"
+			"nohup ".PHP_BINARY." ".__DIR__."/wordcloud.php \"{$r['regional']}\" >> ".LOG_DIR."/wordcloud/".str_replace(" ", "_", $r['regional']).".log 2>&1"
 		);
 	});
 }

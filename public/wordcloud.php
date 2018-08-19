@@ -73,16 +73,16 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 ?><div>
 	<h3><?php print $r[0]; ?> (regional code: <?php print $r[1]; ?>)</h3>
 	<table border="1" style="border-collapse: collapse;">
-		<tr><td>No.</td><td>Words</td><td>Amount</td></tr>
+		<tr><td align="center">No.</td><td align="center">Words</td><td align="center">Amount</td></tr>
 <?php $i = 1;
 				while ($rr = $wc->fetch(PDO::FETCH_ASSOC)) {
-?><tr><td><?php print $i++; ?>.</td><td><?php print htmlspecialchars($rr["words"]); ?></td><td><?php print $rr["count"] ?></td></tr>
+?><tr><td align="center"><?php print $i++; ?>.</td><td align="center"><?php print htmlspecialchars($rr["words"]); ?></td><td align="center"><?php print $rr["count"] ?></td></tr>
 <?php
 				}
 ?>	</table>
 </div><?php
 			}
 		?>
-	</center>
+	</center>sssssss
 </body>
 </html><?php unset($pdo); ?>

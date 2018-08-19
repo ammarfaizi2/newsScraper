@@ -37,7 +37,7 @@ final class WordCloud
             $this->pdo = DB::pdo();
             $this->regional = $regional;
       }
-
+      
       public function runTitleWordCloud()
       {
             $wc = $this->pdo->prepare("INSERT INTO `title_wordcloud` (`news_id`, `words`, `n`,`hash`,`created_at`) VALUES (:news_id, :words, :n, :hash, :created_at);");
@@ -102,10 +102,12 @@ final class WordCloud
                         "/liputan6com/Usi",
                         "/bali\-kompascom/Usi",
                         "/\-\s?Kompas\.com/Usi",
-                        "/halaman \d{1,3}-kompascom/",
-                        "/[a-z]{3,10}\s?[a-z]{3,10}-kompascom/"
+                        "/halaman \d{1,3}-kompascom/Usi",
+                        "/[a-z]{3,10}\s?[a-z]{3,10}-kompascom/Usi",
+                        "/\-kompascom/"
                   ],
                   [
+                        "",
                         "",
                         "",
                         "",

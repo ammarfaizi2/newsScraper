@@ -24,7 +24,7 @@ if (isset($_GET["limit"])) {
 
 	$limit = abs((int)$_GET["limit"]);
 } else {
-	$limit = 15;
+	$limit = 25;
 }
 
 if (isset($_GET["n"])) {

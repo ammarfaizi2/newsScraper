@@ -23,8 +23,8 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 	ORDER BY `count` DESC;
 ");
 $st = $pdo->prepare(
-	"INSERT INTO `title_wordcloud_regional_caching` (`regional`, `words`, `n`, `hash`, `created_at`)
-VALUES (:regional, :words, :n, :hash, :created_at);"
+	"INSERT INTO `title_wordcloud_regional_caching` (`regional`, `count`, `words`, `n`, `hash`, `created_at`)
+VALUES (:regional, :count, :words, :n, :hash, :created_at);"
 );
 
 $stu = $pdo->prepare(
@@ -47,6 +47,7 @@ for ($i=1; $i <= 4; $i++) {
 			$st->execute(
 				[
 					":regional" => $argv[2],
+					":count" => $r["count"],
 					":words" => $r["words"],
 					":n" => $i,
 					":hash" => $hash,

@@ -16,7 +16,7 @@ $param = [
 	"kompas",
 	"antaranews",
 	"viva",
-	"kabardaerah"
+	// "kabardaerah"// skipped due to cloudflare captcha
 ];
 
 

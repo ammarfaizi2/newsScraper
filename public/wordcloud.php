@@ -73,7 +73,7 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 </head>
 <body>
 	<center>
-		<?php $jj = 0;
+		<?php $jj = 1;
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$wc->execute([":n" => $n,":regional" => $r[0]]);
 if (!($jj % 3)) {

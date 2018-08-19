@@ -2,8 +2,7 @@
 
 merge='git merge master'
 checkout='git checkout'
-branches=dev_{api,antaranews,detik,kompas,liputan6,tribunnews,suara,viva,wordcloud}
-
+branches={wordcloud,api,dev_{antaranews,detik,kompas,liputan6,tribunnews,suara,viva,kabardaerah}}
 
 # Merge master branch to other branches.
 

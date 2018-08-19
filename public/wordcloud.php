@@ -77,7 +77,8 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$wc->execute([":n" => $n,":regional" => $r[0]]);
 ?><div class="x">
-	<h3><?php print $r[0]; ?> (regional code: <?php print $r[1]; ?>)</h3>
+	<div><h3><?php print $r[0]; ?></h3></div>
+	<div><h4>(regional code: <?php print $r[1]; ?>)</h4></div>
 	<table border="1" style="border-collapse: collapse;">
 		<tr><td align="center">No.</td><td align="center">Words</td><td align="center">Amount</td></tr>
 <?php $i = 1;

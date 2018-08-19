@@ -109,6 +109,9 @@ final class WordCloud
                         "",
                         "",
                         "",
+                        "",
+                        "",
+                        ""
                   ],
                   $title
             );

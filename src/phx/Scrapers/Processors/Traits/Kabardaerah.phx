@@ -191,7 +191,17 @@ trait Kabardaerah
 					$contentPointer = str_replace("\n\n", "\n", $contentPointer, $n);
 				} while ($n);
 
-				var_dump(json_encode($contentPointer));die;
+				unset($contentPointer);
+
+				$len = strlen($this->content);
+
+				if ($len < 20) {
+					icelog("Could not get the content");
+					return false;
+				}
+
+				icelog("Got content with %d characters", $len);
+				return true;
 			}
 		}
 		return false;

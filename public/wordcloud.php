@@ -76,7 +76,7 @@ $wc = $pdo->prepare("SELECT COUNT(`words`) AS `count`,`words` FROM `title_wordcl
 		<tr><td>No.</td><td>Words</td><td>Amount</td></tr>
 <?php $i = 1;
 				while ($rr = $wc->fetch(PDO::FETCH_ASSOC)) {
-?><tr><td><?php print $i; ?>.</td><td><?php print htmlspecialchars($rr["words"]); ?></td><td><?php print $rr["count"] ?></td></tr>
+?><tr><td><?php print $i++; ?>.</td><td><?php print htmlspecialchars($rr["words"]); ?></td><td><?php print $rr["count"] ?></td></tr>
 <?php
 				}
 ?>	</table>

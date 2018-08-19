@@ -79,7 +79,7 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 if (!($jj % 3)) {
 	?><div><?php
 }
-$jj++;?><div class="x">
+?><div class="x">
 	<div><h3><?php print $r[0]; ?></h3></div>
 	<div><h4>(regional code: <?php print $r[1]; ?>)</h4></div>
 	<table border="1" style="border-collapse: collapse;">
@@ -91,9 +91,9 @@ $jj++;?><div class="x">
 				}
 ?>	</table>
 </div><?php
-if (!(0 % 3)) {
+if (!($jj % 3)) {
 	?></div><?php
-}
+}$jj++
 
 			}
 		?>

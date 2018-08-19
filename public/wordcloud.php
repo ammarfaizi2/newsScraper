@@ -73,10 +73,13 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 </head>
 <body>
 	<center>
-		<?php
+		<?php $jj = 0;
 			while ($r = $st->fetch(PDO::FETCH_NUM)) {
 				$wc->execute([":n" => $n,":regional" => $r[0]]);
-?><div class="x">
+if (!($jj % 3)) {
+	?><div><?php
+}
+$jj++;?><div class="x">
 	<div><h3><?php print $r[0]; ?></h3></div>
 	<div><h4>(regional code: <?php print $r[1]; ?>)</h4></div>
 	<table border="1" style="border-collapse: collapse;">
@@ -88,6 +91,10 @@ $wc = $pdo->prepare("SELECT `a`.`count`,`a`.`words` FROM `title_wordcloud_region
 				}
 ?>	</table>
 </div><?php
+if (!(0 % 3)) {
+	?></div><?php
+}
+
 			}
 		?>
 	</center>

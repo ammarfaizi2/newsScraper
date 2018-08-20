@@ -3,6 +3,7 @@
 *.swp
 *.tmp
 *.lock
+/fm/
 /vendor/
 /.phpintel/
 /public/google_search_data/

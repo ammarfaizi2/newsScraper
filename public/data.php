@@ -256,7 +256,7 @@ $stq = $pdo->prepare(
 		<h1 style="font-size: 32px;">Scraped Data</h1>
 		<div class="sc">
 			<div class="fqq">
-				<a href="api.php?limit=25<?php print $queryString; ?>" target="_blank"><button>Get API URL by This Filter</button></a>
+				<a href="api.php?limit=25<?php print htmlspecialchars($queryString, ENT_QUOTES, "UTF-8"); ?>" target="_blank"><button>Get API URL by This Filter</button></a>
 				<button id="scg_1_" onclick="filterOpen();">Filter Data</button>
 				<button style="display:none;" id="scg_1__" onclick="filterClose();">Close Filter</button>
 			</div>

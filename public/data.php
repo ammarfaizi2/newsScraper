@@ -78,13 +78,13 @@ $offset = $page === 1 ? 0 : $limit * ($page-1);
 $opt = '<option value="1">=</option><option value="2">!=</option><option value="3">&gt;</option><option value="4">&lt;</option><option value="5">&gt;=</option><option value="6">&lt;=</option><option value="7">LIKE</option><option value="8">%LIKE</option><option value="9">LIKE%</option><option value="10">%LIKE%</option>';
 
 $stq = $pdo->prepare(
-	"SELECT `regional` FROM `news` GROUP BY `regional` ORDER BY `regional` ASC;"
+	"SELECT `regional`,`id` FROM `regional`;"
 );
 $stq->execute();
 $stq = $stq->fetchAll(PDO::FETCH_NUM);
 $optr = "<option value=\"all\">All</option>";
 foreach ($stq as $v) {
-	$optr .= "<option value=\"".htmlspecialchars($v[0], ENT_QUOTES, "UTF-8")."\">".htmlspecialchars($v[0], ENT_QUOTES, "UTF-8")."</option>";
+	$optr .= "<option value=\"".htmlspecialchars($v[1], ENT_QUOTES, "UTF-8")."\">".htmlspecialchars($v[0], ENT_QUOTES, "UTF-8")." (ID: ".$v[1].")</option>";
 }
 $bind = [];
 $where = "";

@@ -89,8 +89,23 @@ foreach ($stq as $v) {
 $bind = [];
 $where = "";
 if (isset($_GET["regional"]) && $_GET["regional"] !== "" && is_string($_GET["regional"]) && strtolower($_GET["regional"]) !== "all") {
+	$sqq = trim($_GET["regional"]);
+	if (is_numeric($_GET["regional"])) {
+		$sqq = $pdo->prepare("SELECT `regional` FROM `regional` WHERE `id` = :id LIMIT 1;");
+		$sqq->execute(
+			[
+				":id" => $_GET["regional"]
+			]
+		);
+		if ($sqq = $sqq->fetch(PDO::FETCH_ASSOC)) {
+			$sqq = $sqq[0];
+		} else {
+			$sqq = $_GET["regional"];
+		}
+	}
+
 	$where .= "`regional` = :regional AND";
-	$bind[":regional"] = trim($_GET["regional"]);
+	$bind[":regional"] = $sqq;
 }
 
 if (isset($_GET["title"]) && $_GET["title"] !== "" && is_string($_GET["title"])) {

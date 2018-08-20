@@ -33,11 +33,27 @@ final class Api
 
 	private function showData(): void
 	{
+		$this->pdo = DB::pdo();
 		$bind = [];
 		$where = "";
 		if (isset($_GET["regional"]) && $_GET["regional"] !== "" && is_string($_GET["regional"]) && strtolower($_GET["regional"]) !== "all") {
+			$sqq = trim($_GET["regional"]);
+			if (is_numeric($_GET["regional"])) {
+				$sqq = $this->pdo->prepare("SELECT `regional` FROM `regional` WHERE `id` = :id LIMIT 1;");
+				$sqq->execute(
+					[
+						":id" => $_GET["regional"]
+					]
+				);
+				if ($sqq = $sqq->fetch(PDO::FETCH_NUM)) {
+					$sqq = $sqq[0];
+				} else {
+					$sqq = $_GET["regional"];
+				}
+			}
+
 			$where .= "`regional` = :regional AND";
-			$bind[":regional"] = trim($_GET["regional"]);
+			$bind[":regional"] = $sqq;
 		}
 
 		if (isset($_GET["title"]) && $_GET["title"] !== "" && is_string($_GET["title"])) {
@@ -124,7 +140,6 @@ final class Api
 			$offset = (int)$_GET["offset"];
 		}
 
-		$this->pdo = DB::pdo();
 		$query = "SELECT `id`,`title`,`url`,`datetime`,`content_type`,`text` AS `content`,`regional`,`scraped_at` FROM `news` {$where} ORDER BY `scraped_at` DESC LIMIT {$limit} OFFSET {$offset};";
 		$stq = $this->pdo->prepare($query);
 		$stq->execute($bind);

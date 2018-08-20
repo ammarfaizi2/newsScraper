@@ -97,7 +97,7 @@ if (isset($_GET["regional"]) && $_GET["regional"] !== "" && is_string($_GET["reg
 				":id" => $_GET["regional"]
 			]
 		);
-		if ($sqq = $sqq->fetch(PDO::FETCH_ASSOC)) {
+		if ($sqq = $sqq->fetch(PDO::FETCH_NUM)) {
 			$sqq = $sqq[0];
 		} else {
 			$sqq = $_GET["regional"];

@@ -40,7 +40,7 @@ final class Api
 			$bind[":regional"] = trim($_GET["regional"]);
 		}
 
-		if (isset($_GET["title"]) && $_GET["title"] !== "" && is_string($_GET["url"])) {
+		if (isset($_GET["title"]) && $_GET["title"] !== "" && is_string($_GET["title"])) {
 			if (isset($_GET["title_op"])) {
 				$oz = trim($_GET["title_op"]);
 				switch ($oz) {

@@ -14,7 +14,7 @@ use Phx\DataFixer;
  * @license MIT
  * @version 0.0.1
  */
-final class Tribunnews extends DataFixer
+final class Antaranews extends DataFixer
 {	
 	/**
 	 * Constructor.

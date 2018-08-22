@@ -148,7 +148,9 @@ unset($st, $pdo);
 				</table>
 			</div>
 			<p>Connection Status: <span id="status_"></span></p>
-			<div id="myChart"></div>
+			<div id="myChart">
+				<h3>Idle</h3>
+			</div>
 		</center>
 		<script type="text/javascript">
 			function gozz(r) {

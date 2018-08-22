@@ -171,7 +171,7 @@ final class DatetimeParser
 			$this->formatType = self::DF4;
 			return true;
 		} elseif (preg_match(
-			"/^\d{10}$/"
+			"/^\d{10}$/",
 			$this->input
 		)) {
 			$this->formatType = self::DF5;

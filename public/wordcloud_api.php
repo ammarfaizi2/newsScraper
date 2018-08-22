@@ -90,7 +90,7 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 unset($pdo, $st);
 
 $result = preg_replace(
-	"/[^a-z0-9\-]/Usi",
+	"/[^a-z0-9\-\s]/Usi",
 	"",
 	$result
 );

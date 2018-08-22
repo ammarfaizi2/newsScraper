@@ -133,7 +133,7 @@ final class DatetimeParser
 	private function parse(): bool
 	{
 		if (preg_match(
-			"/^(?:(Senin|Selasa|Rabu|Kamis|Jum'?at|Sabtu|Minggu),\s)(\d{1,2})(?:\s)(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember)(?:\s)(\d{4})(?:\s)(\d{2})(?:\:)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi",
+			"/^(?:(Senin|Selasa|Rabu|Kamis|Jum'?at|Sabtu|Minggu),\s)(\d{1,2})(?:\s)(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember)(?:\s)(\d{4})(?:\s)(\d{1,2})(?:\:)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi",
 			$this->input,
 			$m
 		)) {

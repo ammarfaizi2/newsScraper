@@ -78,7 +78,7 @@ final class Antaranews extends DataFixer
 		 */
 		if (preg_match(
 			"/(?:<span class=\"article-date\"><i class=\"fa fa-clock-o\"><\/i>)(.*)(?:<\/span>)/Usi",
-			$this->html,
+			$l["out"],
 			$m
 		)) {
 			$datetime = trim(html_entity_decode($m[1], ENT_QUOTES, "UTF-8"));

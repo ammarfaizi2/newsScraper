@@ -51,8 +51,9 @@ final class GlobalFixer extends DataFixer
 				print "Updating ".$r["id"]." from ".$r["datetime"]." to ".$unix."...";
 				$sq->execute([":datetime" => ((string)$unix), ":id" => $r["id"]]);
 				print "OK\n";
+			} else {
+				file_put_contents(BASEPATH."/storage/unknown_datetime_format.txt", $r["datetime"]."\n");
 			}
 		}
-
 	}
 }

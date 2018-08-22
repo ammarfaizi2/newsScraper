@@ -71,7 +71,6 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 	            "/halaman \d{1,3}-kompascom/Usi",
 	            "/[a-z]{3,10}\s?[a-z]{3,10}-kompascom/Usi",
 	            "/\-kompascom/Usi",
-	            "/antara news [a-z]+[\s]{1}/Usi",
 	      ],
 	      [
 	            "",
@@ -81,7 +80,6 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 	            "",
 	            "",
 	            "",
-	            ""
 	      ],
 	      $r["title"]
 	);
@@ -92,8 +90,14 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 unset($pdo, $st);
 
 $result = preg_replace(
-	"/[^a-z0-9\-\s]/Usi",
-	"",
+	[
+		"/[^a-z0-9\-\s]/Usi",
+		"/antara news [a-z]+[\s]{1}/Usi",
+	],
+	[
+		"",
+		""
+	],
 	$result
 );
 

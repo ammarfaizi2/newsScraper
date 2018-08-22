@@ -101,6 +101,9 @@ fill: false,*/
 <body>
     <center>
         <div>
+            <a href="/index.php"><button style="cursor: pointer;">Back to Home</button></a>
+        </div>
+        <div>
             <table>
                 <tr>
                     <td>Start Date</td>

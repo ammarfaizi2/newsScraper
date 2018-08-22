@@ -128,7 +128,7 @@ unset($st, $pdo);
 								<?php
 									$t = date("Y");
 									for ($i=$t; $i >= 2005; $i--) { 
-										?><option value="<?php print $i; ?>"><?php print $i; ?></option><?php
+										?><option value="<?php print $i; ?>" <?php print $i == $ ? "selected" : ""; ?>><?php print $i; ?></option><?php
 									}
 								?>
 							</select>

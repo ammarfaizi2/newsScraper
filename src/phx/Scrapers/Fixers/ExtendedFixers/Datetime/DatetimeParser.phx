@@ -46,6 +46,11 @@ final class DatetimeParser
 	const DF5 = 15;
 
 	/**
+	 * "2018/07/08 18:06:58"
+	 */
+	const DF6 = 16;
+
+	/**
 	 * "01", "10"
 	 */
 	const ZEROFILL_NUMBER = 20;
@@ -176,6 +181,13 @@ final class DatetimeParser
 		)) {
 			$this->formatType = self::DF5;
 			return true;
+		} elseif (preg_match(
+			"/\d{4}\/\d{2}\/\d{2}\s\d{2}\:\d{2}\:\d{2}/Usi",
+			$this->html,
+			$m
+		)) {
+			$this->formatType = self::DF6;
+			return true;
 		}
 
 		return false;
@@ -208,6 +220,9 @@ final class DatetimeParser
 				break;
 			case self::DF5:
 					$this->vv = date("Y-m-d H:i:s", $this->input);
+				break;
+			case self::DF6:
+					$this->vv = date("Y-m-d H:i:s", strtotime($this->input));
 				break;
 			default:
 				break;

@@ -89,4 +89,10 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 
 unset($pdo, $st);
 
-print json_encode(["result" => $result], JSON_UNESCAPED_SLASHES);
+$result = preg_replace(
+	"/[^a-z0-9\-]/Usi",
+	"",
+	$result
+);
+
+print json_encode(["result" => strtolower($result)], JSON_UNESCAPED_SLASHES);

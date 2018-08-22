@@ -93,7 +93,7 @@ $result = preg_replace(
 	[
 		"/[^a-z0-9\-\s]/Usi",
 		"/antara news [a-z]+/Usi",
-		"/liputan6com/"
+		"/liputan6com/Usi"
 	],
 	[
 		"",

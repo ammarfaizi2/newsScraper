@@ -46,7 +46,7 @@ if (isset($_GET["end_date"])) {
 	unset($end_date);
 }
 
-$limit = 30;
+$limit = 500;
 
 if (isset($_GET["limit"])) {
 	if (is_numeric($_GET["limit"])) {

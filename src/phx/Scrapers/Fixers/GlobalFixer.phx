@@ -55,7 +55,7 @@ final class GlobalFixer extends DataFixer
 				print "OK\n";
 			} else {
 				if ($type === DatetimeParser::DF5) {
-					print "[".($i++)."]\t".$r["datetime"]." is already been converted to unix time\n";
+					print "[".($i++)."]\t".$r["datetime"]." has already been converted to unix time\n";
 				} else {
 					print "Got unknown format: ".$r["datetime"]."\n";
 					file_put_contents(BASEPATH."/storage/unknown_datetime_format.txt", $r["datetime"]."\n", FILE_APPEND | LOCK_EX);

@@ -41,6 +41,11 @@ final class DatetimeParser
 	const DF4 = 14;
 
 	/**
+	 * "1534581504"
+	 */
+	const DF5 = 15;
+
+	/**
 	 * "01", "10"
 	 */
 	const ZEROFILL_NUMBER = 20;
@@ -128,7 +133,7 @@ final class DatetimeParser
 	private function parse(): bool
 	{
 		if (preg_match(
-			"/^(?:(Senin|Selasa|Rabu|Kamis|Jum'?at|Sabtu|Minggu),\s)(\d{1,2})(?:\s)(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|Oktober|November|Desember)(?:\s)(\d{4})(?:\s)(\d{2})(?:\:)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi",
+			"/^(?:(Senin|Selasa|Rabu|Kamis|Jum'?at|Sabtu|Minggu),\s)(\d{1,2})(?:\s)(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember)(?:\s)(\d{4})(?:\s)(\d{2})(?:\:)(\d{2})(?:\s(WIB|WIT|WITA))?$/Usi",
 			$this->input,
 			$m
 		)) {
@@ -165,6 +170,12 @@ final class DatetimeParser
 		)) {
 			$this->formatType = self::DF4;
 			return true;
+		} elseif (preg_match(
+			"/^\d{10}$/"
+			$this->input
+		)) {
+			$this->formatType = self::DF5;
+			return true;
 		}
 
 		return false;
@@ -194,6 +205,9 @@ final class DatetimeParser
 				break;
 			case self::DF4:
 					$this->vv = date("Y-m-d H:i:s", strtotime($this->input));
+				break;
+			case self::DF5:
+					$this->vv = date("Y-m-d H:i:s", $this->input);
 				break;
 			default:
 				break;

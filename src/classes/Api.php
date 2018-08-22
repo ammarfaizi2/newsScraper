@@ -6,6 +6,9 @@
  * @license MIT
  * @version 0.0.1
  */
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+
 final class Api
 {
 	/**

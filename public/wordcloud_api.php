@@ -71,8 +71,10 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 	            "/halaman \d{1,3}-kompascom/Usi",
 	            "/[a-z]{3,10}\s?[a-z]{3,10}-kompascom/Usi",
 	            "/\-kompascom/Usi",
+	            "/antara news [a-z]+[\s]{1}/Usi",
 	      ],
 	      [
+	            "",
 	            "",
 	            "",
 	            "",

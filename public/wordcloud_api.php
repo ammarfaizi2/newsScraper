@@ -4,6 +4,8 @@ require __DIR__."/../config/main.php";
 require __DIR__."/../config/scraper.php";
 require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 header("Content-Type: application/json");
 
 $pdo = DB::pdo();

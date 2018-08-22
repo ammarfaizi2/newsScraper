@@ -8,6 +8,7 @@ require __DIR__."/../bootstrap/icetea_bootstrap.php";
 use Phx\DataFixer;
 use Phx\Scrapers\Fixers\Detik;
 use Phx\Scrapers\Fixers\Tribunnews;
+use Phx\Scrapers\Fixers\Antaranews;
 use Phx\Scrapers\Fixers\GlobalFixer;
 
 if (! isset($argv[1])) {

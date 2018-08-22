@@ -84,7 +84,7 @@ while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 	      $r["title"]
 	);
 	$r["title"] = trim(trim($r["title"]), "-");
-	$result .= $r["title"];
+	$result .= " ".$r["title"];
 }
 
 unset($pdo, $st);

@@ -46,18 +46,20 @@ final class GlobalFixer extends DataFixer
 		$st->execute();
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 			$sf = new DatetimeConverter($r["datetime"]);
-			if ($sf->getType() !== DatetimeParser::DF_UNKNOWN) {
+			$type = $sf->getType();
+			if ($type !== DatetimeParser::DF_UNKNOWN && $type !== DatetimeParser::DF5) {
 				$unix = $sf->toUnix();
 				print "Updating ".$r["id"]." from ".$r["datetime"]." to ".$unix."...";
 				$sq->execute([":datetime" => ((string)$unix), ":id" => $r["id"]]);
 				print "OK\n";
 			} else {
-				print "Got unknown format: ".$r["datetime"]."\n";
-				file_put_contents(BASEPATH."/storage/unknown_datetime_format.txt", $r["datetime"]."\n", FILE_APPEND | LOCK_EX);
+				if ($type === DatetimeParser::DF5) {
+					print $r["datetime"]." is already unix time\n";
+				} else {
+					print "Got unknown format: ".$r["datetime"]."\n";
+					file_put_contents(BASEPATH."/storage/unknown_datetime_format.txt", $r["datetime"]."\n", FILE_APPEND | LOCK_EX);
+				}
 			}
-			var_dump($r);
 		}
-
-		var_dump($r);
 	}
 }

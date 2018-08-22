@@ -2,6 +2,11 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		button {
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body>
 	<center>

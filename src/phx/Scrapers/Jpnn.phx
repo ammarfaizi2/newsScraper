@@ -17,18 +17,18 @@ final class Viva extends NewsScraper
 		"Sumatera Utara" => "https://www.jpnn.com/daerah/sumut",
 		"Jambi" => "https://www.jpnn.com/daerah/jambi",
 		"Sumatera Selatan" => "https://www.jpnn.com/daerah/sumsel",
-		  "https://www.jpnn.com/daerah/kalbar",
-		  "https://www.jpnn.com/daerah/kalteng",
-		  "https://www.jpnn.com/daerah/kalsel",
-		  "https://www.jpnn.com/daerah/kaltim",
-		  "https://www.jpnn.com/daerah/kaltara",
-		  "https://www.jpnn.com/daerah/sultra",
-		  "https://www.jpnn.com/daerah/sulsel",
-		  "https://www.jpnn.com/daerah/gorontalo",
-		  "https://www.jpnn.com/daerah/maluku",
-		  "https://www.jpnn.com/daerah/maluku-utara",
-		  "https://www.jpnn.com/daerah/papua-barat",
-		  "https://www.jpnn.com/daerah/papua"
+		"Kalimantan Barat" =>  "https://www.jpnn.com/daerah/kalbar",
+		"Kalimantan Tengah" => "https://www.jpnn.com/daerah/kalteng",
+		"Kalimantan Selatan" => "https://www.jpnn.com/daerah/kalsel",
+		"Kalimantan Timur" => "https://www.jpnn.com/daerah/kaltim",
+		"Kalimantan Utara" => "https://www.jpnn.com/daerah/kaltara",
+		"Sulawesi Utara" => "https://www.jpnn.com/daerah/sultra",
+		"Sulawesi Selatan" => "https://www.jpnn.com/daerah/sulsel",
+		"Gorontalo" => "https://www.jpnn.com/daerah/gorontalo",
+		"Maluku" => "https://www.jpnn.com/daerah/maluku",
+		"Maluku Utara" => "https://www.jpnn.com/daerah/maluku-utara",
+		"Papua Barat" => "https://www.jpnn.com/daerah/papua-barat",
+		"Papua" => "https://www.jpnn.com/daerah/papua"
 	];
 
 	/**

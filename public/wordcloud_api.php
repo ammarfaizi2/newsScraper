@@ -105,4 +105,4 @@ $result = preg_replace(
 	$result
 );
 
-print json_encode(["result" => strtolower($result)], JSON_UNESCAPED_SLASHES);
+print json_encode(["result" => trim(strtolower($result))], JSON_UNESCAPED_SLASHES);

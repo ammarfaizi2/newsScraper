@@ -13,7 +13,7 @@ $pdo = DB::pdo();
 $query = "SELECT `title` FROM `news` WHERE `title` != '' ";
 $bind  = [];
 
-if (isset($_GET["regional"])) {
+if (isset($_GET["regional"]) && strtolower($_GET["regional"]) !== "all") {
 	$regional = $_GET["regional"];
 	$query .= "AND `regional` = :regional ";
 	if (is_numeric($_GET["regional"])) {

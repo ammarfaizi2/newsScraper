@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+<?php
+
+require __DIR__."/../config/main.php";
+require __DIR__."/../config/scraper.php";
+require __DIR__."/../bootstrap/icetea_bootstrap.php";
+$pdo = DB::pdo();
+$st = $pdo->prepare("SELECT `regional`,`id` FROM `regional`;");
+$st->execute();
+$opts = "<option value=\"all\">All</option>";
+while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
+	$opts .= "<option value=\"".$r["id"]."\">".htmlspecialchars($r["regional"]." (code: ".$r["id"].")")."</option>";
+}
+unset($st, $pdo);
+?><!DOCTYPE html>
 <html>
 	<head>
 		<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
@@ -15,17 +28,128 @@
 				padding:0;
 			}
 			#myChart {
-				height:100%;
+				height:500px;
 				width:100%;
 				min-height:150px;
+				border: 1px solid #000;
+				margin-top: 30px;
+				margin-bottom: 40px;
 			}
 			.zc-ref {
 				display:none;
 			}
+			* {
+				font-family: Arial, Helvetica, Tahoma;
+			}
+			.tggrb {
+				border: 1px solid #000;
+				margin-top: 10px;
+				width: 400px;
+			}
 		</style>
 	</head>
 	<body>
-		<div id="myChart"></div>
+		<center>
+			<div class="tggrb">
+				<table>
+					<tr>
+						<td>Regional</td>
+						<td>:</td>
+						<td colspan="3">
+							<select id="regional">
+								<?php print $opts; ?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Start Date</td>
+						<td>:</td>
+						<td>
+							<select id="start_day">
+								<option></option>
+								<?php 
+									for ($i=1; $i <= 31; $i++) { 
+										?><option value="<?php print $i < 10 ? "0".$i : $i; ?>"><?php print $i; ?></option><?php
+									}
+								?>
+							</select>
+						</td>
+						<td>
+							<select id="start_month">
+								<option></option>
+								<?php $t = 0;
+									for ($i=1; $i <= 12; $i++) { 
+										?><option value="<?php print $i < 10 ? "0".$i : $i; ?>"><?php print date("F", strtotime(date("Y-m-d H:i:s", 0)."+".($i-1)." month")); ?></option><?php
+									}
+								?>
+							</select>
+						</td>
+						<td>
+							<select id="start_year">
+								<option></option>
+								<?php
+									$t = date("Y");
+									for ($i=$t; $i >= 2005; $i--) { 
+										?><option value="<?php print $i; ?>"><?php print $i; ?></option><?php
+									}
+								?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>End Date</td>
+						<td>:</td>
+						<td>
+							<select id="end_day">
+								<option></option>
+								<?php
+									$d = date("d");
+									for ($i=1; $i <= 31; $i++) { 
+										?><option value="<?php print $i < 10 ? "0".$i : $i; ?>" <?php print $i == $d ? "selected" : ""; ?>><?php print $i; ?></option><?php
+									}
+								?>
+							</select>
+						</td>
+						<td>
+							<select id="end_month">
+								<option></option>
+								<?php $t = 0;
+								$d = (int)date("m");
+									for ($i=1; $i <= 12; $i++) { 
+										$mm = date("F", strtotime(date("Y-m-d H:i:s", 0)."+".($i-1)." month"));
+										?><option value="<?php print $i < 10 ? "0".$i : $i; ?>" <?php print $d == $i ? "selected"  :  "";?>><?php print $mm; ?></option><?php
+									}
+								?>
+							</select>
+						</td>
+						<td>
+							<select id="end_year">
+								<option></option>
+								<?php
+									$t = date("Y");
+									for ($i=$t; $i >= 2005; $i--) { 
+										?><option value="<?php print $i; ?>"><?php print $i; ?></option><?php
+									}
+								?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Limit</td>
+						<td>:</td>
+						<td colspan="3"><input type="number" style="height: 30px;" id="limit" value="500"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="3" align="center">
+							<button id="submit_me">Search</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<p>Connection Status: <span id="status_"></span></p>
+			<div id="myChart"></div>
+		</center>
 		<script type="text/javascript">
 			function gozz(r) {
 				var myConfig = {
@@ -47,13 +171,76 @@
 					width: '100%' 
 				});
 			}
-			$.ajax({
-				url: "/wordcloud_api.php",
-				type: "GET",
-				success: function (r) {
-					gozz(r);
+			$("#submit_me")[0].addEventListener("click", function () {
+				var paramOk = true, paramError = "", param = "";
+
+				param += "regional="+encodeURIComponent($("#regional").val())+"&";
+
+				var d = $("#start_day").val(),
+					m = $("#start_month").val(),
+					y = $("#start_year").val();
+
+				if (d != "" || m != "" || y != "") {
+					if (d == "") {
+						paramOk = false;
+						paramError = "You need to complete the start date or left them blank!";
+					}
+					if (m == "") {
+						paramOk = false;
+						paramError = "You need to complete the start date or left them blank!";
+					}
+					if (y == "") {
+						paramOk = false;
+						paramError = "You need to complete the start date or left them blank!";
+					}
+					param += "start_date="+(encodeURIComponent(
+						y+"-"+m+"-"+d+" 00:00:00"
+					))+"&";
+				}
+
+				var d = $("#end_day").val(),
+					m = $("#end_month").val(),
+					y = $("#end_year").val();
+					console.log(d,m,y);
+				if (d != "" || m != "" || y != "") {
+					if (d == "") {
+						paramOk = false;
+						paramError = "You need to complete the end date or left them blank!";
+					}
+					if (m == "") {
+						paramOk = false;
+						paramError = "You need to complete the end date or left them blank!";
+					}
+					if (y == "") {
+						paramOk = false;
+						paramError = "You need to complete the end date or left them blank!";
+					}
+					param += "end_date="+(encodeURIComponent(
+						y+"-"+m+"-"+d+" 00:00:00"
+					))+"&";
+				}
+
+				param += "limit="+$("#limit").val();
+
+				if (paramOk) {
+					$("#status_")[0].innerHTML = "Loading...";
+					$("#myChart")[0].innerHTML = "";
+					$.ajax({
+						url: "http://36.89.59.110:1324/wordcloud_api.php?"+param,
+						type: "GET",
+						success: function (r) {
+							gozz(r);
+							if (r["result"] == "") {
+								$("#myChart")[0].innerHTML = "<h1>Data Not Found</h1>";
+							}
+							$("#status_")[0].innerHTML = "Idle";
+						}
+					});
+				} else {
+					alert(paramError)
 				}
 			});
+			$("#status_")[0].innerHTML = "Idle";
 		</script>
 	</body>
 </html>

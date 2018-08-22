@@ -183,7 +183,7 @@ final class DatetimeParser
 			return true;
 		} elseif (preg_match(
 			"/\d{4}\/\d{2}\/\d{2}\s\d{2}\:\d{2}\:\d{2}/Usi",
-			$this->html,
+			$this->input,
 			$m
 		)) {
 			$this->formatType = self::DF6;

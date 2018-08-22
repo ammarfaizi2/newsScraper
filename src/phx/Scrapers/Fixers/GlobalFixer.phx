@@ -52,7 +52,7 @@ final class GlobalFixer extends DataFixer
 				$sq->execute([":datetime" => ((string)$unix), ":id" => $r["id"]]);
 				print "OK\n";
 			} else {
-				file_put_contents(BASEPATH."/storage/unknown_datetime.txt", $r["datetime"]."\n");
+				file_put_contents(BASEPATH."/storage/unknown_datetime_format.txt", $r["datetime"]."\n");
 			}
 		}
 	}

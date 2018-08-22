@@ -41,6 +41,7 @@ final class GlobalFixer extends DataFixer
 	 */
 	private function datetimeFixer(): void
 	{
+		static $i = 1;
 		$sq = $this->pdo->prepare("UPDATE `news` SET `datetime`=:datetime WHERE `id`=:id LIMIT 1;");
 		$st = $this->pdo->prepare("SELECT `id`,`datetime` FROM `news`;");
 		$st->execute();
@@ -54,7 +55,7 @@ final class GlobalFixer extends DataFixer
 				print "OK\n";
 			} else {
 				if ($type === DatetimeParser::DF5) {
-					print $r["datetime"]." is already been converted to unix time\n";
+					print "[".($i++)."]\t".$r["datetime"]." is already been converted to unix time\n";
 				} else {
 					print "Got unknown format: ".$r["datetime"]."\n";
 					file_put_contents(BASEPATH."/storage/unknown_datetime_format.txt", $r["datetime"]."\n", FILE_APPEND | LOCK_EX);

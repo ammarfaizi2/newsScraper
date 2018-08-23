@@ -51,9 +51,7 @@ if (isset($_GET["end_date"])) {
 $limit = 500;
 
 if (isset($_GET["limit"])) {
-	if (is_numeric($_GET["limit"])) {
-		$limit = (int)$_GET["limit"];
-	}
+	$limit = (int)$_GET["limit"];
 }
 
 $query .= " ORDER BY `datetime` DESC LIMIT {$limit};";

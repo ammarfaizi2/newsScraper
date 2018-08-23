@@ -9,37 +9,37 @@ header("Access-Control-Allow-Headers: *");
 header("Content-Type: application/json");
 
 if (! isset($_GET["regional_id"])) {
-    exit(
+    exit(json_encode(
         [
             "status" => "error",
             "error_msg" => "regional_id must be provided!"
-    ]);
+    ]));
 }
 
 if (! is_string($_GET["regional_id"]) && ! is_numeric($_GET["regional_id"])) {
-    exit(
+    exit(json_encode(
         [
             "status" => "error",
             "error_msg" => "regional_id must be a string or integer"
         ]
-    );
+    ));
 }
 
 $regional_id = $_GET["regional_id"];
 
 
 if (! is_string($_GET["start_date"])) {
-    exit([
+    exit(json_encode([
         "status" => "error",
         "error_msg" => "Start date must be a string"
-    ]);
+    ]));
 }
 
 if (! is_string($_GET["end_date"])) {
-    exit([
+    exit(json_encode([
         "status" => "error",
         "error_msg" => "End date must be a string"
-    ]);
+    ]));
 }
 
 $start_date = time()-(3600*24*7);

@@ -28,24 +28,18 @@ if (! is_string($_GET["regional_id"]) && ! is_numeric($_GET["regional_id"])) {
 $regional_id = $_GET["regional_id"];
 
 
-if (! is_string($_GET["start_date"])) {
-    exit(json_encode([
-        "status" => "error",
-        "error_msg" => "Start date must be a string"
-    ]));
-}
 
-if (! is_string($_GET["end_date"])) {
-    exit(json_encode([
-        "status" => "error",
-        "error_msg" => "End date must be a string"
-    ]));
-}
 
 $start_date = time()-(3600*24*7);
 $end_date   = time();
 
 if (isset($_GET["start_date"])) {
+    if (! is_string($_GET["start_date"])) {
+        exit(json_encode([
+            "status" => "error",
+            "error_msg" => "Start date must be a string"
+        ]));
+    }
     $start_date = $_GET["start_date"];
     if (! is_numeric($_GET["start_date"])) {
         $start_date = strtotime($_GET["start_date"]);
@@ -53,6 +47,12 @@ if (isset($_GET["start_date"])) {
 }
 
 if (isset($_GET["end_date"])) {
+    if (! is_string($_GET["end_date"])) {
+        exit(json_encode([
+            "status" => "error",
+            "error_msg" => "End date must be a string"
+        ]));
+    }
     $end_date = $_GET["end_date"];
     if (! is_numeric($_GET["end_date"])) {
         $end_date = strtotime($_GET["end_date"]);

@@ -103,7 +103,8 @@ $sites = [
 	"Kompas" => "kompas.com",
 	"Antaranews" => "antaranews.com",
 	"Suara" => "suara.com",
-	"Viva" => "viva.co.id"
+	"Viva" => "viva.co.id",
+	"Jpnn" => "jpnn.com"
 ];
 $i = 1;
 $total = 0;

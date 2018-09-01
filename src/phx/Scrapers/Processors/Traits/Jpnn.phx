@@ -97,14 +97,14 @@ trait Jpnn
 				"url" => $url,
 				"description" => $desc
 			];
-			
+
 			icelog("Got %s image(s)", count($this->images));
 
 		} else {
 			icelog("Could not get the image");
 		}
 
-		die;
+		return true;
 	}
 
 	/**
@@ -113,6 +113,41 @@ trait Jpnn
 	private function scrape(): bool
 	{
 		if ($this->metaHandler()) {
+
+			if (preg_match(
+				"/(?:<div class=\"post\">)(.*)(?:<div class=\"pagination\">)/Usi",
+				$this->html,
+				$m
+			)) {
+				$contentPointer = &$this->content;
+				$m[1] = explode("\n", trim(strip_tags($m[1])));
+				array_walk($m[1], function (&$segment) {
+					$segment = trim($segment);
+				});
+				$contentPointer = implode("\n", $m[1]);
+				$contentPointer = str_replace("\r\n", "\n", $contentPointer);
+
+				unset($m);
+
+				do {
+					$contentPointer = str_replace("\n\n", "\n", $contentPointer, $nn);
+				} while ($nn);
+
+				unset($contentPointer);
+
+				$contentLength = strlen($this->content);
+
+				if ($contentLength < 10) {
+					icelog("Could not get the content");
+					icelog("Skipping...");
+					return false;
+				}
+
+				icelog("Got content with %d characters", $contentLength);
+				
+				return true;
+			}
+
 			icelog("Could not get the content");
 			icelog("Skipping...");
 		}

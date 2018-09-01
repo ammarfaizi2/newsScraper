@@ -146,6 +146,8 @@ trait Jpnn
 				}
 
 				icelog("Got content with %d characters", $contentLength);
+
+				$this->contentType = "news";
 				
 				return true;
 			}

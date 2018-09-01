@@ -139,7 +139,7 @@ final class Jpnn extends NewsScraper
 				$nn = true;
 			}
 
-			if ($ppg == 2) {
+			if ($ppg == 10) {
 				break;
 			}
 

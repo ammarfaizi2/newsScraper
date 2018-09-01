@@ -112,10 +112,11 @@ final class Jpnn implements PhxScraperProcessor
 		icelog("Scraping {$this->url}...");
 
 		if ($this->mget()) {
-			$this->scrape();
+			if ($this->scrape()) {
+				return true;
+			}
 		}
 
-		icelog("URL does not match!");
 		return false;
 	}
 
@@ -124,7 +125,7 @@ final class Jpnn implements PhxScraperProcessor
 		$l = $this->newsScraper->exec($this->url);
 
 		if (isset($l["error"]) && $l["error"]) {
-			icelog("An error occured when scraping {$url}: {$l['errno']} {$l['error']}");
+			icelog("An error occured when scraping {$this->url}: {$l['errno']} {$l['error']}");
 			return false;
 		}
 

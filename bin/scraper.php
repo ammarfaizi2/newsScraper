@@ -6,6 +6,7 @@ require __DIR__."/../config/scraper.php";
 require __DIR__."/../bootstrap/icetea_bootstrap.php";
 
 use Phx\NewsScraper;
+use Phx\Scrapers\Jpnn;
 use Phx\Scrapers\Viva;
 use Phx\Scrapers\Suara;
 use Phx\Scrapers\Detik;
@@ -69,6 +70,11 @@ switch ($argv[1]) {
 	case 'kabardaerah':
 		$st = new Kabardaerah;
 		#define("LOG_FILE", "kabardaerah.log");
+		break;
+
+	case 'jpnn':
+		$st = new Jpnn;
+		#define("LOG_FILE", "jpnn.log");
 		break;
 
 	default:

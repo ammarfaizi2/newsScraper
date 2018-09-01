@@ -133,6 +133,8 @@ trait Jpnn
 					$contentPointer = str_replace("\n\n", "\n", $contentPointer, $nn);
 				} while ($nn);
 
+				$contentPointer = trim(html_entity_decode($contentPointer, ENT_QUOTES, "UTF-8"));
+
 				unset($contentPointer);
 
 				$contentLength = strlen($this->content);

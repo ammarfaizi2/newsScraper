@@ -34,7 +34,8 @@ class DatetimeConverterTest extends TestCase
 				1517181900 => "2018-01-29 06:25:00",
 				1518015600 => "07 Feb 2018, 22:00 WIB",
 				1514309425 => "Wed, 27 Dec 2017 00:30:25 +0700",
-				1533397761 => "2018-08-04T22:49:21+07:00"
+				1533397761 => "2018-08-04T22:49:21+07:00",
+				1520756520 => "2018-03-11T15:22:00Z"
 			] as $epoch => $date
 		) {
 			$fixer = new DatetimeConverter($date);
@@ -67,6 +68,7 @@ class DatetimeConverterTest extends TestCase
 				"2018-01-29 06:25:00" => DatetimeParser::DF1,
 				"07 Feb 2018, 22:00 WIB" => DatetimeParser::DF2,
 				"2018-08-04T22:49:21+07:00" => DatetimeParser::DF4,
+				"2018-03-11T15:22:00Z" => DatetimeParser::DF7,
 				"" => DatetimeParser::DF_UNKNOWN
 			] as $date => $type
 		) {

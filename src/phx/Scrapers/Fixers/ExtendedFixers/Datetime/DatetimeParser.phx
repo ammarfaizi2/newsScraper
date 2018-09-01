@@ -51,6 +51,11 @@ final class DatetimeParser
 	const DF6 = 16;
 
 	/**
+	 * "2018-03-11T15:22:00Z"
+	 */
+	const DF7 = 17;
+
+	/**
 	 * "01", "10"
 	 */
 	const ZEROFILL_NUMBER = 20;
@@ -188,6 +193,14 @@ final class DatetimeParser
 		)) {
 			$this->formatType = self::DF6;
 			return true;
+		} elseif (preg_match(
+			"/^(\d{4}\-\d{2}-\d{2})(?:T)(\d{2}\:\d{2}\:\d{2})(?:Z)$/Usi",
+			$this->input,
+			$m
+		)) {
+			$this->matches = $m;
+			$this->formatType = self::DF7;
+			return true;
 		}
 
 		return false;
@@ -223,6 +236,9 @@ final class DatetimeParser
 				break;
 			case self::DF6:
 					$this->vv = date("Y-m-d H:i:s", strtotime($this->input));
+				break;
+			case self::DF7:
+					$this->vv = date("Y-m-d H:i:s", strtotime($this->matches[1]." ".$this->matches[2]));
 				break;
 			default:
 				break;

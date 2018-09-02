@@ -115,7 +115,14 @@ trait Indonesiatimur
 	public function scrape(): bool
 	{
 		if ($this->metaHandler()) {
-			die;
+			if (preg_match(
+				"/(?:<div class=\"entry\-content\">)(.*)(?:<div id=\"comments\" class=\"comments\-area\">)/Usi",
+				$this->html,
+				$m
+			)) {
+				
+			}
+			var_dump($m[1]);die;
 		}
 		return false;
 	}

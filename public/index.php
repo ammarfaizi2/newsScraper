@@ -104,7 +104,8 @@ $sites = [
 	"Antaranews" => "antaranews.com",
 	"Suara" => "suara.com",
 	"Viva" => "viva.co.id",
-	"Jpnn" => "jpnn.com"
+	"Jpnn" => "jpnn.com",
+	"Kabardaerah" => "kabardaerah.com",
 ];
 $i = 1;
 $total = 0;

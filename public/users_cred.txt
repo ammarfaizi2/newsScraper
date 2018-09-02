@@ -1,0 +1,101 @@
+Username: bali
+Password: baliQWERTYUIOP
+
+Username: bangka_belitung
+Password: bangka_belitungQWERTYUIOP
+
+Username: banten
+Password: bantenQWERTYUIOP
+
+Username: bengkulu
+Password: bengkuluQWERTYUIOP
+
+Username: daerah_istimewa_yogyakarta
+Password: daerah_istimewa_yogyakartaQWERTYUIOP
+
+Username: gorontalo
+Password: gorontaloQWERTYUIOP
+
+Username: jakarta
+Password: jakartaQWERTYUIOP
+
+Username: jambi
+Password: jambiQWERTYUIOP
+
+Username: jawa_barat
+Password: jawa_baratQWERTYUIOP
+
+Username: jawa_tengah
+Password: jawa_tengahQWERTYUIOP
+
+Username: jawa_timur
+Password: jawa_timurQWERTYUIOP
+
+Username: kalimantan_barat
+Password: kalimantan_baratQWERTYUIOP
+
+Username: kalimantan_selatan
+Password: kalimantan_selatanQWERTYUIOP
+
+Username: kalimantan_tengah
+Password: kalimantan_tengahQWERTYUIOP
+
+Username: kalimantan_timur
+Password: kalimantan_timurQWERTYUIOP
+
+Username: kalimantan_utara
+Password: kalimantan_utaraQWERTYUIOP
+
+Username: kepulauan_riau
+Password: kepulauan_riauQWERTYUIOP
+
+Username: lampung
+Password: lampungQWERTYUIOP
+
+Username: maluku
+Password: malukuQWERTYUIOP
+
+Username: maluku_utara
+Password: maluku_utaraQWERTYUIOP
+
+Username: nanggroe_aceh_darussalam
+Password: nanggroe_aceh_darussalamQWERTYUIOP
+
+Username: nusa_tenggara_barat
+Password: nusa_tenggara_baratQWERTYUIOP
+
+Username: nusa_tenggara_timur
+Password: nusa_tenggara_timurQWERTYUIOP
+
+Username: papua
+Password: papuaQWERTYUIOP
+
+Username: papua_barat
+Password: papua_baratQWERTYUIOP
+
+Username: riau
+Password: riauQWERTYUIOP
+
+Username: sulawesi_barat
+Password: sulawesi_baratQWERTYUIOP
+
+Username: sulawesi_selatan
+Password: sulawesi_selatanQWERTYUIOP
+
+Username: sulawesi_tengah
+Password: sulawesi_tengahQWERTYUIOP
+
+Username: sulawesi_tenggara
+Password: sulawesi_tenggaraQWERTYUIOP
+
+Username: sulawesi_utara
+Password: sulawesi_utaraQWERTYUIOP
+
+Username: sumatera_barat
+Password: sumatera_baratQWERTYUIOP
+
+Username: sumatera_selatan
+Password: sumatera_selatanQWERTYUIOP
+
+Username: sumatera_utara
+Password: sumatera_utaraQWERTYUIOP

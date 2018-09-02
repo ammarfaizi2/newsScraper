@@ -20,8 +20,6 @@ final class DB
 	private $pdo;
 
 	/**
-	 * @return void
-	 *
 	 * Constructor
 	 */
 	public function __construct()

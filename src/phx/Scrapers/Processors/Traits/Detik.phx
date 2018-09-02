@@ -83,6 +83,7 @@ trait Detik
 		} else {
 			icelog("Could not get images");
 		}
+		return true;
 	}
 
 	/**

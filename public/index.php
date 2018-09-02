@@ -106,6 +106,7 @@ $sites = [
 	"Viva" => "viva.co.id",
 	"Jpnn" => "jpnn.com",
 	"Kabardaerah" => "kabardaerah.com",
+	"Indonesiatimur" => "indonesiatimur.co",
 ];
 $i = 1;
 $total = 0;

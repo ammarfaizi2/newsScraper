@@ -14,21 +14,15 @@ use Phx\Scrapers\Processors\Jpnn as JpnnProcessor;
 final class Jpnn extends NewsScraper
 {
 	const targetList = [
-		"Sumatera Utara" => "https://www.jpnn.com/daerah/sumut",
-		"Jambi" => "https://www.jpnn.com/daerah/jambi",
-		"Sumatera Selatan" => "https://www.jpnn.com/daerah/sumsel",
-		"Kalimantan Barat" =>  "https://www.jpnn.com/daerah/kalbar",
-		"Kalimantan Tengah" => "https://www.jpnn.com/daerah/kalteng",
-		"Kalimantan Selatan" => "https://www.jpnn.com/daerah/kalsel",
-		"Kalimantan Timur" => "https://www.jpnn.com/daerah/kaltim",
-		"Kalimantan Utara" => "https://www.jpnn.com/daerah/kaltara",
-		"Sulawesi Utara" => "https://www.jpnn.com/daerah/sultra",
-		"Sulawesi Selatan" => "https://www.jpnn.com/daerah/sulsel",
-		"Gorontalo" => "https://www.jpnn.com/daerah/gorontalo",
-		"Maluku" => "https://www.jpnn.com/daerah/maluku",
-		"Maluku Utara" => "https://www.jpnn.com/daerah/maluku-utara",
-		"Papua Barat" => "https://www.jpnn.com/daerah/papua-barat",
-		"Papua" => "https://www.jpnn.com/daerah/papua"
+			"https://daerah.sindonews.com/batam",
+	"https://daerah.sindonews.com/palembang",
+	"https://daerah.sindonews.com/jabar",
+	"https://daerah.sindonews.com/jateng",
+	"https://daerah.sindonews.com/diy",
+	"https://daerah.sindonews.com/jatim",
+	"https://daerah.sindonews.com/topic/10472/pemprov-kalimantan-tengah",
+	"https://daerah.sindonews.com/manado",
+	"https://search.sindonews.com/search?q=maluku&type=artikel",
 	];
 
 	/**

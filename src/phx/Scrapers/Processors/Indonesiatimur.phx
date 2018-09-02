@@ -126,9 +126,6 @@ final class Indonesiatimur implements PhxScraperProcessor
 
 	private function mget()
 	{
-		$this->html = file_get_contents("a.tmp");
-		return true;
-
 		$l = $this->newsScraper->exec($this->url);
 
 		if (isset($l["error"]) && $l["error"]) {

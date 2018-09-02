@@ -137,6 +137,7 @@ final class Indonesiatimur extends NewsScraper
 					icelog("Could not find out index.");
 				}
 			}
+			break;
 		} while ($nnn);
 
 		$urls = array_unique($urls);

@@ -48,7 +48,9 @@ trait Indonesiatimur
 		}
 
 		if (preg_match(
-			"/(?:<meta name=\"keywords\" content=\")(.*)(?:\")/Usi"
+			"/(?:<meta name=\"keywords\" content=\")(.*)(?:\")/Usi",
+			$this->html,
+			$m
 		)) {
 			$tagsPointer = &$this->tags;
 			$m[1] = explode(",", $m[1]);

@@ -200,6 +200,8 @@ trait Kabardaerah
 					return false;
 				}
 
+				$this->contentType = "news";
+
 				icelog("Got content with %d characters", $len);
 				return true;
 			}

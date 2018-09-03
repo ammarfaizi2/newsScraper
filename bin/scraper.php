@@ -16,6 +16,7 @@ use Phx\Scrapers\Tribunnews;
 use Phx\Scrapers\Antaranews;
 use Phx\Scrapers\Kabardaerah;
 use Phx\Scrapers\Indonesiatimur;
+use Phx\Scrapers\Sindonews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -81,6 +82,10 @@ switch ($argv[1]) {
 	case 'indonesiatimur':
 		$st = new Indonesiatimur;
 		#define("LOG_FILE", "indonesiatimur.log");
+		break;
+
+	case 'sindonews':
+		$st = new Sindonews;
 		break;
 
 	default:

@@ -38,6 +38,12 @@ final class Sindonews extends NewsScraper
 	];
 
 	/**
+	 * @var bool
+	 * Set to true if you want to scrap just the first page
+	 */
+	private $justFirstPage = true;
+
+	/**
 	 * @var array
 	 */
 	protected $data = [];
@@ -176,6 +182,10 @@ final class Sindonews extends NewsScraper
 					});
 			} else {
 				icelog("Urls not found");
+			}
+
+			if( $this->justFirstPage ) {
+				break;
 			}
 
 			$i++;

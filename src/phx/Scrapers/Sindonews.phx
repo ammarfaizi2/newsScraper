@@ -32,7 +32,7 @@ final class Sindonews extends NewsScraper
 		"Jawa Tengah"	=> "22",
 		"Jawa Timur"	=> "23",
 		"Batam"			=> "194",
-		"Palembang"		=> "190,
+		"Palembang"		=> "190",
 		"Daerah Istimewa Yogyakarta" => "189",
 		"Manado"		=> "193",
 	];

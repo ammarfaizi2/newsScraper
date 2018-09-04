@@ -192,9 +192,9 @@ final class Medansatu implements PhxScraperProcessor
 
 	private function doContent(string $string)
 	{
-		if ( preg_match("/<\/div><p>(.*?)<\/p><div/", $string, $m) ) {
+		if ( preg_match("/\"><\/div><p>([\S|\s]*?)<\/p><div style=\"clear\:both\">/", $string, $m) ) {
             $rawContent = $m[1];
-            $rawContent = preg_replace("/<script>([\s|\S|\t|\n]*)<\/script>/", "", $rawContent);
+            $rawContent = preg_replace("/<div ([\s|\S]*?)<\/div>/", "", $rawContent);
 
             if( preg_match("/\(medansatu\.com\/(.*?)\)/", $rawContent, $n) ) {
                 $author = trim(html_entity_decode($n[1], ENT_QUOTES, "UTF-8"));

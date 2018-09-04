@@ -18,6 +18,7 @@ use Phx\Scrapers\Antaranews;
 use Phx\Scrapers\Kabardaerah;
 use Phx\Scrapers\Indonesiatimur;
 use Phx\Scrapers\Sindonews;
+use Phx\Scrapers\Banteninfo;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";

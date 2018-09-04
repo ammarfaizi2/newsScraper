@@ -3,7 +3,7 @@
 namespace Phx\Scrapers;
 
 use Phx\NewsScraper;
-use Phx\Scrapers\Processors\Jpnn as JpnnProcessor;
+use Phx\Scrapers\Processors\Gonews as GonewsProcessor;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -67,7 +67,7 @@ final class Gonews extends NewsScraper
 				$urls = $this->parseThreadUrlList($l["out"]);
 				icelog("Scraping ".count($urls)." threads...");
 				foreach($urls as $url) {
-					$this->processor = new JpnnProcessor($url, $this);
+					$this->processor = new GonewsProcessor($url, $this);
 					if ($this->processor->run()) {
 						$this->processor->setRegional(trim($key, "_"));
 						icelog("Writing data...");
@@ -87,8 +87,6 @@ final class Gonews extends NewsScraper
 	{
 		$urls = [];
 
-		$string = file_get_contents("aa.tmp");
-
 		if (preg_match_all(
 			"/(?:<a class=\"headline-sublink\" href=\")(.*)(?:\")/Usi",
 			$string,
@@ -103,20 +101,22 @@ final class Gonews extends NewsScraper
 				}
 			});
 		}
-		var_dump($urls);
 
-		die;
 
-		$keyword = explode("/", $this->currentUrl);
-		$keyword = $keyword[count($keyword) - 1];
-		$i = 0;
-		$reg = explode("/", $this->currentUrl);
-		$reg = end($reg);
-		$ppg = 1;
+		// // Next time we need the paginate scraper.
+		// // Due to the short deadline we are skipped this section.
+		//
+		//
+		// $keyword = explode("/", $this->currentUrl);
+		// $keyword = $keyword[count($keyword) - 1];
+		// $i = 0;
+		// $reg = explode("/", $this->currentUrl);
+		// $reg = end($reg);
+		// $ppg = 1;
 
-		do {
+		// do {
 
-		} while ($nn);
+		// } while ($nn);
 		
 		$urls = array_unique($urls);
 		icelog("Got ".count($urls)." unique threads...");

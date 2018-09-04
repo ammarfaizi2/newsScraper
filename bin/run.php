@@ -21,7 +21,8 @@ $param = [
 	"indonesiatimur",
 	"sindonews",
 	"sumutpos",
-	"kabarmedan"
+	"kabarmedan",
+	"medansatu"
 ];
 
 

@@ -107,7 +107,9 @@ final class Banteninfo implements PhxScraperProcessor
 		icelog("Scraping {$this->url}...");
 		
 		if ($this->mget()) {
-			$this->scrape();
+			if ($this->scrape()) {
+				return true;
+			}
 		}
 
 		icelog("URL does not match!");
@@ -117,6 +119,10 @@ final class Banteninfo implements PhxScraperProcessor
 
 	private function mget()
 	{
+
+		$this->html = file_get_contents("aa.tmp");
+		return true;
+		
 		$l = $this->newsScraper->exec($this->url);
 
 		if (isset($l["error"]) && $l["error"]) {

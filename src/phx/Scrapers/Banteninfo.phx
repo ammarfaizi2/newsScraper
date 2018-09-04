@@ -58,7 +58,7 @@ final class Banteninfo extends NewsScraper
 				$urls = $this->parseThreadUrlList($l["out"]);
 				icelog("Scraping ".count($urls)." threads...");
 				foreach($urls as $url) {
-					$this->processor = new AntaranewsProcessor($url, $this);
+					$this->processor = new BanteninfoProcessor($url, $this);
 					if ($this->processor->run()) {
 						icelog("Writing data...");
 						$this->processor->setRegional(trim($key, "_"));
@@ -80,12 +80,16 @@ final class Banteninfo extends NewsScraper
 	
 		if (preg_match_all(
 			"/(?:<h3 class=\"entry-title td-module-title\"><a href=\")(.*)(?:\")/Usi",
-			$this->html,
+			$string,
 			$m
 		)) {
-			
+			array_walk($m[1], function ($url) use (&$urls) {
+				$url = trim(html_entity_decode($url));
+				if ($url !== "") {
+					$urls[] = $url;
+				}
+			});
 		}
-		var_dump($m);
 
 		$urls = array_unique($urls);
 		icelog("Filtering scraped threads...");

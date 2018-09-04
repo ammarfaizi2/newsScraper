@@ -171,7 +171,7 @@ final class Sindonews implements PhxScraperProcessor
             $exp_keywords = explode(',', $keywords);
 
             foreach ($exp_keywords AS $key => $keyword) {
-                $this->keywords[] = ucwords($keyword);
+                $this->tags[] = ucwords($keyword);
                 icelog("Got keyword: " . ucwords($keyword));
             }
 

@@ -94,7 +94,12 @@ switch ($argv[1]) {
 	case 'gonews':
 		$st = new Gonews;
 		#define("LOG_FILE", "gonews.log");
-		break;		
+		break;
+
+	case 'banteninfo':
+		$st = new Banteninfo;
+		#define("LOG_FILE", "bateninfo.log");
+		break;
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

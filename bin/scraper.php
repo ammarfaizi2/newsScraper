@@ -19,6 +19,7 @@ use Phx\Scrapers\Indonesiatimur;
 use Phx\Scrapers\Sindonews;
 use Phx\Scrapers\Sumutpos;
 use Phx\Scrapers\Kabarmedan;
+use Phx\Scrapers\Medansatu;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -96,6 +97,10 @@ switch ($argv[1]) {
 
 	case 'kabarmedan':
 		$st = new Kabarmedan;
+		break;
+
+	case 'medansatu':
+		$st = new Medansatu;
 		break;
 
 	default:

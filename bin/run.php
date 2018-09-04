@@ -19,7 +19,8 @@ $param = [
 	"jpnn",
 	"kabardaerah",
 	"indonesiatimur",
-	"sindonews"
+	"sindonews",
+	"sumutpos"
 ];
 
 

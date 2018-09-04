@@ -10,6 +10,7 @@ use Phx\Scrapers\Jpnn;
 use Phx\Scrapers\Viva;
 use Phx\Scrapers\Suara;
 use Phx\Scrapers\Detik;
+use Phx\Scrapers\Gonews;
 use Phx\Scrapers\Kompas;
 use Phx\Scrapers\Liputan6;
 use Phx\Scrapers\Tribunnews;
@@ -86,7 +87,13 @@ switch ($argv[1]) {
 
 	case 'sindonews':
 		$st = new Sindonews;
+		#define("LOG_FILE", "sindonews.log");
 		break;
+
+	case 'gonews':
+		$st = new Gonews;
+		#define("LOG_FILE", "gonews.log");
+		break;		
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

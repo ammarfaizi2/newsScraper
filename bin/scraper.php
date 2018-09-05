@@ -25,6 +25,7 @@ use Phx\Scrapers\Goaceh;
 use Phx\Scrapers\Prohaba;
 use Phx\Scrapers\Modusaceh;
 use Phx\Scrapers\Ajnn;
+use Phx\Scrapers\Portalsatu;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -126,6 +127,10 @@ switch ($argv[1]) {
 	
 	case 'ajnn':
 		$st = new Ajnn;
+		break;
+
+	case 'portalsatu':
+		$st = new Portalsatu;
 		break;
 
 	default:

@@ -26,7 +26,8 @@ $param = [
 	"kabarsumut",
 	"goaceh",
 	"prohaba",
-	"modusaceh"
+	"modusaceh",
+	"ajnn"
 ];
 
 

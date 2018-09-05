@@ -117,6 +117,7 @@ switch ($argv[1]) {
 	case 'prohaba':
 		$st = new Prohaba;
 		break;
+		
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

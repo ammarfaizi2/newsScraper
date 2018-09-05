@@ -22,6 +22,7 @@ use Phx\Scrapers\Kabarmedan;
 use Phx\Scrapers\Medansatu;
 use Phx\Scrapers\Kabarsumut;
 use Phx\Scrapers\Goaceh;
+use Phx\Scrapers\Prohaba;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -111,6 +112,10 @@ switch ($argv[1]) {
 
 	case 'goaceh':
 		$st = new Goaceh;
+		break;
+
+	case 'prohaba':
+		$st = new Prohaba;
 		break;
 
 	default:

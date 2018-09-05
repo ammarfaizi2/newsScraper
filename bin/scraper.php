@@ -23,6 +23,7 @@ use Phx\Scrapers\Medansatu;
 use Phx\Scrapers\Kabarsumut;
 use Phx\Scrapers\Goaceh;
 use Phx\Scrapers\Prohaba;
+use Phx\Scrapers\Modusaceh;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -117,7 +118,10 @@ switch ($argv[1]) {
 	case 'prohaba':
 		$st = new Prohaba;
 		break;
-		
+
+	case 'modusaceh':
+		$st = new Modusaceh;
+		break;
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

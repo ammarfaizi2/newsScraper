@@ -23,7 +23,8 @@ $param = [
 	"sumutpos",
 	"kabarmedan",
 	"medansatu",
-	"kabarsumut"
+	"kabarsumut",
+	"goaceh"
 ];
 
 

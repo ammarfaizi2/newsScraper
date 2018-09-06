@@ -26,6 +26,7 @@ use Phx\Scrapers\Goaceh;
 use Phx\Scrapers\Prohaba;
 use Phx\Scrapers\Modusaceh;
 use Phx\Scrapers\Ajnn;
+use Phx\Scrapers\Banteninfo;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";

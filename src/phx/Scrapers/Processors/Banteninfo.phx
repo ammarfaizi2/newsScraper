@@ -107,10 +107,10 @@ final class Banteninfo implements PhxScraperProcessor
 		icelog("Scraping {$this->url}...");
 		
 		if ($this->mget()) {
-			$this->scrape();
+			if ($this->scrape()) {
+				return true;
+			}
 		}
-
-		icelog("URL does not match!");
 
 		return false;
 	}

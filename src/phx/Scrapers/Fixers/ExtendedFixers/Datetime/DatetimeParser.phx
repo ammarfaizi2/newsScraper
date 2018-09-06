@@ -36,6 +36,7 @@ final class DatetimeParser
 	const DF3 = 13;
 
 	/**
+	 * "2018-08-22T21:12:00+0700"
 	 * "2018-08-04T22:49:21+07:00"
 	 */
 	const DF4 = 14;
@@ -174,7 +175,7 @@ final class DatetimeParser
 			$this->matches = $m;
 			return true;
 		} elseif (preg_match(
-			"/^\d{4}-\d{2}-\d{2}T(\d{2}:){2}(\d{2})\+(\d{2}:\d{2})?$/",
+			"/^\d{4}-\d{2}-\d{2}T(\d{2}:){2}(\d{2})\+(\d{2}:?\d{2})?$/",
 			$this->input,
 			$m
 		)) {

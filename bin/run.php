@@ -28,7 +28,8 @@ $param = [
 	"prohaba",
 	"modusaceh",
 	"ajnn",
-	"portalsatu"
+	"portalsatu",
+	"gonews",
 ];
 
 

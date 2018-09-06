@@ -10,6 +10,7 @@ use Phx\Scrapers\Jpnn;
 use Phx\Scrapers\Viva;
 use Phx\Scrapers\Suara;
 use Phx\Scrapers\Detik;
+use Phx\Scrapers\Gonews;
 use Phx\Scrapers\Kompas;
 use Phx\Scrapers\Liputan6;
 use Phx\Scrapers\Tribunnews;
@@ -26,6 +27,7 @@ use Phx\Scrapers\Prohaba;
 use Phx\Scrapers\Modusaceh;
 use Phx\Scrapers\Ajnn;
 use Phx\Scrapers\Portalsatu;
+use Phx\Scrapers\Banteninfo;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -95,6 +97,17 @@ switch ($argv[1]) {
 
 	case 'sindonews':
 		$st = new Sindonews;
+		#define("LOG_FILE", "sindonews.log");
+		break;
+
+	case 'gonews':
+		$st = new Gonews;
+		#define("LOG_FILE", "gonews.log");
+		break;
+
+	case 'banteninfo':
+		$st = new Banteninfo;
+		#define("LOG_FILE", "bateninfo.log");
 		break;
 
 	case 'sumutpos':
@@ -132,6 +145,17 @@ switch ($argv[1]) {
 	case 'portalsatu':
 		$st = new Portalsatu;
 		break;
+
+	case 'gonews':
+		$st = new Gonews;
+		#define("LOG_FILE", "gonews.log");
+		break;
+
+	case 'banteninfo':
+		$st = new Banteninfo;
+		#define("LOG_FILE", "bateninfo.log");
+		break;
+
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

@@ -1,17 +1,18 @@
 #!/bin/bash
 
-merge='git merge master'
+merge='git merge '
 checkout='git checkout'
 branches={wordcloud,api,datetime_parser,dev_{ajnn,antaranews,banteninfo,detik,goaceh,gonews,indonesiatimur,jpnn,kabardaerah,kabarmedan,kabarsumut,kompas,liputan6,medansatu,modusaceh,portalsatu,prohaba,sindonews,suara,sumutpos,tribunnews,viva}}
 
-# Merge master branch to other branches.
+# Merge other branches to master branch
 
-$checkout master
+$checkout master;
 
 bash -c "
 for branch in $branches; do
+	git branch \$branch;
 	$checkout \$branch;
-	$merge;
+	git pull --rebase -vvv origin \$branch;
 done;
 "
 

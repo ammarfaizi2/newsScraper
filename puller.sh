@@ -12,7 +12,7 @@ bash -c "
 for branch in $branches; do
 	git branch \$branch;
 	$checkout \$branch;
-	git pull --rebase -vvv \$branch;
+	git pull --rebase -vvv origin \$branch;
 done;
 "
 

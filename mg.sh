@@ -6,10 +6,11 @@ branches={wordcloud,api,datetime_parser,dev_{ajnn,antaranews,banteninfo,detik,go
 
 # Merge other branches to master branch
 
+$checkout master;
+
 bash -c "
 for branch in $branches; do
-	$checkout master;
-	$merge \$branch --progress --verbose;
+	git branch \$branch >> /dev/null 2>&1 && $merge \$branch --progress --verbose;
 done;
 "
 

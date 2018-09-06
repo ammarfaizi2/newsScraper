@@ -33,6 +33,24 @@ final class Portalsatu implements PhxScraperProcessor
 	 */
 	private $title = "";
 
+	/*
+	 * @var Array
+	 */
+	private $substrDates = array(
+        'Jan' => "01",
+        'Feb' => "02",
+        'Mar' => "03",
+        'Apr' => "04",
+        'Mei' => "05",
+        'Jun' => "06",
+        'Jul' => "07",
+        'Agu' => "08",
+        'Sep' => "09",
+        'Okt' => "10",
+        'Nov' => "11",
+        'Des' => "12"
+    );
+
 	/**
 	 * @var array
 	 */
@@ -162,8 +180,11 @@ final class Portalsatu implements PhxScraperProcessor
 
         // Get date and time
         if ( preg_match("/<li class=\"small\"> (.*?) WIB<\/li>/", $l["out"], $m) ) {
-            icelog("Got date and time: " . $m[1]);
-            $this->datetime = $m[1];
+			$datetime = $this->formatDate($m[1]);
+			if( $datetime != false ) {
+				icelog("Got date and time: " . $m[1]);
+				$this->datetime = $datetime;
+			}
         }
 
         // Get Tags 
@@ -204,6 +225,18 @@ final class Portalsatu implements PhxScraperProcessor
 
         
 		return true;
+	}
+
+	private function formatDate(string $date)
+	{
+		$expDate = explode(" ", $date);
+		if( count($expDate) > 1 ) {
+			$sub = substr($expDate[1], 0, 3);
+			if( isset($this->substrDates[$sub]) ) {
+				return $expDate[2].'-'.$this->substrDates[$sub].'-'.$expDate[0].' '.$expDate[3].':00';
+			}
+		}
+		return false;
 	}
 
 	private function doContent(string $string)

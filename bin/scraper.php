@@ -96,6 +96,17 @@ switch ($argv[1]) {
 
 	case 'sindonews':
 		$st = new Sindonews;
+		#define("LOG_FILE", "sindonews.log");
+		break;
+
+	case 'gonews':
+		$st = new Gonews;
+		#define("LOG_FILE", "gonews.log");
+		break;
+
+	case 'banteninfo':
+		$st = new Banteninfo;
+		#define("LOG_FILE", "bateninfo.log");
 		break;
 
 	case 'sumutpos':

@@ -26,6 +26,7 @@ use Phx\Scrapers\Goaceh;
 use Phx\Scrapers\Prohaba;
 use Phx\Scrapers\Modusaceh;
 use Phx\Scrapers\Ajnn;
+use Phx\Scrapers\Matatelinga;
 use Phx\Scrapers\Portalsatu;
 use Phx\Scrapers\Banteninfo;
 
@@ -154,6 +155,10 @@ switch ($argv[1]) {
 	case 'banteninfo':
 		$st = new Banteninfo;
 		#define("LOG_FILE", "bateninfo.log");
+		break;
+	
+	case 'matatelinga':
+		$st = new Matatelinga;
 		break;
 
 

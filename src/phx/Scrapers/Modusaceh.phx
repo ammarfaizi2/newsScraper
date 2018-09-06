@@ -175,12 +175,12 @@ final class Modusaceh extends NewsScraper
 		icelog("Filtering scraped threads...");
 		$i = 0;
 
-		/* foreach ($urls as $key => $url) {
+		foreach ($urls as $key => $url) {
 			if ($this->hashCheck($url)) {
 				$i++;
 				unset($urls[$key]);
 			}
-		} */
+		}
 
 		if ($i > 0) {
 			icelog("{$i} thread(s) ".($i > 1 ? "are" : "is")." skipped because ".($i > 1 ? "they have" : "it has")." already been scraped");

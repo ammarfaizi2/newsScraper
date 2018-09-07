@@ -69,11 +69,11 @@ if ($end_date < $start_date) {
 $pdo = DB::pdo();
 
 $query = <<<QUERY
-SELECT `tags`.`tag_name`, COUNT(1) AS `count` 
-FROM `tags` 
+SELECT `tags`.`tag_name`, COUNT(1) AS `count`
+FROM `tags`
 INNER JOIN `news` ON `tags`.`news_id` = `news`.`id`
-INNER JOIN `regional` ON `regional`.`regional` = `news`.`regional` 
-WHERE `news`.`datetime` >= :start_date AND `news`.`datetime` <= :end_date 
+INNER JOIN `regional` ON `regional`.`regional` = `news`.`regional`
+WHERE `news`.`datetime` >= :start_date AND `news`.`datetime` <= :end_date
 QUERY;
 
 if(!is_null($regional_id)) {
@@ -102,16 +102,19 @@ if(!is_null($regional_id)) {
     $execute_param[":regional_id"] = $regional_id;
 }
 
+$wordcloud = "";
+
 $st->execute($execute_param);
 while($r = $st->fetch(PDO::FETCH_ASSOC)) {
-    $dataset[$r["tag_name"]] = $r["count"];
+    for($i = 0; $i < $r["count"]; $i++) {
+        $wordcloud .= $r["tag_name"] . " ";
+    }
 }
+
 
 print json_encode(
     [
         "status" => "ok",
-        "message" => [
-            "topics" => $dataset
-        ]
+        "result" => $wordcloud
     ]
 );

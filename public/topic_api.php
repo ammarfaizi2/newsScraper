@@ -94,8 +94,8 @@ $zeroDay = date("Y-m-d", $start_date);
 $endDay = date("Y-m-d", $end_date);
 
 $execute_param = [
-    ":start_date" => $zeroDay,
-    ":end_date" => $endDay,
+    ":start_date" => $start_date,
+    ":end_date" => $end_date,
 ];
 
 if(!is_null($regional_id)) {

@@ -29,6 +29,8 @@ use Phx\Scrapers\Ajnn;
 use Phx\Scrapers\Matatelinga;
 use Phx\Scrapers\Portalsatu;
 use Phx\Scrapers\Banteninfo;
+use Phx\Scrapers\Beritasumut;
+
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -161,6 +163,9 @@ switch ($argv[1]) {
 		$st = new Matatelinga;
 		break;
 
+	case 'beritasumut':
+		$st = new Beritasumut;
+		break;
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

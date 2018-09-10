@@ -3,7 +3,7 @@
 namespace Phx\Scrapers;
 
 use Phx\NewsScraper;
-use Phx\Scrapers\Processors\Beritasumut as MatatelingaProcessor;
+use Phx\Scrapers\Processors\Beritasumut as BeritasumutProcessor;
 
 /**
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
@@ -79,7 +79,7 @@ final class Beritasumut extends NewsScraper
 				icelog("Scraping ".count($urls)." threads...");
 				foreach($urls as $url) {
 					icelog("Scraping {$url} ");
-					$this->processor = new MatatelingaProcessor($url, $this);
+					$this->processor = new BeritasumutProcessor($url, $this);
 					if ($this->processor->run()) {
 						$this->processor->setRegional(trim($key, "_"));
 						icelog("Writing data...");
@@ -176,12 +176,12 @@ final class Beritasumut extends NewsScraper
 		icelog("Filtering scraped threads...");
 		$i = 0;
 
-		foreach ($urls as $key => $url) {
+		/* foreach ($urls as $key => $url) {
 			if ($this->hashCheck($url)) {
 				$i++;
 				unset($urls[$key]);
 			}
-		}
+		} */
 
 		if ($i > 0) {
 			icelog("{$i} thread(s) ".($i > 1 ? "are" : "is")." skipped because ".($i > 1 ? "they have" : "it has")." already been scraped");

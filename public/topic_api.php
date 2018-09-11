@@ -18,8 +18,8 @@ if (isset($_GET["regional_id"])) {
                 "error_msg" => "regional_id must be a string or integer"
             ]
         ));
-        $regional_id = $_GET["regional_id"];
     }
+    $regional_id = $_GET["regional_id"];
 }
 
 $start_date = time()-(3600*24*7);
@@ -77,7 +77,7 @@ WHERE `news`.`datetime` >= :start_date AND `news`.`datetime` <= :end_date
 QUERY;
 
 if(!is_null($regional_id)) {
-    $query .= "AND `regional`.`id` = :regional_id";
+    $query .= " AND `regional`.`id` = :regional_id ";
 }
 
 $query .= <<<QUERY

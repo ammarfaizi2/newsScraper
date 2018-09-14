@@ -35,7 +35,8 @@ $param = [
 	"gosumut",
 	"waspada",
 	"hargasumut",
-	"kabarsumbar"
+	"kabarsumbar",
+	"hariansinggalang"
 ];
 
 

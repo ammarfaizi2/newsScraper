@@ -32,6 +32,7 @@ use Phx\Scrapers\Banteninfo;
 use Phx\Scrapers\Beritasumut;
 use Phx\Scrapers\Gosumut;
 use Phx\Scrapers\Waspada;
+use Phx\Scrapers\Hargasumut;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -174,6 +175,10 @@ switch ($argv[1]) {
 
 	case 'waspada':
 		$st = new Waspada;
+		break;
+
+	case 'hargasumut':
+		$st = new Hargasumut;
 		break;
 
 	default:

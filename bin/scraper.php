@@ -34,6 +34,7 @@ use Phx\Scrapers\Gosumut;
 use Phx\Scrapers\Waspada;
 use Phx\Scrapers\Hargasumut;
 use Phx\Scrapers\Kabarsumbar;
+use Phx\Scrapers\Hariansinggalang;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -184,6 +185,10 @@ switch ($argv[1]) {
 		
 	case 'kabarsumbar':
 		$st = new Kabarsumbar;
+		break;
+
+	case 'hariansinggalang':
+		$st = new Hariansinggalang;
 		break;
 
 	default:

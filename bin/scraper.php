@@ -36,6 +36,7 @@ use Phx\Scrapers\Hargasumut;
 use Phx\Scrapers\Kabarsumbar;
 use Phx\Scrapers\Hariansinggalang;
 use Phx\Scrapers\Minangkabaunews;
+use Phx\Scrapers\Kabarpadang;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -194,6 +195,10 @@ switch ($argv[1]) {
 
 	case 'minangkabaunews':
 		$st = new Minangkabaunews;
+		break;
+
+	case 'kabarpadang':
+		$st = new Kabarpadang;
 		break;
 
 	default:

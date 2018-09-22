@@ -40,6 +40,7 @@ use Phx\Scrapers\Kabarpadang;
 use Phx\Scrapers\Gosumbar;
 use Phx\Scrapers\Harianhaluan;
 use Phx\Scrapers\Infosumbar;
+use Phx\Scrapers\Beritasumbar;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -214,6 +215,10 @@ switch ($argv[1]) {
 
 	case 'infosumbar':
 		$st = new Infosumbar;
+		break;
+
+	case 'beritasumbar':
+		$st = new Beritasumbar;
 		break;
 
 	default:

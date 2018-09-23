@@ -44,6 +44,7 @@ use Phx\Scrapers\Beritasumbar;
 use Phx\Scrapers\Redaksisumbar;
 use Phx\Scrapers\Riauterkini;
 use Phx\Scrapers\Goriau;
+use Phx\Scrapers\Riaugreen;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -234,6 +235,10 @@ switch ($argv[1]) {
 
 	case 'goriau':
 		$st = new Goriau;
+		break;
+
+	case 'riaugreen':
+		$st = new Riaugreen;
 		break;
 
 	default:

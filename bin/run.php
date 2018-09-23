@@ -42,7 +42,8 @@ $param = [
 	"gosumbar",
 	"harianhaluan",
 	"infosumbar",
-	"beritasumbar"
+	"beritasumbar",
+	"redaksisumbar"
 ];
 
 

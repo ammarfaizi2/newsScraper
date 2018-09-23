@@ -46,7 +46,8 @@ $param = [
 	"redaksisumbar",
 	"riauterkini",
 	"goriau",
-	"riaugreen"
+	"riaugreen",
+	"beritariau"
 ];
 
 

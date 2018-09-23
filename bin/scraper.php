@@ -42,6 +42,7 @@ use Phx\Scrapers\Harianhaluan;
 use Phx\Scrapers\Infosumbar;
 use Phx\Scrapers\Beritasumbar;
 use Phx\Scrapers\Redaksisumbar;
+use Phx\Scrapers\Riauterkini;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -224,6 +225,10 @@ switch ($argv[1]) {
 
 	case 'redaksisumbar':
 		$st = new Redaksisumbar;
+		break;
+
+	case 'riauterkini':
+		$st = new Riauterkini;
 		break;
 
 	default:

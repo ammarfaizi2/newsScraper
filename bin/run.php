@@ -47,7 +47,8 @@ $param = [
 	"riauterkini",
 	"goriau",
 	"riaugreen",
-	"beritariau"
+	"beritariau",
+	"riausky"
 ];
 
 

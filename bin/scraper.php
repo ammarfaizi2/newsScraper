@@ -49,6 +49,7 @@ use Phx\Scrapers\Beritariau;
 use Phx\Scrapers\Riausky;
 use Phx\Scrapers\Inforiauco;
 use Phx\Scrapers\Infoinhil;
+use Phx\Scrapers\Sijorikepri;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -259,6 +260,10 @@ switch ($argv[1]) {
 
 	case 'infoinhil':
 		$st = new Infoinhil;
+		break;
+
+	case 'sijorikepri':
+		$st = new Sijorikepri;
 		break;
 
 	default:

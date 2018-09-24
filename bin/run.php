@@ -50,6 +50,7 @@ $param = [
 	"beritariau",
 	"riausky",
 	"inforiauco",
+	"infoinhil",
 ];
 
 

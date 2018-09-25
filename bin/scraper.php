@@ -54,6 +54,7 @@ use Phx\Scrapers\Lendoot;
 use Phx\Scrapers\Tanjungpinangpos;
 use Phx\Scrapers\Batamtoday;
 use Phx\Scrapers\Batampos;
+use Phx\Scrapers\Lintaskepri;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -284,6 +285,10 @@ switch ($argv[1]) {
 
 	case 'batampos':
 		$st = new Batampos;
+		break;
+
+	case 'lintaskepri':
+		$st = new Lintaskepri;
 		break;
 
 	default:

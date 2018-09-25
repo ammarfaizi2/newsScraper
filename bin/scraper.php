@@ -51,6 +51,7 @@ use Phx\Scrapers\Inforiauco;
 use Phx\Scrapers\Infoinhil;
 use Phx\Scrapers\Sijorikepri;
 use Phx\Scrapers\Lendoot;
+use Phx\Scrapers\Tanjungpinangpos;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -269,6 +270,10 @@ switch ($argv[1]) {
 
 	case 'lendoot':
 		$st = new Lendoot;
+		break;
+
+	case 'tanjungpinangpos':
+		$st = new Tanjungpinangpos;
 		break;
 
 	default:

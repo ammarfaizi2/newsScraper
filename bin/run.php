@@ -52,6 +52,7 @@ $param = [
 	"inforiauco",
 	"infoinhil",
 	"sijorikepri",
+	"lendoot",
 ];
 
 

@@ -56,6 +56,7 @@ $param = [
 	"tanjungpinangpos",
 	"batamtoday",
 	"batampos",
+	"lintaskepri",
 ];
 
 

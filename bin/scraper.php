@@ -63,6 +63,7 @@ use Phx\Scrapers\Kepriinfo;
 use Phx\Scrapers\Infojambi;
 use Phx\Scrapers\Jambiupdate;
 use Phx\Scrapers\Metrojambi;
+use Phx\Scrapers\Jambiindependent;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -329,6 +330,10 @@ switch ($argv[1]) {
 
 	case 'metrojambi':
 		$st = new Metrojambi;
+		break;
+
+	case 'jambiindependent':
+		$st = new Jambiindependent;
 		break;
 
 	default:

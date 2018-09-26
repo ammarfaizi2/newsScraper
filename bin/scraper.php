@@ -57,6 +57,7 @@ use Phx\Scrapers\Batampos;
 use Phx\Scrapers\Lintaskepri;
 use Phx\Scrapers\Visitkepri;
 use Phx\Scrapers\Kepricoid;
+use Phx\Scrapers\Infokepri;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -299,6 +300,10 @@ switch ($argv[1]) {
 
 	case 'kepricoid':
 		$st = new Kepricoid;
+		break;
+
+	case 'infokepri':
+		$st = new Infokepri;
 		break;
 
 	default:

@@ -64,6 +64,7 @@ $param = [
 	"kepriinfo",
 	"infojambi",
 	"jambiupdate",
+	"metrojambi",
 ];
 
 

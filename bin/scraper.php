@@ -60,6 +60,7 @@ use Phx\Scrapers\Kepricoid;
 use Phx\Scrapers\Infokepri;
 use Phx\Scrapers\Keprionline;
 use Phx\Scrapers\Kepriinfo;
+use Phx\Scrapers\Infojambi;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -314,6 +315,10 @@ switch ($argv[1]) {
 
 	case 'kepriinfo':
 		$st = new Kepriinfo;
+		break;
+
+	case 'infojambi':
+		$st = new Infojambi;
 		break;
 
 	default:

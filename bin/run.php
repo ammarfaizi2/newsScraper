@@ -60,6 +60,7 @@ $param = [
 	"visitkepri",
 	"kepricoid",
 	"infokepri",
+	"keprionline",
 ];
 
 

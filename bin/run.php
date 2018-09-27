@@ -66,6 +66,7 @@ $param = [
 	"jambiupdate",
 	"metrojambi",
 	"jambiindependent",
+	"fokusjambi",
 ];
 
 

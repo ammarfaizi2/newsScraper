@@ -68,6 +68,7 @@ $param = [
 	"jambiindependent",
 	"fokusjambi",
 	"jambiekspres",
+	"beritajambi",
 ];
 
 

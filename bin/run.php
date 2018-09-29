@@ -70,6 +70,7 @@ $param = [
 	"jambiekspres",
 	"beritajambi",
 	"detiksumsel",
+	"palembangpos",
 ];
 
 

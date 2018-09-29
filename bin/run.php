@@ -69,6 +69,7 @@ $param = [
 	"fokusjambi",
 	"jambiekspres",
 	"beritajambi",
+	"detiksumsel",
 ];
 
 

@@ -70,6 +70,7 @@ use Phx\Scrapers\Beritajambi;
 use Phx\Scrapers\Detiksumsel;
 use Phx\Scrapers\Palembangpos;
 use Phx\Scrapers\Rmolsumsel;
+use Phx\Scrapers\Beritapagi;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -364,6 +365,10 @@ switch ($argv[1]) {
 
 	case 'rmolsumsel':
 		$st = new Rmolsumsel;
+		break;
+
+	case 'beritapagi':
+		$st = new Beritapagi;
 		break;
 
 	default:

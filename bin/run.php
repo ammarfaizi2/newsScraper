@@ -72,6 +72,7 @@ $param = [
 	"detiksumsel",
 	"palembangpos",
 	"rmolsumsel",
+	"beritapagi",
 ];
 
 

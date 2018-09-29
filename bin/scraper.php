@@ -67,6 +67,7 @@ use Phx\Scrapers\Jambiindependent;
 use Phx\Scrapers\Fokusjambi;
 use Phx\Scrapers\Jambiekspres;
 use Phx\Scrapers\Beritajambi;
+use Phx\Scrapers\Detiksumsel;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -349,6 +350,10 @@ switch ($argv[1]) {
 
 	case 'beritajambi':
 		$st = new Beritajambi;
+		break;
+
+	case 'detiksumsel':
+		$st = new Detiksumsel;
 		break;
 
 	default:

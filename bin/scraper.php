@@ -73,6 +73,7 @@ use Phx\Scrapers\Rmolsumsel;
 use Phx\Scrapers\Beritapagi;
 use Phx\Scrapers\Kabarsumatera;
 use Phx\Scrapers\Inradiofm;
+use Phx\Scrapers\Kabarbangka;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -379,6 +380,10 @@ switch ($argv[1]) {
 
 	case 'inradiofm':
 		$st = new Inradiofm;
+		break;
+
+	case 'kabarbangka':
+		$st = new Kabarbangka;
 		break;
 
 	default:

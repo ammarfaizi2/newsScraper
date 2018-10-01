@@ -73,6 +73,7 @@ $param = [
 	"palembangpos",
 	"rmolsumsel",
 	"beritapagi",
+	"kabarsumatera",
 ];
 
 

@@ -76,6 +76,7 @@ $param = [
 	"kabarsumatera",
 	"inradiofm",
 	"kabarbangka",
+	"radarbangka",
 ];
 
 

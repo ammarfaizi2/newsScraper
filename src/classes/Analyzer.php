@@ -40,7 +40,7 @@ final class Analyzer
 			$pid = pcntl_fork();
 
 			if ($pid === 0) {
-				DB::__destruct();
+				DB::getInstance()->__construct();
 				$si = DB::pdo()->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
 				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
 				print $sentiment."\n";

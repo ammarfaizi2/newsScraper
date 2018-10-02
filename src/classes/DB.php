@@ -24,6 +24,7 @@ final class DB
 	 */
 	public function __construct()
 	{
+		var_dump(123);
 		$this->pdo = new PDO(
 			"mysql:host=".DB_HOST.";port=".DB_PORT.";dbname=".DB_NAME,
 			DB_USER,

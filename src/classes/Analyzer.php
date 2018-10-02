@@ -31,8 +31,17 @@ final class Analyzer
 	{
 		$st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` WHERE `title` != '';");
 		$st->execute();
+		$si = $this->pdo->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
+
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
-			print $this->py->run("sentistrength_id.py", $r["title"]);
+			$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
+			print $sentiment."\n";
+			$si->execute(
+				[
+					"news_id" => $r["id"],
+					"sentiment" => $sentiment
+				]
+			);
 		}
 	}
 }

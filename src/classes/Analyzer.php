@@ -29,19 +29,34 @@ final class Analyzer
 	 */
 	public function run(): void
 	{
+		$maxProcesses = 10;
 		$st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` WHERE `title` != '';");
 		$st->execute();
 		$si = $this->pdo->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
 
+		pcntl_signal(SIGCHLD, SIG_IGN);
+		
+		$i = 0;
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
-			$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
-			print $sentiment."\n";
-			$si->execute(
-				[
-					"news_id" => $r["id"],
-					"sentiment" => $sentiment
-				]
-			);
+			
+			if (($i > 0) && ($i % 10 === 0)) {
+				pcntl_wait($status);
+				var_dump($status);
+			}
+
+			$pid = pcntl_fork();
+
+			if ($pid === 0) {
+				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
+				print $sentiment."\n";
+				$si->execute(
+					[
+						"news_id" => $r["id"],
+						"sentiment" => $sentiment
+					]
+				);
+				exit(0);
+			}
 		}
 	}
 }

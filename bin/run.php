@@ -80,6 +80,7 @@ $param = [
 	"rakyatpos",
 	"kabarbabel",
 	"reportasebangka",
+	"beritabangka",
 ];
 
 

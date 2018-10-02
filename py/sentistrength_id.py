@@ -3,6 +3,7 @@
 
 import re
 import sys
+import json
 from collections import OrderedDict
 import numpy as np
 
@@ -248,4 +249,4 @@ def process_stdin():
     return realinput
 
 
-print senti.main(process_stdin())
+print json.dumps(senti.main(process_stdin()))

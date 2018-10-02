@@ -24,7 +24,7 @@ final class Analyzer
 	public function run(): void
 	{
 		$maxProcesses = 10;
-		$st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` WHERE `title` != '';");
+		$st = DB::pdo()->prepare("SELECT `id`,`title` FROM `news` WHERE `title` != '';");
 		$st->execute();
 		
 		pcntl_signal(SIGCHLD, SIG_IGN);

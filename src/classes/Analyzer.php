@@ -8,4 +8,20 @@
  */
 final class Analyzer
 {
+	/**
+	 *
+	 *
+	 */
+	public function __construct()
+	{
+
+	}
+
+	/**
+	 * @return void
+	 */
+	public function run(): void
+	{
+		
+	}
 }

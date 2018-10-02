@@ -45,7 +45,7 @@ final class PhpPy
 		);
 
 		$cwd = PY_HABITAT;
-		$process = proc_open("python3 \"{$file}\"", $descriptorspec, $pipes, $cwd, $this->env);
+		$process = proc_open("python2 \"{$file}\"", $descriptorspec, $pipes, $cwd, $this->env);
 
 		if (is_resource($process)) {
 			

@@ -10,18 +10,12 @@ use PhpPy\PhpPy;
 final class Analyzer
 {
 	/**
-	 * @var \PDO
-	 */
-	private $pdo;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
 		define("PY_HABITAT", BASEPATH."/py");
 		$this->py = new PhpPy;
-		$this->pdo = DB::pdo();
 	}
 
 	/**
@@ -32,8 +26,7 @@ final class Analyzer
 		$maxProcesses = 10;
 		$st = $this->pdo->prepare("SELECT `id`,`title` FROM `news` WHERE `title` != '';");
 		$st->execute();
-		$si = $this->pdo->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
-
+		
 		pcntl_signal(SIGCHLD, SIG_IGN);
 		
 		$i = 0;
@@ -47,6 +40,7 @@ final class Analyzer
 			$pid = pcntl_fork();
 
 			if ($pid === 0) {
+				$si = DB::pdo()->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
 				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
 				print $sentiment."\n";
 				$si->execute(

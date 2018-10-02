@@ -78,6 +78,7 @@ use Phx\Scrapers\Radarbangka;
 use Phx\Scrapers\Rakyatpos;
 use Phx\Scrapers\Kabarbabel;
 use Phx\Scrapers\Reportasebangka;
+use Phx\Scrapers\Beritabangka;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -404,6 +405,10 @@ switch ($argv[1]) {
 
 	case 'reportasebangka':
 		$st = new Reportasebangka;
+		break;
+
+	case 'beritabangka':
+		$st = new Beritabangka;
 		break;
 
 	default:

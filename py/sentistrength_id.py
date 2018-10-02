@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import re
+import sys
 from collections import OrderedDict
 import numpy as np
 
@@ -238,8 +239,13 @@ config["question"]  = True
 config["exclamation"]  = True
 config["punctuation"]  = True
 senti = sentistrength(config)
-print senti.main("agnezmo pintar dan cantik sekali tetapi lintah darat :)")
+
+def process_stdin():
+    realinput = ""
+    for line in sys.stdin:
+        realinput += line
+    realinput = realinput.rstrip()
+    return realinput
 
 
-
-
+print senti.main(process_stdin())

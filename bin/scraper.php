@@ -80,6 +80,7 @@ use Phx\Scrapers\Kabarbabel;
 use Phx\Scrapers\Reportasebangka;
 use Phx\Scrapers\Beritabangka;
 use Phx\Scrapers\Beritababel;
+use Phx\Scrapers\Rmolbabel;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -414,6 +415,10 @@ switch ($argv[1]) {
 
 	case 'beritababel':
 		$st = new Beritababel;
+		break;
+
+	case 'rmolbabel':
+		$st = new Rmolbabel;
 		break;
 
 	default:

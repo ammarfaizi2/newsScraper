@@ -32,7 +32,7 @@ final class Analyzer
 		$i = 0;
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 			
-			if (($i > 0) && ($i % 20 === 0)) {
+			if (($i > 0) && ($i % 15 === 0)) {
 				pcntl_waitpid(-1, $status, WUNTRACED);
 				var_dump($status);
 			}

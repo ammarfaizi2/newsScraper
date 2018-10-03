@@ -41,7 +41,8 @@ final class Analyzer
 
 			if ($pid === 0) {
 				print "Processing...";
-				$ins = DB::getInstance()->__destruct();
+				$ins = DB::getInstance();
+				$ins->__destruct();
 				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
 				if ($sentiment !== "") {
 					$ins->__construct();
@@ -52,6 +53,9 @@ final class Analyzer
 							"sentiment" => $sentiment
 						]
 					);
+					print "OK\n";
+				} else {
+					print "Skipped\n";
 				}
 				$ins->__destruct();
 				exit(0);

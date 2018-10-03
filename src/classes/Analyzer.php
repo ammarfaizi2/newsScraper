@@ -33,23 +33,27 @@ final class Analyzer
 		while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 			
 			if (($i > 0) && ($i % 10 === 0)) {
-				pcntl_wait($status);
+				pcntl_waitpid(-1, $status, WUNTRACED);
 				var_dump($status);
 			}
 
 			$pid = pcntl_fork();
 
-			if ($pid === 0) {				
-				DB::getInstance()->__construct();
-				$si = DB::pdo()->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
+			if ($pid === 0) {
+				print "Processing...";
+				$ins = DB::getInstance()->__destruct();
 				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
-				print $sentiment."\n";
-				$si->execute(
-					[
-						"news_id" => $r["id"],
-						"sentiment" => $sentiment
-					]
-				);
+				if ($sentiment !== "") {
+					$ins->__construct();
+					$si = DB::pdo()->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
+					$si->execute(
+						[
+							"news_id" => $r["id"],
+							"sentiment" => $sentiment
+						]
+					);
+				}
+				$ins->__destruct();
 				exit(0);
 			}
 		}

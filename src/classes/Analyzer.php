@@ -42,6 +42,7 @@ final class Analyzer
 			if ($pid === 0) {
 				print "Processing...";
 				DB::getInstance()->__destruct();
+
 				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
 				if ($sentiment !== "") {
 					$pdo = new PDO(
@@ -62,6 +63,7 @@ final class Analyzer
 						]
 					);
 					print "OK\n";
+					unset($pdo);
 				} else {
 					print "Skipped\n";
 				}

@@ -156,6 +156,7 @@ final class Api
 			$result[$i]["tags"] = [];
 			$result[$i]["comments"] = [];
 			$result[$i]["images"] = [];
+			$result[$i]["sentiment"] = [];
 
 			$st = $this->pdo->prepare("SELECT `id` FROM `regional` WHERE `regional`=:regional LIMIT 1;");
 			$st->execute([":regional" => $rr["regional"]]);
@@ -190,6 +191,12 @@ final class Api
 			$st->execute([":news_id" => $rr["id"]]);
 			while ($r = $st->fetch(PDO::FETCH_ASSOC)) {
 				$result[$i]["images"][] = $r;
+			}
+
+			$st = $this->pdo->prepare("SELECT `sentiment` FROM `sentiment` WHERE `news_id` = :news_id LIMIT 1;");
+			$st->execute([":news_id" => $rr["id"]]);
+			if ($r = $st->fetch(PDO::FETCH_ASSOC)) {
+				$result[$i]["sentiment"] = json_decode($r["sentiment"], true);
 			}
 
 			$result[$i]["hash_file"] = "http://".$_SERVER["HTTP_HOST"]."/storage/scraper/hash/".($hash = sha1($rr["url"])."_".md5($rr["url"]));

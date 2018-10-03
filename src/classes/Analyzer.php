@@ -41,12 +41,20 @@ final class Analyzer
 
 			if ($pid === 0) {
 				print "Processing...";
-				$ins = DB::getInstance();
-				$ins->__destruct();
+				DB::getInstance()->__destruct();
 				$sentiment = trim($this->py->run("sentistrength_id.py", $r["title"]));
 				if ($sentiment !== "") {
-					$ins->__construct();
-					$si = DB::pdo()->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
+					$pdo = new PDO(
+						"mysql:host=".DB_HOST.";port=".DB_PORT.";dbname=".DB_NAME,
+						DB_USER,
+						DB_PASS,
+						[
+							PDO::ATTR_CASE => PDO::CASE_NATURAL,
+							PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+							PDO::ATTR_PERSISTENT => true
+						]
+					);
+					$si = $pdo->prepare("INSERT INTO `sentiment` (`news_id`,`sentiment`) VALUES (:news_id, :sentiment);");
 					$si->execute(
 						[
 							"news_id" => $r["id"],
@@ -57,7 +65,6 @@ final class Analyzer
 				} else {
 					print "Skipped\n";
 				}
-				$ins->__destruct();
 				exit(0);
 			}
 		}

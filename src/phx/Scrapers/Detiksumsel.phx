@@ -152,7 +152,7 @@ final class Detiksumsel extends NewsScraper
 
 			if(
 				preg_match_all(
-					"/<a href=\"(.*?)\" rel=\"bookmark\"/",
+					"/<a href=\"([^\"]*?)\" rel=\"bookmark\"/",
 					$currentPage,
 					$n
 				)

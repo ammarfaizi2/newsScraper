@@ -152,7 +152,7 @@ final class Jambiupdate extends NewsScraper
 
 			if(
 				preg_match_all(
-					"/href=\"(artikel-.+)\"/",
+					"/href=\"(artikel-[^\"]+)\"/",
 					$currentPage,
 					$n
 				)

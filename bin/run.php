@@ -84,6 +84,7 @@ $param = [
 	"beritababel",
 	"rmolbabel",
 	"rbtv",
+	"harianrakyatbengkulu",
 ];
 
 

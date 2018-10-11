@@ -83,6 +83,7 @@ use Phx\Scrapers\Beritababel;
 use Phx\Scrapers\Rmolbabel;
 use Phx\Scrapers\Rbtv;
 use Phx\Scrapers\Harianrakyatbengkulu;
+use Phx\Scrapers\Radarbengkuluonline;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -429,6 +430,10 @@ switch ($argv[1]) {
 	
 	case 'harianrakyatbengkulu':
 		$st = new Harianrakyatbengkulu;
+		break;
+	
+	case 'radarbengkuluonline':
+		$st = new Radarbengkuluonline;
 		break;
 
 	default:

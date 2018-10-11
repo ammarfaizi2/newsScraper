@@ -162,6 +162,7 @@ $sites = [
 	"Rbtv" => "rbtv.co.id",
 	"Harianrakyatbengkulu" => "harianrakyatbengkulu.com",
 	"Radarbengkuluonline" => "radarbengkuluonline.com",
+	"Liputanbengkulu" => "liputanbengkulu.com",
 ];
 $i = 1;
 $total = 0;

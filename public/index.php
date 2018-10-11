@@ -163,6 +163,7 @@ $sites = [
 	"Harianrakyatbengkulu" => "harianrakyatbengkulu.com",
 	"Radarbengkuluonline" => "radarbengkuluonline.com",
 	"Liputanbengkulu" => "liputanbengkulu.com",
+	"Bengkuluekspress" => "bengkuluekspress.com",
 ];
 $i = 1;
 $total = 0;

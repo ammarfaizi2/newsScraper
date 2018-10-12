@@ -93,6 +93,7 @@ $param = [
 	"pedomanbengkulu",
 	"radarlampung",
 	"infolampung",
+	"lampost",
 ];
 
 

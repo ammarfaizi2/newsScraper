@@ -90,6 +90,7 @@ use Phx\Scrapers\Bengkulutoday;
 use Phx\Scrapers\Rmolbengkulu;
 use Phx\Scrapers\Pedomanbengkulu;
 use Phx\Scrapers\Radarlampung;
+use Phx\Scrapers\Infolampung;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -464,6 +465,10 @@ switch ($argv[1]) {
 
 	case 'radarlampung':
 		$st = new Radarlampung;
+		break;
+
+	case 'infolampung':
+		$st = new Infolampung;
 		break;
 
 	default:

@@ -179,10 +179,10 @@ final class Radarlampung extends NewsScraper
 		$i = 0;
 
 		foreach ($urls as $key => $url) {
-			/* if ($this->hashCheck($url)) {
+			if ($this->hashCheck($url)) {
 				$i++;
 				unset($urls[$key]);
-			} */
+			}
 		}
 
 		if ($i > 0) {

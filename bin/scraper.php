@@ -87,6 +87,7 @@ use Phx\Scrapers\Radarbengkuluonline;
 use Phx\Scrapers\Liputanbengkulu;
 use Phx\Scrapers\Bengkuluekspress;
 use Phx\Scrapers\Bengkulutoday;
+use Phx\Scrapers\Rmolbengkulu;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -449,6 +450,10 @@ switch ($argv[1]) {
 
 	case 'bengkulutoday':
 		$st = new Bengkulutoday;
+		break;
+
+	case 'rmolbengkulu':
+		$st = new Rmolbengkulu;
 		break;
 
 	default:

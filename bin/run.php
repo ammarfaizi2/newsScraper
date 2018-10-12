@@ -89,6 +89,7 @@ $param = [
 	"liputanbengkulu",
 	"bengkuluekspress",
 	"bengkulutoday",
+	"rmolbengkulu",
 ];
 
 

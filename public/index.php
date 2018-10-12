@@ -170,6 +170,7 @@ $sites = [
 	"Radarlampung" => "radarlampung.co.id",
 	"Infolampung" => "infolampung.co",
 	"Lampost" => "lampost.co",
+	"Kupastuntas" => "kupastuntas.co",
 ];
 $i = 1;
 $total = 0;

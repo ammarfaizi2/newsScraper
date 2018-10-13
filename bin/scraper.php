@@ -102,6 +102,7 @@ use Phx\Scrapers\Pikiranrakyat;
 use Phx\Scrapers\Bandungberita;
 use Phx\Scrapers\Republika;
 use Phx\Scrapers\Kabarjabar;
+use Phx\Scrapers\Postkeadilan;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -524,6 +525,10 @@ switch ($argv[1]) {
 
 	case 'kabarjabar':
 		$st = new Kabarjabar;
+		break;
+
+	case 'postkeadilan':
+		$st = new Postkeadilan;
 		break;
 
 	default:

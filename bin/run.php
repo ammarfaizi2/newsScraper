@@ -102,6 +102,7 @@ $param = [
 	"aktual",
 	"pikiranrakyat",
 	"bandungberita",
+	"republika",
 ];
 
 

@@ -105,6 +105,7 @@ $param = [
 	"republika",
 	"kabarjabar",
 	"postkeadilan",
+	"jabarekspres",
 ];
 
 

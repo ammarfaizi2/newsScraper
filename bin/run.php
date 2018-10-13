@@ -101,6 +101,7 @@ $param = [
 	"kabarjakarta",
 	"aktual",
 	"pikiranrakyat",
+	"bandungberita",
 ];
 
 

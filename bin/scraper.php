@@ -96,6 +96,7 @@ use Phx\Scrapers\Kupastuntas;
 use Phx\Scrapers\Infojakarta;
 use Phx\Scrapers\Beritajakarta;
 use Phx\Scrapers\Jakartakita;
+use Phx\Scrapers\Kabarjakarta;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -494,6 +495,10 @@ switch ($argv[1]) {
 
 	case 'jakartakita':
 		$st = new Jakartakita;
+		break;
+
+	case 'kabarjakarta':
+		$st = new Kabarjakarta;
 		break;
 
 	default:

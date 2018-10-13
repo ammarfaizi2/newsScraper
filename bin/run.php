@@ -98,6 +98,7 @@ $param = [
 	"infojakarta",
 	"beritajakarta",
 	"jakartakita",
+	"kabarjakarta",
 ];
 
 

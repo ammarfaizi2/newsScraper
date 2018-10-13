@@ -175,6 +175,7 @@ $sites = [
 	"Beritajakarta" => "beritajakarta.id",
 	"Jakartakita" => "jakartakita.com",
 	"Kabarjakarta" => "kabarjakarta.com",
+	"Aktual" => "aktual.com",
 ];
 $i = 1;
 $total = 0;

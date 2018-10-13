@@ -106,6 +106,7 @@ $param = [
 	"kabarjabar",
 	"postkeadilan",
 	"jabarekspres",
+	"jabarnews",
 ];
 
 

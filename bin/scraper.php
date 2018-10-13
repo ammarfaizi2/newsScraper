@@ -104,6 +104,7 @@ use Phx\Scrapers\Republika;
 use Phx\Scrapers\Kabarjabar;
 use Phx\Scrapers\Postkeadilan;
 use Phx\Scrapers\Jabarekspres;
+use Phx\Scrapers\Jabarnews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -534,6 +535,10 @@ switch ($argv[1]) {
 
 	case 'jabarekspres':
 		$st = new Jabarekspres;
+		break;
+		
+	case 'jabarnews':
+		$st = new Jabarnews;
 		break;
 
 	default:

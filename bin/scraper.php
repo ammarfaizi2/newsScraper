@@ -95,6 +95,7 @@ use Phx\Scrapers\Lampost;
 use Phx\Scrapers\Kupastuntas;
 use Phx\Scrapers\Infojakarta;
 use Phx\Scrapers\Beritajakarta;
+use Phx\Scrapers\Jakartakita;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -489,7 +490,11 @@ switch ($argv[1]) {
 
 	case 'beritajakarta':
 		$st = new Beritajakarta;
-	break;
+		break;
+
+	case 'jakartakita':
+		$st = new Jakartakita;
+		break;
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

@@ -108,6 +108,7 @@ use Phx\Scrapers\Jabarnews;
 use Phx\Scrapers\Radarbanten;
 use Phx\Scrapers\Kabarbanten;
 use Phx\Scrapers\Infobanten;
+use Phx\Scrapers\Bantennews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -549,6 +550,10 @@ switch ($argv[1]) {
 
 	case 'infobanten':
 		$st = new Infobanten;
+		break;
+
+	case 'bantennews':
+		$st = new Bantennews;
 		break;
 
 	default:

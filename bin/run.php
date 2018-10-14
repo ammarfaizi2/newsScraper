@@ -110,6 +110,7 @@ $param = [
 	"radarbanten",
 	"kabarbanten",
 	"infobanten",
+	"banteninfo",
 ];
 
 

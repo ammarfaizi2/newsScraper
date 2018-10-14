@@ -116,6 +116,7 @@ $param = [
 	"beritajateng",
 	"metrojateng",
 	"kabarjateng",
+	"jogja",
 ];
 
 

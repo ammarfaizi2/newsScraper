@@ -116,6 +116,7 @@ use Phx\Scrapers\Kabarjateng;
 use Phx\Scrapers\Jogja;
 use Phx\Scrapers\Kotajogja;
 use Phx\Scrapers\Infojogja;
+use Phx\Scrapers\Krjogja;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -589,6 +590,10 @@ switch ($argv[1]) {
 		
 	case 'infojogja':
 		$st = new Infojogja;
+		break;
+
+	case 'krjogja':
+		$st = new Krjogja;
 		break;
 
 	default:

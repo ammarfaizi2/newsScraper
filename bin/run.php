@@ -119,6 +119,7 @@ $param = [
 	"jogja",
 	"kotajogja",
 	"infojogja",
+	"krjogja",
 ];
 
 

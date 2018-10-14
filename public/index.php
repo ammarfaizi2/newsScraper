@@ -193,6 +193,7 @@ $sites = [
 	"Metrojateng" => "metrojateng.com",
 	"Kabarjateng" => "kabarjateng.co.id",
 	"Jogja" => "jogja.co",
+	"Kotajogja" => "kotajogja.com",
 ];
 $i = 1;
 $total = 0;

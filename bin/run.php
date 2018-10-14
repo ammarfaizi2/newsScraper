@@ -113,6 +113,7 @@ $param = [
 	"banteninfo",
 	"bantennews",
 	"kabartangsel",
+	"beritajateng",
 ];
 
 

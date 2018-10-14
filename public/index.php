@@ -185,6 +185,7 @@ $sites = [
 	"Jabarnews" => "jabarnews.com",
 	"Radarbanten" => "radarbanten.co.id",
 	"Kabarbanten" => "kabar-banten.com",
+	"Infobanten" => "infobanten.com",
 ];
 $i = 1;
 $total = 0;

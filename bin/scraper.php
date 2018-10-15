@@ -126,6 +126,7 @@ use Phx\Scrapers\Beritabali;
 use Phx\Scrapers\Balipost;
 use Phx\Scrapers\Nusabali;
 use Phx\Scrapers\Suarantb;
+use Phx\Scrapers\Mataramnews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -639,6 +640,10 @@ switch ($argv[1]) {
 
 	case 'suarantb':
 		$st = new Suarantb;
+		break;
+
+	case 'mataramnews':
+		$st = new Mataramnews;
 		break;
 
 	default:

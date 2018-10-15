@@ -220,6 +220,7 @@ $sites = [
 	"Beritakalteng" => "beritakalteng.com",
 	"Gerakkalteng" => "gerakkalteng.com",
 	"Kliksamarinda" => "kliksamarinda.com",
+	"Korankaltim" => "korankaltim.com",
 ];
 $i = 1;
 $total = 0;

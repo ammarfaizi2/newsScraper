@@ -145,6 +145,7 @@ $param = [
 	"gerakkalteng",
 	"kliksamarinda",
 	"korankaltim",
+	"beritamanado",
 ];
 
 

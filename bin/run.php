@@ -133,6 +133,7 @@ $param = [
 	"wartantb",
 	"hariannusa",
 	"lombokita",
+	"voxntt",
 ];
 
 

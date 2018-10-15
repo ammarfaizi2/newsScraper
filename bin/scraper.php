@@ -130,6 +130,7 @@ use Phx\Scrapers\Mataramnews;
 use Phx\Scrapers\Wartantb;
 use Phx\Scrapers\Hariannusa;
 use Phx\Scrapers\Lombokita;
+use Phx\Scrapers\Voxntt;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -660,6 +661,10 @@ switch ($argv[1]) {
 	case 'lombokita':
 		$st = new Lombokita;
 		break;
+
+	case 'voxntt':
+		$st = new Voxntt;
+		break;	
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

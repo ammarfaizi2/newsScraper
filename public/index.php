@@ -206,6 +206,7 @@ $sites = [
 	"Nusabali" => "nusabali.com",
 	"Suarantb" => "suarantb.com",
 	"Mataramnews" => "mataramnews.co.id",
+	"Wartantb" => "wartantb.com",
 ];
 $i = 1;
 $total = 0;

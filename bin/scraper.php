@@ -143,6 +143,7 @@ use Phx\Scrapers\Gerakkalteng;
 use Phx\Scrapers\Kliksamarinda;
 use Phx\Scrapers\Korankaltim;
 use Phx\Scrapers\Beritamanado;
+use Phx\Scrapers\Sulutdaily;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -724,6 +725,10 @@ switch ($argv[1]) {
 
 	case 'beritamanado':
 		$st = new Beritamanado;
+		break;	
+
+	case 'sulutdaily':
+		$st = new Sulutdaily;
 		break;	
 
 	default:

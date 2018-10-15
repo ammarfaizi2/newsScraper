@@ -214,6 +214,7 @@ $sites = [
 	"Kilaskalbar" => "kilaskalbar.com",
 	"Rmolkalbar" => "rmolkalbar.com",
 	"Prokal" => "prokal.co",
+	"Borneonews" => "borneonews.co.id",
 ];
 $i = 1;
 $total = 0;

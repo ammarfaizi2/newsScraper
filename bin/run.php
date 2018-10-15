@@ -131,6 +131,7 @@ $param = [
 	"suarantb",
 	"mataramnews",
 	"wartantb",
+	"hariannusa",
 ];
 
 

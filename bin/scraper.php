@@ -128,6 +128,7 @@ use Phx\Scrapers\Nusabali;
 use Phx\Scrapers\Suarantb;
 use Phx\Scrapers\Mataramnews;
 use Phx\Scrapers\Wartantb;
+use Phx\Scrapers\Hariannusa;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -649,6 +650,10 @@ switch ($argv[1]) {
 
 	case 'wartantb':
 		$st = new Wartantb;
+		break;
+
+	case 'hariannusa':
+		$st = new Hariannusa;
 		break;
 
 	default:

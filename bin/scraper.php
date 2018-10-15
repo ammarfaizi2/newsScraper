@@ -140,6 +140,7 @@ use Phx\Scrapers\Beritasampit;
 use Phx\Scrapers\Kaltengnews;
 use Phx\Scrapers\Beritakalteng;
 use Phx\Scrapers\Gerakkalteng;
+use Phx\Scrapers\Kliksamarinda;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -709,6 +710,10 @@ switch ($argv[1]) {
 
 	case 'gerakkalteng':
 		$st = new Gerakkalteng;
+		break;	
+
+	case 'kliksamarinda':
+		$st = new Kliksamarinda;
 		break;	
 
 	default:

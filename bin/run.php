@@ -126,6 +126,7 @@ $param = [
 	"bisnis",
 	"kabarjawatimur",
 	"beritabali",
+	"balipost",
 ];
 
 

@@ -137,6 +137,7 @@ $param = [
 	"kalbaronline",
 	"kilaskalbar",
 	"rmolkalbar",
+	"prokal",
 ];
 
 

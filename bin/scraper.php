@@ -119,6 +119,7 @@ use Phx\Scrapers\Infojogja;
 use Phx\Scrapers\Krjogja;
 use Phx\Scrapers\Beritajatim;
 use Phx\Scrapers\Infojatim;
+use Phx\Scrapers\Kabarjatim;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -604,6 +605,10 @@ switch ($argv[1]) {
 
 	case 'infojatim':
 		$st = new Infojatim;
+		break;
+
+	case 'kabarjatim':
+		$st = new Kabarjatim;
 		break;
 
 	default:

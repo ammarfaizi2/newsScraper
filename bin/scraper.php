@@ -133,6 +133,7 @@ use Phx\Scrapers\Lombokita;
 use Phx\Scrapers\Voxntt;
 use Phx\Scrapers\Kalbaronline;
 use Phx\Scrapers\Kilaskalbar;
+use Phx\Scrapers\Rmolkalbar;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -674,6 +675,10 @@ switch ($argv[1]) {
 
 	case 'kilaskalbar':
 		$st = new Kilaskalbar;
+		break;	
+
+	case 'rmolkalbar':
+		$st = new Rmolkalbar;
 		break;	
 
 	default:

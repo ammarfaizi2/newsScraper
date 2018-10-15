@@ -136,6 +136,7 @@ $param = [
 	"voxntt",
 	"kalbaronline",
 	"kilaskalbar",
+	"rmolkalbar",
 ];
 
 

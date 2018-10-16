@@ -263,6 +263,7 @@ $sites = [
 	"Indonesiaberita" => "indonesiaberita.com",
 	"Beritapapua" => "berita-papua.com",
 	"Papuanews" => "papuanews.id",
+	"Pasificpos" => "pasificpos.com",
 ];
 $i = 1;
 $total = 0;

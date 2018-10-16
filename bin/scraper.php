@@ -150,6 +150,7 @@ use Phx\Scrapers\Rmol;
 use Phx\Scrapers\Sulutonline;
 use Phx\Scrapers\Cybersulutnews;
 use Phx\Scrapers\Pilarsulut;
+use Phx\Scrapers\Sulutpost;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -759,6 +760,10 @@ switch ($argv[1]) {
 
 	case 'pilarsulut':
 		$st = new Pilarsulut;
+		break;	
+
+	case 'sulutpost':
+		$st = new Sulutpost;
 		break;	
 
 	default:

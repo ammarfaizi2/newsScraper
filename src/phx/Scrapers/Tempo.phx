@@ -16,6 +16,7 @@ final class Tempo extends NewsScraper
 
 	const targetList = [
         "Sulawesi Tengah" => "https://www.tempo.co/tag/pemerintah-provinsi-sulawesi-tengah",
+		"Papua Barat" => "https://www.tempo.co/tag/papua-barat"
 	];
 
     private $host = "https://www.tempo.co/";

@@ -163,6 +163,7 @@ use Phx\Scrapers\Tempo;
 use Phx\Scrapers\Satusulteng;
 use Phx\Scrapers\Beritasulteng;
 use Phx\Scrapers\Zonasultra;
+use Phx\Scrapers\Sultrakini;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -824,6 +825,10 @@ switch ($argv[1]) {
 
 	case 'zonasultra':
 		$st = new Zonasultra;
+		break;
+
+	case 'sultrakini':
+		$st = new Sultrakini;
 		break;
 
 	default:

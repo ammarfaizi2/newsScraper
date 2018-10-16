@@ -242,6 +242,7 @@ $sites = [
 	"Satusulteng" => "satusulteng.com",
 	"Beritasulteng" => "beritasulteng.id",
 	"Zonasultra" => "zonasultra.com",
+	"Sultrakini" => "sultrakini.com",
 ];
 $i = 1;
 $total = 0;

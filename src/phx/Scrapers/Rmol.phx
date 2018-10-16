@@ -16,6 +16,7 @@ final class Rmol extends NewsScraper
 
 	const targetList = [
         "Sulawesi Utara" => "https://rmol.co/tag.php?tag=sulut",
+		"Gorontalo" => "http://rmol.co/tag/gorontalo/1 ",
 	];
 
     private $host = "https://rmol.co/";

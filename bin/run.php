@@ -181,6 +181,7 @@ $param = [
 	"tajuktimur",
 	"terasmaluku",
 	"beritamalutco",
+	"beritamalutcom",
 ];
 
 

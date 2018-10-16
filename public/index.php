@@ -253,6 +253,7 @@ $sites = [
 	"Vifapost" => "vifapost.com",
 	"Tribunmaluku" => "tribun-maluku.com",
 	"Rakyatmaluku" => "rakyatmaluku.com",
+	"Detikmaluku" => "detikmaluku.com",
 ];
 $i = 1;
 $total = 0;

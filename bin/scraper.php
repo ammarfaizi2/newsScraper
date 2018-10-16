@@ -154,6 +154,7 @@ use Phx\Scrapers\Sulutpost;
 use Phx\Scrapers\Fajar;
 use Phx\Scrapers\Suryatopnews;
 use Phx\Scrapers\Fajaronline;
+use Phx\Scrapers\Sulbarkita;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -779,6 +780,10 @@ switch ($argv[1]) {
 
 	case 'fajaronline':
 		$st = new Fajaronline;
+		break;	
+
+	case 'sulbarkita':
+		$st = new Sulbarkita;
 		break;	
 
 	default:

@@ -149,6 +149,7 @@ $param = [
 	"sulutdaily",
 	"manadoline",
 	"suaramanado",
+	"rmol",
 ];
 
 

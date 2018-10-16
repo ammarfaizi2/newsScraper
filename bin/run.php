@@ -175,6 +175,7 @@ $param = [
 	"radargorontalo",
 	"mimoza",
 	"vifapost",
+	"tribunmaluku",
 ];
 
 

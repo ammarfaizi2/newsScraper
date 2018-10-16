@@ -259,6 +259,7 @@ $sites = [
 	"Beritamalut.co" => "beritamalut.co",
 	"Beritamalut.com" => "beritamalut.com",
 	"Beritamalukuonline" => "beritamalukuonline.com",
+	"Deliknews" => "deliknews.com",
 ];
 $i = 1;
 $total = 0;

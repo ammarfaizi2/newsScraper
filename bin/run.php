@@ -183,6 +183,7 @@ $param = [
 	"beritamalutco",
 	"beritamalutcom",
 	"beritamalukuonline",
+	"deliknews",
 ];
 
 

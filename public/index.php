@@ -252,6 +252,7 @@ $sites = [
 	"Mimoza" => "mimoza.tv",
 	"Vifapost" => "vifapost.com",
 	"Tribunmaluku" => "tribun-maluku.com",
+	"Rakyatmaluku" => "rakyatmaluku.com",
 ];
 $i = 1;
 $total = 0;

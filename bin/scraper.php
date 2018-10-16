@@ -173,6 +173,7 @@ use Phx\Scrapers\Radargorontalo;
 use Phx\Scrapers\Mimoza;
 use Phx\Scrapers\Vifapost;
 use Phx\Scrapers\Tribunmaluku;
+use Phx\Scrapers\Rakyatmaluku;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -874,6 +875,10 @@ switch ($argv[1]) {
 
 	case 'tribunmaluku':
 		$st = new Tribunmaluku;
+		break;
+
+	case 'rakyatmaluku':
+		$st = new Rakyatmaluku;
 		break;
 
 	default:

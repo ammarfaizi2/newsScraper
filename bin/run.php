@@ -167,6 +167,7 @@ $param = [
 	"beritasulteng",
 	"zonasultra",
 	"sultrakini",
+	"kabarmakassar",
 ];
 
 

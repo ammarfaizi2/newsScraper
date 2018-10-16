@@ -238,6 +238,7 @@ $sites = [
 	"Mediasulbar" => "mediasulbar.com",
 	"Radarsultengonline" => "radarsultengonline.com",
 	"Kabarsulteng" => "kabarsulteng.com",
+	"Tempo" => "tempo.co",
 ];
 $i = 1;
 $total = 0;

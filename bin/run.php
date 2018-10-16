@@ -162,6 +162,7 @@ $param = [
 	"mediasulbar",
 	"radarsultengonline",
 	"kabarsulteng",
+	"tempo",
 ];
 
 

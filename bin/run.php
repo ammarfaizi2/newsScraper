@@ -165,6 +165,7 @@ $param = [
 	"tempo",
 	"satusulteng",
 	"beritasulteng",
+	"zonasultra",
 ];
 
 

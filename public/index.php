@@ -244,6 +244,7 @@ $sites = [
 	"Zonasultra" => "zonasultra.com",
 	"Sultrakini" => "sultrakini.com",
 	"Kabarmakassar" => "kabarmakassar.com",
+	"Terkini" => "terkini.id",
 ];
 $i = 1;
 $total = 0;

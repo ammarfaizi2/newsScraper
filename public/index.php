@@ -250,6 +250,7 @@ $sites = [
 	"Merdeka" => "merdeka.com",
 	"Radargorontalo" => "radargorontalo.com",
 	"Mimoza" => "mimoza.tv",
+	"Vifapost" => "vifapost.com",
 ];
 $i = 1;
 $total = 0;

@@ -171,6 +171,7 @@ use Phx\Scrapers\Okezone;
 use Phx\Scrapers\Merdeka;
 use Phx\Scrapers\Radargorontalo;
 use Phx\Scrapers\Mimoza;
+use Phx\Scrapers\Vifapost;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -864,6 +865,10 @@ switch ($argv[1]) {
 
 	case 'mimoza':
 		$st = new Mimoza;
+		break;
+
+	case 'vifapost':
+		$st = new Vifapost;
 		break;
 
 	default:

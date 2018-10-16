@@ -160,6 +160,7 @@ use Phx\Scrapers\Mediasulbar;
 use Phx\Scrapers\Radarsultengonline;
 use Phx\Scrapers\Kabarsulteng;
 use Phx\Scrapers\Tempo;
+use Phx\Scrapers\Satusulteng;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -809,7 +810,11 @@ switch ($argv[1]) {
 
 	case 'tempo':
 		$st = new Tempo;
-		break;	
+		break;
+		
+	case 'satusulteng':
+		$st = new Satusulteng;
+		break;
 
 	default:
 		print "Invalid argument \"{$argv[1]}\"";

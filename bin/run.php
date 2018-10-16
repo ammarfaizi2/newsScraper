@@ -163,6 +163,7 @@ $param = [
 	"radarsultengonline",
 	"kabarsulteng",
 	"tempo",
+	"satusulteng",
 ];
 
 

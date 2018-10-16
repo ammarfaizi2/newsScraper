@@ -152,6 +152,7 @@ use Phx\Scrapers\Cybersulutnews;
 use Phx\Scrapers\Pilarsulut;
 use Phx\Scrapers\Sulutpost;
 use Phx\Scrapers\Fajar;
+use Phx\Scrapers\Suryatopnews;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -769,6 +770,10 @@ switch ($argv[1]) {
 
 	case 'fajar':
 		$st = new Fajar;
+		break;	
+
+	case 'suryatopnews':
+		$st = new Suryatopnews;
 		break;	
 
 	default:

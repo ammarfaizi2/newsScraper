@@ -155,6 +155,7 @@ $param = [
 	"pilarsulut",
 	"sulutpost",
 	"fajar",
+	"suryatopnews",
 ];
 
 

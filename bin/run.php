@@ -151,6 +151,7 @@ $param = [
 	"suaramanado",
 	"rmol",
 	"sulutonline",
+	"cybersulutnews",
 ];
 
 

@@ -227,6 +227,7 @@ $sites = [
 	"Suaramanado" => "suaramanado.com",
 	"Rmol" => "rmol.co",
 	"Sulutonline" => "sulutonline.com",
+	"Cybersulutnews" => "cybersulutnews.co.id",
 ];
 $i = 1;
 $total = 0;

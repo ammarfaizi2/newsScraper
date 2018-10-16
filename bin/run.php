@@ -170,6 +170,7 @@ $param = [
 	"kabarmakassar",
 	"terkini",
 	"beritasulsel",
+	"okezone",
 ];
 
 

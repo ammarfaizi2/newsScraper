@@ -147,6 +147,7 @@ use Phx\Scrapers\Sulutdaily;
 use Phx\Scrapers\Manadoline;
 use Phx\Scrapers\Suaramanado;
 use Phx\Scrapers\Rmol;
+use Phx\Scrapers\Sulutonline;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -744,6 +745,10 @@ switch ($argv[1]) {
 
 	case 'rmol':
 		$st = new Rmol;
+		break;	
+
+	case 'sulutonline':
+		$st = new Sulutonline;
 		break;	
 
 	default:

@@ -182,6 +182,7 @@ use Phx\Scrapers\Beritamalutcom;
 use Phx\Scrapers\Beritamalukuonline;
 use Phx\Scrapers\Deliknews;
 use Phx\Scrapers\Indonesiaberita;
+use Phx\Scrapers\Beritapapua;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -919,6 +920,10 @@ switch ($argv[1]) {
 
 	case 'indonesiaberita':
 		$st = new Indonesiaberita;
+		break;
+
+	case 'beritapapua':
+		$st = new Beritapapua;
 		break;
 
 	default:

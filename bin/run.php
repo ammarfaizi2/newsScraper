@@ -160,6 +160,7 @@ $param = [
 	"sulbarkita",
 	"jurnalsulbar",
 	"mediasulbar",
+	"radarsultengonline",
 ];
 
 

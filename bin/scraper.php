@@ -157,6 +157,7 @@ use Phx\Scrapers\Fajaronline;
 use Phx\Scrapers\Sulbarkita;
 use Phx\Scrapers\Jurnalsulbar;
 use Phx\Scrapers\Mediasulbar;
+use Phx\Scrapers\Radarsultengonline;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -794,6 +795,10 @@ switch ($argv[1]) {
 
 	case 'mediasulbar':
 		$st = new Mediasulbar;
+		break;	
+
+	case 'radarsultengonline':
+		$st = new Radarsultengonline;
 		break;	
 
 	default:

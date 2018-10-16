@@ -249,6 +249,7 @@ $sites = [
 	"Okezone" => "okezone.com",
 	"Merdeka" => "merdeka.com",
 	"Radargorontalo" => "radargorontalo.com",
+	"Mimoza" => "mimoza.tv",
 ];
 $i = 1;
 $total = 0;

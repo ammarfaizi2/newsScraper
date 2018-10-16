@@ -170,6 +170,7 @@ use Phx\Scrapers\Beritasulsel;
 use Phx\Scrapers\Okezone;
 use Phx\Scrapers\Merdeka;
 use Phx\Scrapers\Radargorontalo;
+use Phx\Scrapers\Mimoza;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -859,6 +860,10 @@ switch ($argv[1]) {
 
 	case 'radargorontalo':
 		$st = new Radargorontalo;
+		break;
+
+	case 'mimoza':
+		$st = new Mimoza;
 		break;
 
 	default:

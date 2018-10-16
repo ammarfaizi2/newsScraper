@@ -147,6 +147,7 @@ $param = [
 	"korankaltim",
 	"beritamanado",
 	"sulutdaily",
+	"manadoline",
 ];
 
 

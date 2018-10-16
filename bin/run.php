@@ -182,6 +182,7 @@ $param = [
 	"terasmaluku",
 	"beritamalutco",
 	"beritamalutcom",
+	"beritamalukuonline",
 ];
 
 

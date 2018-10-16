@@ -179,6 +179,7 @@ $param = [
 	"rakyatmaluku",
 	"detikmaluku",
 	"tajuktimur",
+	"terasmaluku",
 ];
 
 

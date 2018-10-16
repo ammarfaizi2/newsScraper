@@ -176,6 +176,7 @@ use Phx\Scrapers\Tribunmaluku;
 use Phx\Scrapers\Rakyatmaluku;
 use Phx\Scrapers\Detikmaluku;
 use Phx\Scrapers\Tajuktimur;
+use Phx\Scrapers\Terasmaluku;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -889,6 +890,10 @@ switch ($argv[1]) {
 
 	case 'tajuktimur':
 		$st = new Tajuktimur;
+		break;
+
+	case 'terasmaluku':
+		$st = new Terasmaluku;
 		break;
 
 	default:

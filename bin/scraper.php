@@ -169,6 +169,7 @@ use Phx\Scrapers\Terkini;
 use Phx\Scrapers\Beritasulsel;
 use Phx\Scrapers\Okezone;
 use Phx\Scrapers\Merdeka;
+use Phx\Scrapers\Radargorontalo;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -854,6 +855,10 @@ switch ($argv[1]) {
 
 	case 'merdeka':
 		$st = new Merdeka;
+		break;
+
+	case 'radargorontalo':
+		$st = new Radargorontalo;
 		break;
 
 	default:

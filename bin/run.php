@@ -189,6 +189,7 @@ $param = [
 	"papuanews",
 	"pasificpos",
 	"kabarpapua",
+	"tabloidjubi",
 ];
 
 

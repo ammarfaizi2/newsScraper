@@ -189,6 +189,7 @@ use Phx\Scrapers\Kabarpapua;
 use Phx\Scrapers\Tabloidjubi;
 use Phx\Scrapers\Tribratanewspapuabarat;
 use Phx\Scrapers\Papuatoday;
+use Phx\Scrapers\Papuaus;
 
 if (! isset($argv[1])) {
 	print "\$argv[1] is not defined!\n";
@@ -954,6 +955,10 @@ switch ($argv[1]) {
 
 	case 'papuatoday':
 		$st = new Papuatoday;
+		break;
+
+	case 'papuaus':
+		$st = new Papuaus;
 		break;
 
 	default:

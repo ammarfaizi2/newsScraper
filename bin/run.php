@@ -193,6 +193,7 @@ $param = [
 	"tribratanewspapuabarat",
 	"papuatoday",
 	"papuaus",
+	"lensapapua",
 ];
 
 

@@ -269,6 +269,7 @@ $sites = [
 	"Tribratanewspapuabarat" => "tribratanewspapuabarat.com",
 	"Papuatoday" => "papuatoday.com",
 	"Papua.us" => "papua.us",
+	"Lensapapua" => "lensapapua.com",
 ];
 $i = 1;
 $total = 0;

@@ -11,7 +11,7 @@ function iceteaInternalAutoloader($class)
 {
 	$class = str_replace("\\", "/", $class);
 	if (substr($class, 0, 4) === "Phx/") {
-		if (file_exists($f = BASEPATH."/src/phx/".substr($class, 4).".phx")) {
+		if (file_exists($f = BASEPATH."/src/phx/".substr($class, 4).".php")) {
 			require $f;
 		}
 	} else {
